@@ -1,3 +1,5 @@
+import { ClienteModule } from './cliente/cliente.module';
+import { AdminModule } from './admin/admin.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,7 +12,9 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AdminModule,
+    ClienteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
