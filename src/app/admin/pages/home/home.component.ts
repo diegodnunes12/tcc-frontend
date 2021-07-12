@@ -1,3 +1,4 @@
+import { AnimaisService } from './../../../core/services/animais.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private animaisService: AnimaisService) { }
 
   ngOnInit() {
+    this.animaisService.getAll().subscribe(animais => console.log(animais));
   }
 
 }

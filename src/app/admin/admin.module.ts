@@ -1,3 +1,4 @@
+import { CoreModule } from './../core/core.module';
 import { HeaderComponent } from './componentes/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
@@ -10,7 +11,8 @@ import { AdminRoutingModule } from './admin-routing.module';
   declarations: [ HomeComponent, HeaderComponent ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    CoreModule
   ]
 })
 export class AdminModule { }
