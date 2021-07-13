@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12">
+      <h1>Cadastrar animal</h1>
+    </div>
+  </div>
+  <form [formGroup]="formulario">
+    <div class="row">
+      <div class="col-md-6 mt-2">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" formControlName="nome">
+      </div>
+      <div class="col-md-6 mt-2">
+        <label for="especie" class="form-label">Espécie</label>
+        <input type="text" class="form-control" id="especie" formControlName="especie">
+      </div>
+      <div class="col-md-6 mt-2">
+        <label for="porte" class="form-label">Porte</label>
+        <input type="text" class="form-control" id="porte" formControlName="porte">
+      </div>
+      <div class="col-md-6 mt-2">
+        <label for="pelagem" class="form-label">Pelagem</label>
+        <input type="text" class="form-control" id="pelagem" formControlName="pelagem">
+      </div>
+      <div class="col-md-6 mt-2">
+        <label for="sexo" class="form-label">Sexo</label>
+        <input type="text" class="form-control" id="sexo" formControlName="sexo">
+      </div>
+      <div class="col-md-6 mt-2">
+        <label for="raca" class="form-label">Raça</label>
+        <input type="text" class="form-control" id="raca" formControlName="raca">
+      </div>
+
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,17 @@
+<div class="modal-center">
+  <div class="modal-body">
+      <div class="row">
+          <div class="col-12 text-center">
+              <i class="bi bi-exclamation-circle text-danger"></i>
+              <h1 class="text-danger">Você tem certeza que deseja deletar?</h1>
+              <p>Essa operação não poderá ser desfeita</p>
+          </div>
+      </div>
+      <div class="row mt-3">
+          <div class="col-12 text-end">
+              <button type="button" class="btn btn-light" (click)="cancel()">Cancelar</button>
+              <button type="button" class="btn btn-danger" (click)="confirm()"><i class="bi bi-trash"></i> Excluir</button>
+          </div>
+      </div>
+  </div>
+</div>

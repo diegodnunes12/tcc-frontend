@@ -1,0 +1,20 @@
+::ng-deep .modal-dialog-centered .modal-content {
+  width: 478px;
+  margin: 0 auto;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.16);
+  padding: 20px 0;
+
+  .btn-danger {
+      margin-left: 15px;
+
+      i {
+          margin-right: 5px;
+      }
+  }
+
+  i.bi-exclamation-circle {
+      font-size: 65px;
+  }
+}
