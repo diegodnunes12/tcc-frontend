@@ -1,3 +1,5 @@
+import { AnimaisInterface } from './../../../core/interfaces/animais.interface';
+import { Observable } from 'rxjs';
 import { AnimaisService } from './../../../core/services/animais.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,10 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  public animais$: Observable<AnimaisInterface>;
+
   constructor(private animaisService: AnimaisService) { }
 
   ngOnInit() {
-    this.animaisService.getAll().subscribe(animais => console.log(animais));
+    this.animais$ = this.animaisService.getAll();
   }
 
 }

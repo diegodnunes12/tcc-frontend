@@ -1,11 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+$color-primary: #49acc4;
 
 .bg-primary {
-  background: #49acc4 !important;
+  background: $color-primary !important;
+}
+
+.btn-primary {
+  background: $color-primary !important;
+  border-color: $color-primary !important;
 }
 
 .text-primary {
   color: #49acc4;
+}
+
+h1 {
+  font-size: 24px;
 }
 // #49acc4 principal
 // #512E19 secudaria
