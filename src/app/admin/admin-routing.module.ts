@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'novo', component: CadastroAnimalComponent },
+  { path: 'editar/:animalId', component: CadastroAnimalComponent },
 ];
 
 @NgModule({

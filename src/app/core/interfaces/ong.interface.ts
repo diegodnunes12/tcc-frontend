@@ -1,5 +1,5 @@
 export interface OngInterface {
-  id?: string;
+  _id?: string;
   nome: string;
   cnpj: string;
   telefone: string;

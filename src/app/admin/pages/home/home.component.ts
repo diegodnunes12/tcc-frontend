@@ -25,6 +25,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['admin', 'novo']);
   }
 
+  public editar(id: string) {
+    this.router.navigate(['admin', 'editar', id]);
+  }
+
   public remover(id: string) {
     let modalRef: BsModalRef = this.bsModalService.show(ModalConfirmaExclusaoComponent, { class: "modal-dialog-centered" });
 

@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from './componentes/footer/footer.component';
 
 
 @NgModule({
-  declarations: [ModalConfirmaExclusaoComponent,],
+  declarations: [ModalConfirmaExclusaoComponent, FooterComponent,],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   exports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FooterComponent
   ]
 })
 export class CoreModule {

@@ -3,17 +3,18 @@ import { EspecieInterface } from './especie.interface';
 import { OngInterface } from './ong.interface';
 
 export interface AnimaisInterface {
-  id?: string;
+  _id?: string;
   nome: string;
   pelagem?: string;
   sexo?: string;
   raca?: string;
+  idade?: string;
   historia?: string;
   castrado?: boolean;
   vacinado?: boolean;
   vermifugado?: boolean;
-  ong: OngInterface;
+  ong?: OngInterface;
   especie: EspecieInterface;
   porte: PorteInterface;
-  data_cadastro: Date;
+  data_cadastro?: Date;
 }

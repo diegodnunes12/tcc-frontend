@@ -12,8 +12,20 @@ export class AnimaisService {
 
   constructor(private http: HttpClient) { }
 
+  public cadastrar(animal: AnimaisInterface): Observable<AnimaisInterface> {
+    return this.http.post<AnimaisInterface>(this.url, animal);
+  }
+
+  public alterar(animal: AnimaisInterface, animalId: string): Observable<AnimaisInterface> {
+    return this.http.patch<AnimaisInterface>(`${this.url}/${animalId}`, animal);
+  }
+
   public getAll(): Observable<AnimaisInterface[]> {
     return this.http.get<AnimaisInterface[]>(this.url);
+  }
+
+  public getById(id: string): Observable<AnimaisInterface> {
+    return this.http.get<AnimaisInterface>(`${this.url}/${id}`);
   }
 
   public delete(id: string): Observable<AnimaisInterface> {

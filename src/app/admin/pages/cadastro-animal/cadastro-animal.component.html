@@ -1,38 +1,85 @@
 <app-header></app-header>
 <div class="container">
-  <div class="row mt-5">
-    <div class="col-12">
-      <h1>Cadastrar animal</h1>
+  <div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h6 class="border-bottom pb-2 mb-0">Cadastrar animal</h6>
+    <div class="text-muted pt-3">
+      <form [formGroup]="formulario" (ngSubmit)="salvar()">
+        <div class="row">
+          <div class="col-md-6 mt-2">
+            <label for="nome" class="form-label">Nome *</label>
+            <input type="text" class="form-control" id="nome" formControlName="nome" maxlength="50">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="especie" class="form-label">Espécie *</label>
+            <select class="form-select" formControlName="especie">
+              <option selected disabled></option>
+              <ng-container *ngIf="especies$ | async as especies">
+                <option *ngFor="let especie of especies" [value]="especie._id">{{ especie.nome }}</option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="porte" class="form-label">Porte *</label>
+            <select class="form-select" formControlName="porte">
+              <option selected disabled></option>
+              <option value="60e8cbc2c71494fd715ba5ed">Pequeno</option>
+              <option value="60e8cbc9c71494fd715ba5ef">Médio</option>
+              <option value="60e8cbd0c71494fd715ba5f1">Grande</option>
+            </select>
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="pelagem" class="form-label">Pelagem</label>
+            <input type="text" class="form-control" id="pelagem" formControlName="pelagem" maxlength="20">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="sexo" class="form-label">Sexo</label>
+            <select class="form-select" formControlName="sexo">
+              <option selected disabled></option>
+              <option value="Macho">Macho</option>
+              <option value="Fêmea">Fêmea</option>
+            </select>
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="raca" class="form-label">Raça</label>
+            <input type="text" class="form-control" id="raca" formControlName="raca" maxlength="30">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="idade" class="form-label">Idade</label>
+            <input type="text" class="form-control" id="idade" formControlName="idade" maxlength="10">
+          </div>
+          <div class="col-md-6 mt-5">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="castrado" formControlName="castrado">
+                  <label class="form-check-label" for="castrado">Castrado</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="vacinado" formControlName="vacinado">
+                  <label class="form-check-label" for="vacinado">Vacinado</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="vermifugado" formControlName="vermifugado">
+                  <label class="form-check-label" for="vermifugado">Vermifugado</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mt-2">
+            <label for="historia" class="form-label">História</label>
+            <textarea class="form-control" id="historia" formControlName="historia" maxlength="500" rows="3"></textarea>
+          </div>
+          <div class="col-12 mt-3 pb-3">
+            <button class="btn btn-primary">Salvar</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-  <form [formGroup]="formulario">
-    <div class="row">
-      <div class="col-md-6 mt-2">
-        <label for="nome" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="nome" formControlName="nome">
-      </div>
-      <div class="col-md-6 mt-2">
-        <label for="especie" class="form-label">Espécie</label>
-        <input type="text" class="form-control" id="especie" formControlName="especie">
-      </div>
-      <div class="col-md-6 mt-2">
-        <label for="porte" class="form-label">Porte</label>
-        <input type="text" class="form-control" id="porte" formControlName="porte">
-      </div>
-      <div class="col-md-6 mt-2">
-        <label for="pelagem" class="form-label">Pelagem</label>
-        <input type="text" class="form-control" id="pelagem" formControlName="pelagem">
-      </div>
-      <div class="col-md-6 mt-2">
-        <label for="sexo" class="form-label">Sexo</label>
-        <input type="text" class="form-control" id="sexo" formControlName="sexo">
-      </div>
-      <div class="col-md-6 mt-2">
-        <label for="raca" class="form-label">Raça</label>
-        <input type="text" class="form-control" id="raca" formControlName="raca">
-      </div>
-
-    </div>
-  </form>
 </div>
+<app-footer></app-footer>
 

@@ -11,8 +11,13 @@ $color-primary: #49acc4;
   border-color: $color-primary !important;
 }
 
+.form-check-input:checked {
+  background-color: $color-primary;
+  border-color: $color-primary;
+}
+
 .text-primary {
-  color: #49acc4;
+  color: $color-primary;
 }
 
 h1 {
