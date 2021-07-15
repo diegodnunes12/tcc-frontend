@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { ModalConfirmaExclusaoComponent } from './../../../core/componentes/modal-confirma-exclusao/modal-confirma-exclusao.component';
 import { AnimaisInterface } from './../../../core/interfaces/animais.interface';
 import { Observable } from 'rxjs';
@@ -15,7 +16,13 @@ export class HomeComponent implements OnInit {
 
   public animais$: Observable<AnimaisInterface[]>;
 
-  constructor(private animaisService: AnimaisService, private bsModalService: BsModalService, private router: Router) { }
+  constructor
+  (
+    private animaisService: AnimaisService,
+    private bsModalService: BsModalService,
+    private toastr: ToastrService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.animais$ = this.animaisService.getAll();
@@ -36,6 +43,10 @@ export class HomeComponent implements OnInit {
       if(isConfirmed) {
         this.animaisService.delete(id).subscribe(httpResponse => {
           this.animais$ = this.animaisService.getAll();
+          this.toastr.success('Animal excluído com sucesso');
+        },
+        error => {
+          this.toastr.error('Não foi possível excluir o animal');
         });
       }
     });

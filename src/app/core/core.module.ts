@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -14,7 +16,8 @@ import { FooterComponent } from './componentes/footer/footer.component';
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({ timeOut: 5000, closeButton: true }),
   ],
   providers: [BsModalService],
   exports: [

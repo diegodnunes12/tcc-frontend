@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClienteModule } from './cliente/cliente.module';
 import { AdminModule } from './admin/admin.module';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AdminModule,
     ClienteModule

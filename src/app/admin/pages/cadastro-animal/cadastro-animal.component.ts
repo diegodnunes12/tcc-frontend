@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { AnimaisInterface } from './../../../core/interfaces/animais.interface';
 import { AnimaisService } from './../../../core/services/animais.service';
 import { Observable } from 'rxjs';
@@ -16,7 +17,14 @@ export class CadastroAnimalComponent implements OnInit {
   public formulario: FormGroup;
   public especies$: Observable<EspecieInterface[]>
 
-  constructor(private fb: FormBuilder, private especiesService: EspeciesService, private animaisService: AnimaisService, private activatedRoute: ActivatedRoute) { }
+  constructor
+  (
+    private fb: FormBuilder,
+    private especiesService: EspeciesService,
+    private animaisService: AnimaisService,
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.especies$ = this.especiesService.getAll();
@@ -59,8 +67,6 @@ export class CadastroAnimalComponent implements OnInit {
     });
   }
 
-
-
   salvar() {
     if(this.formulario.valid) {
       let animalId = this.formulario.get('_id').value;
@@ -79,14 +85,19 @@ export class CadastroAnimalComponent implements OnInit {
           porte: this.formulario.get('porte').value,
         }
         this.animaisService.alterar(animal, animalId).subscribe(httpResponse => {
-          //this.formulario.reset();
+          this.toastr.success('Animal alterado com sucesso');
         },
-        error => console.log(error));
+        error => {
+          this.toastr.error('Não foi possível alterar o animal');
+        });
       }else {
         this.animaisService.cadastrar(this.formulario.value).subscribe(httpResponse => {
           this.formulario.reset();
+          this.toastr.success('Animal cadastrado com sucesso');
         },
-        error => console.log(error));
+        error => {
+          this.toastr.error('Não foi possível cadastrar o animal');
+        });
       }
     } else {
       Object.keys(this.formulario.controls).forEach(field => {
