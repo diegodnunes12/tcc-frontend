@@ -16,5 +16,6 @@ export interface AnimaisInterface {
   ong?: OngInterface;
   especie: EspecieInterface;
   porte: PorteInterface;
+  imagem?: string;
   data_cadastro?: Date;
 }

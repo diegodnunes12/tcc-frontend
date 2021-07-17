@@ -14,6 +14,16 @@
     <div class="text-muted pt-3">
       <form [formGroup]="formulario" (ngSubmit)="salvar()">
         <div class="row">
+          <div class="col-md-12 mt-2" *ngIf="!temImagem">
+            <label for="imagem" class="form-label">Imagem</label>
+            <input class="form-control" type="file" id="imagem" (change)="upload($event)" formControlName="imagem">
+          </div>
+          <div class="col-md-12 mt-2" *ngIf="temImagem">
+            <label for="imagem" class="form-label">Imagem <span class="alterar-imagem" (click)="alterarImagem()">Alterar imagem</span></label>
+            <div>
+              <img src="https://adoteja.s3.sa-east-1.amazonaws.com/imagens/{{ imagem }}" width="150">
+            </div>
+          </div>
           <div class="col-md-6 mt-2">
             <label for="nome" class="form-label">Nome *</label>
             <input type="text" class="form-control" id="nome" formControlName="nome" maxlength="50">
@@ -37,16 +47,16 @@
             </select>
           </div>
           <div class="col-md-6 mt-2">
-            <label for="pelagem" class="form-label">Pelagem</label>
-            <input type="text" class="form-control" id="pelagem" formControlName="pelagem" maxlength="20">
-          </div>
-          <div class="col-md-6 mt-2">
-            <label for="sexo" class="form-label">Sexo</label>
+            <label for="sexo" class="form-label">Sexo *</label>
             <select class="form-select" formControlName="sexo">
               <option selected disabled></option>
               <option value="Macho">Macho</option>
               <option value="Fêmea">Fêmea</option>
             </select>
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="pelagem" class="form-label">Pelagem</label>
+            <input type="text" class="form-control" id="pelagem" formControlName="pelagem" maxlength="20">
           </div>
           <div class="col-md-6 mt-2">
             <label for="raca" class="form-label">Raça</label>

@@ -2,6 +2,7 @@ import { AnimaisInterface } from './../interfaces/animais.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Form } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,12 @@ export class AnimaisService {
 
   constructor(private http: HttpClient) { }
 
-  public cadastrar(animal: AnimaisInterface): Observable<AnimaisInterface> {
-    return this.http.post<AnimaisInterface>(this.url, animal);
+  public cadastrar(formData: FormData): Observable<AnimaisInterface> {
+    return this.http.post<AnimaisInterface>(this.url, formData);
   }
 
-  public alterar(animal: AnimaisInterface, animalId: string): Observable<AnimaisInterface> {
-    return this.http.patch<AnimaisInterface>(`${this.url}/${animalId}`, animal);
+  public alterar(formData: FormData, animalId: string): Observable<AnimaisInterface> {
+    return this.http.patch<AnimaisInterface>(`${this.url}/${animalId}`, formData);
   }
 
   public getAll(): Observable<AnimaisInterface[]> {
