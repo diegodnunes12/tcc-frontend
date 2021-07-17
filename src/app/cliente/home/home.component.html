@@ -1,0 +1,25 @@
+<ng-container *ngIf="animais$ | async as animais">
+  <div class="container">
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <h6 class="border-bottom pb-2 mb-0">Animais disponíveis</h6>
+      <div class="text-muted pt-3">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-3" *ngFor="let animal of animais">
+            <div class="card">
+              <img src="https://adoteja.s3.sa-east-1.amazonaws.com/imagens/{{ animal.imagem }}" class="card-img-top" [alt]="animal.nome">
+              <div class="card-body">
+                <h5 class="card-title">{{ animal.nome }}</h5>
+                <p class="card-text">
+                  {{ animal.porte.nome }} porte - {{ animal.sexo }}
+                </p>
+                <a href="#" class="btn btn-primary btn-sm">Conheça</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<app-footer class="mt-auto"></app-footer>
+
