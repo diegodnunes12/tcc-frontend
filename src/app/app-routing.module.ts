@@ -1,3 +1,4 @@
+import { HomeComponent } from './pages/home/home.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,6 +8,10 @@ const routes: Routes = [
     path: "",
     component: AppComponent,
     children: [
+      {
+        path: "",
+        component: HomeComponent,
+      },
       {
           path: "admin",
           loadChildren: () => import("./admin/admin.module").then((module) => module.AdminModule),
