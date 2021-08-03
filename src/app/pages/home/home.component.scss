@@ -1,21 +1,46 @@
 section {
   background: url(../../../assets/images/pets.jpg);
   background-repeat: no-repeat;
-  background-size: auto;
-  min-height: 70vh;
+  background-size: cover;
+  min-height: 85vh;
   position: relative;
+}
 
-  &:after {
-    content: ' ';
-    position: absolute;
-		width: 100%;
-		height: 100%;
-    top:0;
-		left:0;
-    background:rgba(0,0,0,0.6);
-    opacity: 1;
-    transition: opacity 0.5s;
-    -webkit-transition: opacity 0.5s;
-	  -moz-transition: opacity 0.5s;
+::ng-deep .container-login {
+  width: 500px;
+  margin: auto;
+  border:none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  h4 {
+    color: #fff;
+  }
+
+  .tab-container {
+    .nav-tabs {
+      border-bottom: 0;
+    }
+  }
+
+  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #fff !important;
+    background-color: #49acc4;
+    border: 1px solid #49acc4 !important;
+    font-weight: 700;
+  }
+
+  .nav-link {
+    background-color: #d5dcde;
+    border: 1px solid #d5dcde !important;
+    color: #555;
+    font-weight: 700;
+  }
+
+  .tab-pane{
+    padding: 30px 20px;
+    background: #49acc4 !important;
   }
 }

@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 @NgModule({
@@ -18,13 +19,15 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({ timeOut: 5000, closeButton: true }),
+    TabsModule.forRoot(),
   ],
   providers: [BsModalService],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FooterComponent
+    FooterComponent,
+    TabsModule
   ]
 })
 export class CoreModule {
