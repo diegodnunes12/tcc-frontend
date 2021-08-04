@@ -1,5 +1,4 @@
 import { ToastrService } from 'ngx-toastr';
-import { AnimaisInterface } from './../../../core/interfaces/animais.interface';
 import { AnimaisService } from './../../../core/services/animais.service';
 import { Observable } from 'rxjs';
 import { EspeciesService } from './../../../core/services/especies.service';

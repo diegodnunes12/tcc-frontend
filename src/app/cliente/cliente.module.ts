@@ -1,3 +1,4 @@
+import { HeaderAdotarComponent } from './componentes/header/header.component';
 import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, HeaderAdotarComponent],
   imports: [
     CommonModule,
     ClienteRoutingModule,

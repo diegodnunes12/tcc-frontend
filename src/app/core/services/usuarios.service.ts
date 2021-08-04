@@ -1,7 +1,6 @@
 import { UsuarioLoginInterface } from './../interfaces/usuario-login.interface';
 import { UsuarioInterface } from './../interfaces/usuarios.interface';
 import { Observable } from 'rxjs';
-import { EspecieInterface } from '../interfaces/especie.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

@@ -1,3 +1,6 @@
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioLoginInterface } from './../../core/interfaces/usuario-login.interface';
 import { UsuariosService } from './../../core/services/usuarios.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,33 +12,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  public form: FormGroup;
 
-
-  constructor(private usuariosSevice: UsuariosService) { }
+  constructor
+  (
+    private usuariosSevice: UsuariosService,
+    private fb: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required]]
+    });
   }
 
-  public loginSistema() {
-    let usuario: UsuarioLoginInterface = {
-      email: 'mariabenedita@gmail.com',
-      senha: 'jX990JkResIgsaA'
-    };
-    this.usuariosSevice.loginSistema(usuario).subscribe((a) => {
-      console.log(a)
-    },
-    error => console.log(error))
-  }
+  public login(sistema: string) {
+    if(this.form.valid) {
+      let usuario: UsuarioLoginInterface = {
+        email: this.form.get('email').value,
+        senha: this.form.get('senha').value
+      };
 
-  public loginAdmin() {
-    let usuario: UsuarioLoginInterface = {
-      email: 'mariabenedita@gmail.com',
-      senha: 'jX990JkResIgsaA'
-    };
-    this.usuariosSevice.loginAdmin(usuario).subscribe((a) => {
-      console.log(a)
-    },
-    error => console.log(error))
+      if(sistema === 'admin') {
+        this.usuariosSevice.loginAdmin(usuario).subscribe((httpResponse) => {
+          localStorage.setItem('usuario', httpResponse._id);
+          this.router.navigate(['admin'])
+        },
+        error => {
+          this.toastr.error('Usuário ou senha inválido');
+        });
+      } else {
+        this.usuariosSevice.loginSistema(usuario).subscribe((httpResponse) => {
+          localStorage.setItem('usuario', httpResponse._id);
+          this.router.navigate(['adotar']);
+        },
+        error => {
+          this.toastr.error('Usuário ou senha inválido');
+        });
+      }
+
+    }
   }
 
 }
