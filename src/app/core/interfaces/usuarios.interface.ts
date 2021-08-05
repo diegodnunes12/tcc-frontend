@@ -8,7 +8,7 @@ export interface UsuarioInterface {
   email: string;
   senha: string;
   telefone: string;
-  tipoUsuario: TipoUsuarioInterface;
-  ong: OngInterface;
-  dataCadastro: Date;
+  tipo_usuario: TipoUsuarioInterface;
+  ong?: string;
+  data_cadastro: Date;
 }

@@ -1,3 +1,5 @@
+import { NovaOngComponent } from './pages/nova-ong/nova-ong.component';
+import { NovoUsuarioComponent } from './pages/novo-usuario/novo-usuario.component';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClienteModule } from './cliente/cliente.module';
@@ -14,6 +16,8 @@ import { HeaderComponent } from './core/componentes/header/header.component';
   declarations: [
     AppComponent,
     HomeComponent,
+    NovoUsuarioComponent,
+    NovaOngComponent,
     HeaderComponent
   ],
   imports: [

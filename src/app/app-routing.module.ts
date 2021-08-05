@@ -1,3 +1,5 @@
+import { NovaOngComponent } from './pages/nova-ong/nova-ong.component';
+import { NovoUsuarioComponent } from './pages/novo-usuario/novo-usuario.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
@@ -11,6 +13,14 @@ const routes: Routes = [
       {
         path: "",
         component: HomeComponent,
+      },
+      {
+        path: "novo-usuario",
+        component: NovoUsuarioComponent,
+      },
+      {
+        path: "nova-ong",
+        component: NovaOngComponent
       },
       {
           path: "admin",

@@ -1,0 +1,66 @@
+<app-header-site></app-header-site>
+<section *ngIf="cadastrarOng">
+  <div class="container-login">
+    <h4 class="mb-3">Cadastre sua ong</h4>
+    <form [formGroup]="form" (ngSubmit)="cadastrar()">
+      <div class="mb-3">
+        <label>Nome *</label>
+        <input type="text" class="form-control" id="nome" placeholder="Patas de Anjo" maxlength="50" formControlName="nome">
+      </div>
+      <div class="mb-3">
+        <label>CNPJ *</label>
+        <input type="text" class="form-control" id="CNPJ" placeholder="000.000.000/0000-00" maxlength="20" formControlName="cnpj">
+      </div>
+      <div class="mb-3">
+        <label>Telefone *</label>
+        <input type="text" class="form-control" id="telefone" placeholder="(35) 99999-9999" maxlength="15" formControlName="telefone">
+      </div>
+      <div class="mb-3">
+        <label>E-mail *</label>
+        <input type="email" class="form-control" id="email" placeholder="email@dominio.com.br" maxlength="50" formControlName="email">
+      </div>
+      <div class="mb-3">
+        <label>Facebook</label>
+        <input type="text" class="form-control" id="facebook" placeholder="patasdeanjp" maxlength="50" formControlName="facebook">
+      </div>
+      <div class="mb-3">
+        <label>Instagram</label>
+        <input type="text" class="form-control" id="instagram" placeholder="patasdeanjp" maxlength="50" formControlName="instagram">
+      </div>
+      <div class="mb-3">
+        <label>Endereço</label>
+        <input type="text" class="form-control" id="endereco" placeholder="Rua A, 10 - Cidade - MG" maxlength="100" formControlName="endereco">
+      </div>
+      <button type="submit" class="btn btn-warning">Cadastrar</button>
+    </form>
+  </div>
+</section>
+<section *ngIf="cadastrarUsuario">
+  <div class="container-login">
+    <h4 class="mb-3">Cadastre o usuário administrador</h4>
+    <form [formGroup]="formUsuario" (ngSubmit)="cadastrarUsuarioAdminsitrador()">
+      <div class="mb-3">
+        <label>Nome</label>
+        <input type="text" class="form-control" id="nome" placeholder="Maria da Silva" maxlength="50" formControlName="nome">
+      </div>
+      <div class="mb-3">
+        <label>CPF</label>
+        <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" maxlength="20" formControlName="cpf">
+      </div>
+      <div class="mb-3">
+        <label>Telefone</label>
+        <input type="text" class="form-control" id="telefone" placeholder="(35) 99999-9999" maxlength="15" formControlName="telefone">
+      </div>
+      <div class="mb-3">
+        <label>E-mail</label>
+        <input type="email" class="form-control" id="email" placeholder="email@dominio.com.br" maxlength="50" formControlName="email">
+      </div>
+      <div class="mb-3">
+        <label>Senha</label>
+        <input type="password" class="form-control" id="senha" placeholder="Senha" maxlength="15" formControlName="senha">
+      </div>
+      <button type="submit" class="btn btn-warning">Cadastrar</button>
+    </form>
+  </div>
+</section>
+<app-footer></app-footer>

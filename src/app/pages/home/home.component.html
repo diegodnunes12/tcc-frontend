@@ -11,7 +11,10 @@
           <div class="mb-3">
             <input type="password" class="form-control" id="senha" placeholder="Senha" maxlength="15" formControlName="senha">
           </div>
-          <button type="submit" class="btn btn-warning">Acessar</button>
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-warning">Acessar</button>
+            <a routerLink="novo-usuario">Cadastre-se</a>
+          </div>
         </form>
       </tab>
       <tab heading="Represento uma ong">
@@ -23,7 +26,10 @@
           <div class="mb-3">
             <input type="password" class="form-control" id="senha" placeholder="Senha" maxlength="15" formControlName="senha">
           </div>
-          <button type="submit" class="btn btn-warning">Acessar</button>
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-warning">Acessar</button>
+            <a routerLink="nova-ong">Cadastre sua ong</a>
+          </div>
         </form>
       </tab>
     </tabset>

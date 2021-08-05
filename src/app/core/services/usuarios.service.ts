@@ -20,4 +20,8 @@ export class UsuariosService {
   public loginAdmin(usuario: UsuarioLoginInterface): Observable<UsuarioInterface> {
     return this.http.post<UsuarioInterface>(`${this.url}/sistema-admin`, usuario);
   }
+
+  public cadastrar(usuario: UsuarioInterface): Observable<UsuarioInterface> {
+    return this.http.post<UsuarioInterface>(`${this.url}`, usuario);
+  }
 }
