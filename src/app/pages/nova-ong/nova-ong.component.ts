@@ -38,7 +38,8 @@ export class NovaOngComponent implements OnInit {
       telefone: ['', [Validators.required, Validators.maxLength(20)]],
       facebook: ['', [Validators.maxLength(50)]],
       instagram: ['', [Validators.maxLength(50)]],
-      endereco: ['', [Validators.required, Validators.maxLength(100)]],
+      cidade: ['', [Validators.required, Validators.maxLength(100)]],
+      estado: ['', [Validators.required, Validators.maxLength(20)]],
     });
 
     this.formUsuario = this.fb.group({
@@ -59,7 +60,8 @@ export class NovaOngComponent implements OnInit {
         telefone: this.form.get('telefone').value,
         facebook: this.form.get('facebook').value,
         instagram: this.form.get('instagram').value,
-        endereco: this.form.get('endereco').value,
+        cidade: this.form.get('cidade').value,
+        estado: this.form.get('estado').value,
         data_cadastro: new Date()
       };
 

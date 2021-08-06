@@ -1,6 +1,9 @@
 .card {
   cursor: pointer;
-  height: 308px;
+  height: 335px;
+  .card-title {
+    margin-bottom: .1rem;
+  }
   img {
     height: 210px;
   }

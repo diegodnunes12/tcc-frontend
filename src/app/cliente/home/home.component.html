@@ -9,8 +9,9 @@
             <div class="card" (click)="detalhes(animal._id)">
               <img src="https://adoteja.s3.sa-east-1.amazonaws.com/imagens/{{ animal.imagem }}" class="card-img-top" [alt]="animal.nome">
               <div class="card-body">
-                <h5 class="card-title mb-3">{{ animal.nome }}</h5>
-                <div class="card-text d-flex justify-content-between">
+                <h5 class="card-title ">{{ animal.nome }}</h5>
+                <span>{{ animal.ong.cidade }} - {{ animal.ong.estado }}</span>
+                <div class="card-text d-flex justify-content-between mt-3">
                   <div>
                     <span [ngClass]="{'active': animal.porte.nome === 'Pequeno'}">P</span>
                     <span [ngClass]="{'active': animal.porte.nome === 'Médio'}">M</span>

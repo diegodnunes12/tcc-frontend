@@ -6,6 +6,7 @@ export interface OngInterface {
   email: string;
   facebook?: string;
   instagram?: string;
-  endereco: string;
+  cidade: string;
+  estado: string;
   data_cadastro: Date;
 }
