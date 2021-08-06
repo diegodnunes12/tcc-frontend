@@ -6,14 +6,21 @@
       <div class="text-muted pt-3">
         <div class="row">
           <div class="col-lg-3 col-md-4 col-sm-6 mb-3" *ngFor="let animal of animais">
-            <div class="card">
+            <div class="card" (click)="detalhes(animal._id)">
               <img src="https://adoteja.s3.sa-east-1.amazonaws.com/imagens/{{ animal.imagem }}" class="card-img-top" [alt]="animal.nome">
               <div class="card-body">
-                <h5 class="card-title">{{ animal.nome }}</h5>
-                <p class="card-text">
-                  {{ animal.porte.nome }} porte - {{ animal.sexo }}
-                </p>
-                <a href="#" class="btn btn-primary btn-sm">Conheça</a>
+                <h5 class="card-title mb-3">{{ animal.nome }}</h5>
+                <div class="card-text d-flex justify-content-between">
+                  <div>
+                    <span [ngClass]="{'active': animal.porte.nome === 'Pequeno'}">P</span>
+                    <span [ngClass]="{'active': animal.porte.nome === 'Médio'}">M</span>
+                    <span [ngClass]="{'active': animal.porte.nome === 'Grande'}">G</span>
+                  </div>
+                  <div>
+                    <i *ngIf="animal.sexo === 'Macho'" class="bi bi-gender-male genero-macho"></i>
+                    <i *ngIf="animal.sexo === 'Fêmea'" class="bi bi-gender-female genero-femea"></i>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
