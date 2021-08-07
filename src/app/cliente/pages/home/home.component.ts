@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AnimaisInterface } from './../../core/interfaces/animais.interface';
-import { AnimaisService } from './../../core/services/animais.service';
+import { AnimaisInterface } from '../../../core/interfaces/animais.interface';
+import { AnimaisService } from '../../../core/services/animais.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   }
 
   public detalhes(animalId: string) {
-    this.router.navigate(['detalhes', animalId]);
+    this.router.navigate(['adotar', 'detalhes', animalId]);
   }
 
 }

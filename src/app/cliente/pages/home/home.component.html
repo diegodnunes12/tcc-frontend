@@ -1,8 +1,7 @@
-<app-header-adotar></app-header-adotar>
 <ng-container *ngIf="animais$ | async as animais">
   <div class="container">
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-      <h6 class="border-bottom pb-2 mb-0">Animais disponíveis</h6>
+      <h1 class="border-bottom pb-2 mb-0">Animais disponíveis</h1>
       <div class="text-muted pt-3">
         <div class="row">
           <div class="col-lg-3 col-md-4 col-sm-6 mb-3" *ngFor="let animal of animais">
@@ -30,5 +29,4 @@
     </div>
   </div>
 </ng-container>
-<app-footer class="mt-auto"></app-footer>
 

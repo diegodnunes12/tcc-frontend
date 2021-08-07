@@ -8,10 +8,11 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { LoadingComponent } from './componentes/loading/loading.component';
 
 
 @NgModule({
-  declarations: [ModalConfirmaExclusaoComponent, FooterComponent,],
+  declarations: [ModalConfirmaExclusaoComponent, FooterComponent, LoadingComponent,],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -27,7 +28,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     FormsModule,
     ReactiveFormsModule,
     FooterComponent,
-    TabsModule
+    TabsModule,
+    LoadingComponent
   ]
 })
 export class CoreModule {

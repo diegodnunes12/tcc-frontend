@@ -18,7 +18,17 @@ $color-primary: #49acc4;
 }
 
 .text-primary {
+  color: $color-primary !important;
+}
+
+.btn-outline-primary {
   color: $color-primary;
+  border-color: $color-primary;
+}
+
+.btn-outline-primary:hover {
+  background-color: $color-primary;
+  border-color: $color-primary;
 }
 
 h1 {

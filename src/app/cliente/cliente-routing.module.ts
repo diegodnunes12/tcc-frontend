@@ -1,11 +1,18 @@
-import { DetalhesComponent } from './detalhes/detalhes.component';
+import { ClienteComponent } from './cliente.component';
+import { DetalhesComponent } from './pages/detalhes/detalhes.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'detalhes/:id', component: DetalhesComponent },
+  {
+    path: '',
+    component: ClienteComponent,
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'detalhes/:id', component: DetalhesComponent },
+    ]
+  }
 ];
 
 @NgModule({

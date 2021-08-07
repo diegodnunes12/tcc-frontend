@@ -2,8 +2,8 @@ import { UsuarioInterface } from './usuarios.interface';
 
 export interface MensagemInterface {
   texto: string;
-  dataMensagem: Date;
-  usuario: UsuarioInterface;
+  data_mensagem: Date;
+  usuario: string;
   contato: string;
 }
 

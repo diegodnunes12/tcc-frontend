@@ -23,12 +23,12 @@ const routes: Routes = [
         component: NovaOngComponent
       },
       {
-          path: "admin",
-          loadChildren: () => import("./admin/admin.module").then((module) => module.AdminModule),
+        path: "admin",
+        loadChildren: () => import("./admin/admin.module").then((module) => module.AdminModule),
       },
       {
-          path: "adotar",
-          loadChildren: () => import("./cliente/cliente.module").then((module) => module.ClienteModule),
+        path: "adotar",
+        loadChildren: () => import("./cliente/cliente.module").then((module) => module.ClienteModule),
       },
   ],
   }

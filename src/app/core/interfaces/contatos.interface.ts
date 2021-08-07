@@ -3,8 +3,9 @@ import { UsuarioInterface } from './usuarios.interface';
 import { AnimaisInterface } from './animais.interface';
 
 export interface ContatosInterface {
-  dataContato: Date;
-  animal: AnimaisInterface;
-  usuario: UsuarioInterface;
-  ong: OngInterface;
+  _id?: string;
+  data_contato: Date;
+  animal: string;
+  usuario: string;
+  ong: string;
 }

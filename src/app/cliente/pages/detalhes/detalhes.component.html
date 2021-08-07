@@ -1,0 +1,89 @@
+<ng-container *ngIf="animal$ | async as animal">
+  <div class="container">
+    <div class="my-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">
+            <a routerLink="/adotar"><i class="bi bi-arrow-left"></i> Voltar</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <div class="row">
+        <div class="col-6 mb-3">
+          <h1 class="text-primary">{{ animal.nome }}</h1>
+        </div>
+        <div class="col-6 mb-3 text-end">
+          <p>{{ animal.ong.cidade }} - {{ animal.ong.estado }}</p>
+        </div>
+        <div class="col-md-6">
+          <img src="https://adoteja.s3.sa-east-1.amazonaws.com/imagens/{{ animal.imagem }}" class="card-img-top" [alt]="animal.nome">
+        </div>
+        <div class="col-md-6">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Espécie:</strong> {{ animal.especie.nome }}
+            </li>
+            <li class="list-group-item">
+              <strong>Porte:</strong> {{ animal.porte.nome }}
+            </li>
+            <li class="list-group-item">
+              <strong>Pelagem:</strong> {{ animal.pelagem }}
+            </li>
+            <li class="list-group-item">
+              <strong>Sexo:</strong> {{ animal.sexo }}
+            </li>
+            <li class="list-group-item">
+              <strong>Raça:</strong> {{ animal.raca }}
+            </li>
+            <li class="list-group-item">
+              <strong>Idade:</strong> {{ animal.idade }}
+            </li>
+            <li class="list-group-item">
+              <strong>Condição:</strong>
+              <span *ngIf="animal.vacinado" class="ms-1 badge bg-primary rounded-pill"> Vacinado </span>
+              <span *ngIf="animal.vermifugado" class="ms-1 badge bg-primary rounded-pill"> Vermifugado </span>
+              <span *ngIf="animal.castrado" class="ms-1 badge bg-primary rounded-pill"> Castrado </span>
+            </li>
+            <li class="list-group-item">
+              <strong>História:</strong> {{ animal.historia }}
+            </li>
+          </ul>
+        </div>
+        <div class="col-6 mt-4">
+          <div class="jambotron">
+            <h5 class="mb-3">{{ animal.ong.nome }}</h5>
+            <p>A ong {{ animal.ong.nome }}, inscrita no CNPJ {{ animal.ong.cnpj }}, está presente em {{ animal.ong.cidade }} - {{ animal.ong.estado }}.</p>
+            <p>Para conhecer mais sobre o nosso trabalho, entre em contato através:</p>
+            <p>
+              <i class="bi bi-envelope"></i> {{ animal.ong.email }}
+            </p>
+            <p>
+              <i class="bi bi-telephone"></i> {{ animal.ong.telefone }}
+            </p>
+            <div class="btn-group me-2" role="group">
+              <a *ngIf="animal.ong.facebook" href="https://www.facebook.com/{{ animal.ong.facebook }}" target="_blank" class="btn btn-outline-primary"><i class="bi bi-facebook"></i></a>
+              <a *ngIf="animal.ong.instagram" href="https://www.instagram.com/{{ animal.ong.instagram }}" target="_blank" class="btn btn-outline-primary"><i class="bi bi-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 mt-4">
+          <div class="jambotron">
+            <h5 class="mb-3">
+              Quero adotar
+              <span *ngIf="animal.sexo === 'Macho'"> o </span>
+              <span *ngIf="animal.sexo === 'Fêmea'"> a </span>
+              {{ animal.nome }}
+            </h5>
+            <p>Envie uma mensagem para a ong</p>
+            <form [formGroup]="form" (ngSubmit)="onSubmit(animal)">
+              <textarea class="form-control" id="mensagem" rows="4" formControlName="mensagem" placeholder="Olá, gostaria de adotar esse animal"></textarea>
+              <button type="submit" [disabled]="desabilitarBotao" class="btn btn-primary mt-3">Enviar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
