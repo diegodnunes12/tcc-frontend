@@ -16,4 +16,7 @@ export class ContatosService {
     return this.http.post<ContatosInterface>(this.url, contato);
   }
 
+  public getContatos(usuarioId: string): Observable<ContatosInterface[]> {
+    return this.http.get<ContatosInterface[]>(`${this.url}/usuario/${usuarioId}`);
+  }
 }

@@ -1,3 +1,5 @@
+import { MensagensComponent } from './pages/mensagens/mensagens.component';
+import { ContatosComponent } from './pages/contatos/contatos.component';
 import { ClienteComponent } from './cliente.component';
 import { DetalhesComponent } from './pages/detalhes/detalhes.component';
 import { NgModule } from '@angular/core';
@@ -11,6 +13,8 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'detalhes/:id', component: DetalhesComponent },
+      { path: 'contatos', component: ContatosComponent },
+      { path: 'contatos/:id', component: MensagensComponent },
     ]
   }
 ];
