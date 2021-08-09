@@ -34,7 +34,7 @@ export class ContatosComponent implements OnInit {
       this.router.navigate(['']);
     }
     else {
-      this.contatos$ = this.contatosService.getContatos(usuario);
+      this.contatos$ = this.contatosService.getContatosOng(usuario);
     }
   }
 

@@ -15,7 +15,7 @@ export class HeaderAdotarComponent implements OnInit {
 
   public sair() {
     localStorage.removeItem('usuario');
-    this.router.navigate([''])
+    this.router.navigate(['']);
   }
 
 }

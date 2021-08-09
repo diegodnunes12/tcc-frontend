@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class MenasgensService {
+export class MensagensService {
 
   private url: string = "https://adotejaapi.herokuapp.com/mensagens";
 
@@ -14,6 +14,10 @@ export class MenasgensService {
 
   public cadastrar(mensagem: MensagemInterface): Observable<MensagemInterface> {
     return this.http.post<MensagemInterface>(this.url, mensagem);
+  }
+
+  public getByContato(contatoId: string): Observable<MensagemInterface[]> {
+    return this.http.get<MensagemInterface[]>(`${this.url}/contato/${contatoId}`);
   }
 
 }

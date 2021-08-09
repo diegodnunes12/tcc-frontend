@@ -19,4 +19,12 @@ export class ContatosService {
   public getContatos(usuarioId: string): Observable<ContatosInterface[]> {
     return this.http.get<ContatosInterface[]>(`${this.url}/usuario/${usuarioId}`);
   }
+
+  public getContatosOng(ongId: string): Observable<ContatosInterface[]> {
+    return this.http.get<ContatosInterface[]>(`${this.url}/ong/${ongId}`);
+  }
+
+  public getContato(contatoId: string): Observable<ContatosInterface> {
+    return this.http.get<ContatosInterface>(`${this.url}/${contatoId}`);
+  }
 }

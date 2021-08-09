@@ -1,5 +1,5 @@
+import { MensagensService } from './../../../core/services/mensagens.service';
 import { ToastrService } from 'ngx-toastr';
-import { MenasgensService } from '../../../core/services/mensagens.service';
 import { MensagemInterface } from '../../../core/interfaces/mensagem.interface';
 import { ContatosService } from '../../../core/services/contatos.service';
 import { ContatosInterface } from '../../../core/interfaces/contatos.interface';
@@ -22,7 +22,7 @@ export class DetalhesComponent implements OnInit {
 
   constructor
   (
-    private mensagensSercice: MenasgensService,
+    private mensagensService: MensagensService,
     private contatosService: ContatosService,
     private animaisService: AnimaisService,
     private activatedRoute: ActivatedRoute,
@@ -65,7 +65,7 @@ export class DetalhesComponent implements OnInit {
             contato: httpResponse._id
           }
 
-          this.mensagensSercice.cadastrar(mensagem).subscribe(() => {
+          this.mensagensService.cadastrar(mensagem).subscribe(() => {
             this.form.reset();
             this.toastr.success(`Mensagem envia com sucesso`);
           },
