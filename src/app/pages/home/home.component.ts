@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
 
       if(sistema === 'admin') {
         this.usuariosSevice.loginAdmin(usuario).subscribe((httpResponse) => {
+          console.log(httpResponse)
           localStorage.setItem('usuario', httpResponse._id);
           this.router.navigate(['admin'])
         },
