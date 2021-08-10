@@ -33,6 +33,7 @@ export class CadastroAnimalComponent implements OnInit {
 
     this.formulario = this.fb.group({
       _id: [],
+      imagem: [],
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       pelagem: ['', [Validators.maxLength(20)]],
       sexo: ['', [Validators.required]],
