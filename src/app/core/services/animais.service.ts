@@ -1,8 +1,7 @@
 import { AnimaisInterface } from './../interfaces/animais.interface';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Form } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +9,10 @@ import { Form } from '@angular/forms';
 export class AnimaisService {
 
   private url: string = "https://adotejaapi.herokuapp.com/animais";
+
+  private createHeaders(headers: HttpHeaders) {
+    headers.append('x-access-token', localStorage.getItem('token'));
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +25,9 @@ export class AnimaisService {
   }
 
   public getAll(): Observable<AnimaisInterface[]> {
-    return this.http.get<AnimaisInterface[]>(this.url);
+    let headers = new HttpHeaders();
+    this.createHeaders(headers);
+    return this.http.get<AnimaisInterface[]>(this.url, { headers: headers });
   }
 
   public getById(id: string): Observable<AnimaisInterface> {

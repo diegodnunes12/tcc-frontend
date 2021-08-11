@@ -14,7 +14,7 @@ export class HeaderComponentAdmin implements OnInit {
   }
 
   public sair() {
-    localStorage.removeItem('usuario');
+    localStorage.removeItem('token');
     this.router.navigate(['']);
   }
 

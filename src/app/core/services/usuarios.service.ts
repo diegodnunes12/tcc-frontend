@@ -1,3 +1,4 @@
+import { TokenInterface } from './../interfaces/token.interface';
 import { UsuarioLoginInterface } from './../interfaces/usuario-login.interface';
 import { UsuarioInterface } from './../interfaces/usuarios.interface';
 import { Observable } from 'rxjs';
@@ -17,8 +18,8 @@ export class UsuariosService {
     return this.http.post<UsuarioInterface>(`${this.url}/sistema`, usuario);
   }
 
-  public loginAdmin(usuario: UsuarioLoginInterface): Observable<UsuarioInterface> {
-    return this.http.post<UsuarioInterface>(`${this.url}/sistema-admin`, usuario);
+  public loginAdmin(usuario: UsuarioLoginInterface): Observable<TokenInterface> {
+    return this.http.post<TokenInterface>(`${this.url}/sistema-admin`, usuario);
   }
 
   public cadastrar(usuario: UsuarioInterface): Observable<UsuarioInterface> {
