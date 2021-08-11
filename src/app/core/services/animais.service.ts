@@ -10,10 +10,6 @@ export class AnimaisService {
 
   private url: string = "https://adotejaapi.herokuapp.com/animais";
 
-  private createHeaders(headers: HttpHeaders) {
-    headers.append('x-access-token', localStorage.getItem('token'));
-  }
-
   constructor(private http: HttpClient) { }
 
   public cadastrar(formData: FormData): Observable<AnimaisInterface> {
@@ -25,9 +21,11 @@ export class AnimaisService {
   }
 
   public getAll(): Observable<AnimaisInterface[]> {
-    let headers = new HttpHeaders();
-    this.createHeaders(headers);
-    return this.http.get<AnimaisInterface[]>(this.url, { headers: headers });
+    return this.http.get<AnimaisInterface[]>(this.url);
+  }
+
+  public getAllAnimaisDaOng(): Observable<AnimaisInterface[]> {
+    return this.http.get<AnimaisInterface[]>(`${this.url}/ong`, { headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')) });
   }
 
   public getById(id: string): Observable<AnimaisInterface> {

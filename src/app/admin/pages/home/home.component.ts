@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.animais$ = this.animaisService.getAll();
+    this.animais$ = this.animaisService.getAllAnimaisDaOng();
   }
 
   public cadastrar() {
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
     modalRef.content.confirmed.subscribe((isConfirmed) => {
       if(isConfirmed) {
         this.animaisService.delete(id).subscribe(httpResponse => {
-          this.animais$ = this.animaisService.getAll();
+          this.animais$ = this.animaisService.getAllAnimaisDaOng();
           this.toastr.success('Animal excluído com sucesso');
         },
         error => {
