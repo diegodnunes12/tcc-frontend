@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioLoginInterface } from './../../core/interfaces/usuario-login.interface';
 import { UsuariosService } from './../../core/services/usuarios.service';
 import { Component, OnInit } from '@angular/core';
+import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-home',
@@ -11,21 +12,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
   public form: FormGroup;
+  socialUser: SocialUser;
+  isLoggedin: boolean;
 
   constructor
   (
     private usuariosSevice: UsuariosService,
     private fb: FormBuilder,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private socialAuthService: SocialAuthService
   ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]]
+    });
+
+    this.socialAuthService.authState.subscribe((user) => {
+      this.socialUser = user;
+      this.isLoggedin = (user != null);
+      console.log(this.socialUser);
     });
   }
 
@@ -56,6 +65,10 @@ export class HomeComponent implements OnInit {
       }
 
     }
+  }
+
+  loginWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(() => this.router.navigate(['adotar']));;
   }
 
 }

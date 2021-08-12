@@ -12,12 +12,16 @@ export class AnimaisService {
 
   constructor(private http: HttpClient) { }
 
+  private getHeaders(): HttpHeaders {
+    return new HttpHeaders().set('x-access-token', localStorage.getItem('token'));
+  }
+
   public cadastrar(formData: FormData): Observable<AnimaisInterface> {
-    return this.http.post<AnimaisInterface>(this.url, formData);
+    return this.http.post<AnimaisInterface>(this.url, formData, { headers:  this.getHeaders() });
   }
 
   public alterar(formData: FormData, animalId: string): Observable<AnimaisInterface> {
-    return this.http.patch<AnimaisInterface>(`${this.url}/${animalId}`, formData);
+    return this.http.patch<AnimaisInterface>(`${this.url}/${animalId}`, formData, { headers:  this.getHeaders() });
   }
 
   public getAll(): Observable<AnimaisInterface[]> {
@@ -25,7 +29,7 @@ export class AnimaisService {
   }
 
   public getAllAnimaisDaOng(): Observable<AnimaisInterface[]> {
-    return this.http.get<AnimaisInterface[]>(`${this.url}/ong`, { headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')) });
+    return this.http.get<AnimaisInterface[]>(`${this.url}/ong`, { headers:  this.getHeaders() });
   }
 
   public getById(id: string): Observable<AnimaisInterface> {
@@ -33,7 +37,6 @@ export class AnimaisService {
   }
 
   public delete(id: string): Observable<AnimaisInterface> {
-    return this.http.delete<AnimaisInterface>(`${this.url}/${id}`);
+    return this.http.delete<AnimaisInterface>(`${this.url}/${id}`, { headers:  this.getHeaders() });
   }
-
 }
