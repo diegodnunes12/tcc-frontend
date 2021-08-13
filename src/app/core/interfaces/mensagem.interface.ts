@@ -1,9 +1,10 @@
-import { UsuarioInterface } from './usuarios.interface';
-
 export interface MensagemInterface {
   texto: string;
   data_mensagem: Date;
-  usuario: string;
+  usuario: {
+    _id: string;
+    nome: string;
+  };
   contato: string;
 }
 

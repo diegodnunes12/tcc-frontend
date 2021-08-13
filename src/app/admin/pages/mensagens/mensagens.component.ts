@@ -67,7 +67,7 @@ export class MensagensComponent implements OnInit {
         const mensagem: MensagemInterface = {
           texto: this.form.get('mensagem').value,
           data_mensagem: new Date(),
-          usuario: usuario,
+          usuario: null,
           contato: contato._id
         }
 

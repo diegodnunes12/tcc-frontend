@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AnimaisService } from '../../../core/services/animais.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-contatos',
@@ -28,13 +29,12 @@ export class ContatosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const usuario = localStorage.getItem('usuario');
-
-    if(usuario === null || usuario === '') {
+    const token = localStorage.getItem('token');
+    if(token === null || token === '') {
       this.router.navigate(['']);
-    }
-    else {
-      this.contatos$ = this.contatosService.getContatos(usuario);
+    }else {
+      var usuarioLogado: any = jwt_decode(token);
+      this.contatos$ = this.contatosService.getContatos(usuarioLogado.sub);
     }
   }
 

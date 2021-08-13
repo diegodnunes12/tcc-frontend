@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = (user != null);
-      console.log(this.socialUser);
+      localStorage.setItem('token', this.socialUser.idToken);
     });
   }
 
@@ -47,7 +47,6 @@ export class HomeComponent implements OnInit {
 
       if(sistema === 'admin') {
         this.usuariosSevice.loginAdmin(usuario).subscribe((httpResponse) => {
-          console.log(httpResponse)
           localStorage.setItem('token', httpResponse.token);
           this.router.navigate(['admin'])
         },
@@ -68,7 +67,9 @@ export class HomeComponent implements OnInit {
   }
 
   loginWithGoogle(): void {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(() => this.router.navigate(['adotar']));;
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(() => {
+      this.router.navigate(['adotar'])
+    });
   }
 
 }

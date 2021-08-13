@@ -9,6 +9,7 @@ import { AnimaisService } from '../../../core/services/animais.service';
 import { AnimaisInterface } from '../../../core/interfaces/animais.interface';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-detalhes',
@@ -43,17 +44,21 @@ export class DetalhesComponent implements OnInit {
   }
 
   public onSubmit(animal: AnimaisInterface) {
-    this.desabilitarBotao = true;
     if(this.form.valid) {
-      const usuario = localStorage.getItem('usuario');
-      if(usuario === null || usuario === '') {
+      this.desabilitarBotao = true;
+      const token = localStorage.getItem('token');
+      if(token === null || token === '') {
         this.router.navigate[''];
       }
       else {
+        var usuario: any = jwt_decode(token);
         const contato: ContatosInterface = {
           data_contato: new Date(),
           animal: animal._id,
-          usuario: usuario,
+          usuario: {
+            _id: usuario.sub,
+            nome: usuario.name
+          },
           ong: animal.ong._id
         }
 
@@ -61,7 +66,10 @@ export class DetalhesComponent implements OnInit {
           const mensagem: MensagemInterface = {
             texto: this.form.get('mensagem').value,
             data_mensagem: new Date(),
-            usuario: usuario,
+            usuario: {
+              _id: usuario.sub,
+              nome: usuario.name
+            },
             contato: httpResponse._id
           }
 

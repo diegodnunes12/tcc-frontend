@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AnimaisInterface } from '../../../core/interfaces/animais.interface';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-mensagens',
@@ -43,12 +44,13 @@ export class MensagensComponent implements OnInit {
   }
 
   isMensagemDoUsuario(usuarioId: string): boolean {
-    const usuarioLogado = localStorage.getItem('usuario');
-    if(usuarioLogado === null || usuarioLogado === '') {
+    const token = localStorage.getItem('token');
+    if(token === null || token === '') {
       this.router.navigate(['']);
       return;
     }else {
-      if(usuarioLogado === usuarioId) {
+      var usuarioLogado: any = jwt_decode(token);
+      if(usuarioLogado.sub === usuarioId) {
         return true;
       }
 
@@ -64,10 +66,15 @@ export class MensagensComponent implements OnInit {
         this.router.navigate[''];
       }
       else {
+        const token = localStorage.getItem('token');
+        var usuarioLogado: any = jwt_decode(token);
         const mensagem: MensagemInterface = {
           texto: this.form.get('mensagem').value,
           data_mensagem: new Date(),
-          usuario: usuario,
+          usuario: {
+            _id: usuarioLogado.sub,
+            nome: usuarioLogado.name
+          },
           contato: contato._id
         }
 
