@@ -8,13 +8,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AnimaisInterface } from '../../../core/interfaces/animais.interface';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-mensagens',
   templateUrl: './mensagens.component.html',
   styleUrls: ['./mensagens.component.scss']
 })
-export class MensagensComponent implements OnInit {
+export class MensagensAdminComponent implements OnInit {
   public mensagens$: Observable<MensagemInterface[]>;
   public contato$: Observable<ContatosInterface>;
   public form: FormGroup;
@@ -42,38 +43,36 @@ export class MensagensComponent implements OnInit {
     });
   }
 
-  isMensagemDoUsuario(usuarioId: string): boolean {
-    const usuarioLogado = localStorage.getItem('usuario');
-    if(usuarioLogado === null || usuarioLogado === '') {
-      this.router.navigate(['']);
-      return;
+  isMensagemDoUsuario(usuarioContato: string, usuarioMensagem: string): boolean {
+    if(usuarioContato === usuarioMensagem) {
+      return true;
     }else {
-      if(usuarioLogado === usuarioId) {
-        return true;
-      }
-
       return false;
     }
   }
 
   public onSubmit(contato: ContatosInterface) {
-    this.desabilitarBotao = true;
     if(this.form.valid) {
-      const usuario = localStorage.getItem('usuario');
-      if(usuario === null || usuario === '') {
+      this.desabilitarBotao = true;
+      const token = localStorage.getItem('token');
+      if(token === null || token === '') {
         this.router.navigate[''];
       }
       else {
+        var usuario: any = jwt_decode(token);
         const mensagem: MensagemInterface = {
           texto: this.form.get('mensagem').value,
           data_mensagem: new Date(),
-          usuario: null,
+          usuario: {
+            _id: usuario.sub,
+            nome: usuario.name
+          },
           contato: contato._id
         }
 
         this.mensagensService.cadastrar(mensagem).subscribe(() => {
           this.form.reset();
-          this.toastr.success(`Mensagem envia com sucesso`);
+          this.toastr.success(`Mensagem enviada com sucesso`);
           this.mensagens$ = this.mensagensService.getByContato(contato._id);
         },
         () => {

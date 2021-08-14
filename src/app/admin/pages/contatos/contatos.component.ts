@@ -7,13 +7,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AnimaisService } from '../../../core/services/animais.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-contatos',
   templateUrl: './contatos.component.html',
   styleUrls: ['./contatos.component.scss']
 })
-export class ContatosComponent implements OnInit {
+export class ContatosAdminComponent implements OnInit {
   public contatos$: Observable<ContatosInterface[]>;
 
   constructor
@@ -28,17 +29,18 @@ export class ContatosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const usuario = localStorage.getItem('usuario');
+    const token = localStorage.getItem('token');
 
-    if(usuario === null || usuario === '') {
+    if(token === null || token === '') {
       this.router.navigate(['']);
     }
     else {
-      this.contatos$ = this.contatosService.getContatosOng(usuario);
+      var usuarioLogado: any = jwt_decode(token);
+      this.contatos$ = this.contatosService.getContatosOng(usuarioLogado.ong);
     }
   }
 
   public mensagens(id: string) {
-    this.router.navigate(['adotar','contatos', id]);
+    this.router.navigate(['admin','contatos', id]);
   }
 }

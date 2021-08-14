@@ -19,7 +19,7 @@
             <thead>
               <tr>
                 <th scope="col">Animal</th>
-                <th scope="col">Ong</th>
+                <th scope="col">Interessado</th>
                 <th scope="col">Data</th>
                 <th scope="col">Ver mensagens</th>
               </tr>
@@ -27,7 +27,7 @@
             <tbody>
               <tr *ngFor="let contato of contatos">
                 <td>{{ contato.animal.nome }}</td>
-                <td>{{ contato.ong.nome }}</td>
+                <td>{{ contato.usuario.nome }}</td>
                 <td>{{ contato.data_contato | date: "dd/MM/yyyy" }}</td>
                 <td>
                   <button (click)="mensagens(contato._id)" class="btn btn-warning btn-sm me-2"><i class="bi bi-eye"></i></button>

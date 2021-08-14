@@ -10,19 +10,23 @@ import { Injectable } from '@angular/core';
 })
 export class UsuariosService {
 
-  private url: string = "https://adotejaapi.herokuapp.com/usuarios";
+  private url: string = "https://adotejaapi.herokuapp.com";
 
   constructor(private http: HttpClient) { }
 
-  public loginSistema(usuario: UsuarioLoginInterface): Observable<UsuarioInterface> {
-    return this.http.post<UsuarioInterface>(`${this.url}/sistema`, usuario);
+  public loginSistema(usuario: UsuarioLoginInterface): Observable<TokenInterface> {
+    return this.http.post<TokenInterface>(`${this.url}/usuarios-sistema/login`, usuario);
   }
 
   public loginAdmin(usuario: UsuarioLoginInterface): Observable<TokenInterface> {
-    return this.http.post<TokenInterface>(`${this.url}/sistema-admin`, usuario);
+    return this.http.post<TokenInterface>(`${this.url}/usuarios-ong/login`, usuario);
   }
 
-  public cadastrar(usuario: UsuarioInterface): Observable<UsuarioInterface> {
-    return this.http.post<UsuarioInterface>(`${this.url}`, usuario);
+  public cadastrarUsuarioSistema(usuario: UsuarioInterface): Observable<UsuarioInterface> {
+    return this.http.post<UsuarioInterface>(`${this.url}/usuarios-sistema`, usuario);
+  }
+
+  public cadastrarUsuarioAdmin(usuario: UsuarioInterface): Observable<UsuarioInterface> {
+    return this.http.post<UsuarioInterface>(`${this.url}/usuarios-ong`, usuario);
   }
 }

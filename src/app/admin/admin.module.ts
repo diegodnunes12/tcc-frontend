@@ -1,6 +1,6 @@
 import { AdminComponent } from './admin.component';
-import { MensagensComponent } from './pages/mensagens/mensagens.component';
-import { ContatosComponent } from './pages/contatos/contatos.component';
+import { MensagensAdminComponent } from './pages/mensagens/mensagens.component';
+import { ContatosAdminComponent } from './pages/contatos/contatos.component';
 import { CoreModule } from './../core/core.module';
 import { HeaderComponentAdmin } from './componentes/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -12,7 +12,7 @@ import { CadastroAnimalComponent } from './pages/cadastro-animal/cadastro-animal
 
 
 @NgModule({
-  declarations: [ HomeComponent, HeaderComponentAdmin, CadastroAnimalComponent, ContatosComponent, MensagensComponent, AdminComponent ],
+  declarations: [ HomeComponent, HeaderComponentAdmin, CadastroAnimalComponent, ContatosAdminComponent, MensagensAdminComponent, AdminComponent ],
   imports: [
     CommonModule,
     AdminRoutingModule,

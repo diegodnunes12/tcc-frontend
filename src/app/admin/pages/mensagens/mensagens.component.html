@@ -18,13 +18,13 @@
         </div>
         <div class="row mb-2" *ngFor="let mensagem of mensagens">
           <div class="col-md-6">
-            <div class="container-mensagem" *ngIf="!isMensagemDoUsuario(mensagem.usuario._id)">
+            <div class="container-mensagem" *ngIf="isMensagemDoUsuario(contato.usuario._id, mensagem.usuario._id)">
               <span class="info-mensagem">{{ mensagem.usuario.nome }} - {{ mensagem.data_mensagem | date: "dd/MM/yyyy HH:mm" }}</span>
               {{ mensagem.texto }}
             </div>
           </div>
           <div class="col-md-6">
-            <div class="container-mensagem" *ngIf="isMensagemDoUsuario(mensagem.usuario._id)">
+            <div class="container-mensagem" *ngIf="!isMensagemDoUsuario(contato.usuario._id, mensagem.usuario._id)">
               <span class="info-mensagem">Você - {{ mensagem.data_mensagem | date: "dd/MM/yyyy HH:mm" }}</span>
               {{ mensagem.texto }}
             </div>

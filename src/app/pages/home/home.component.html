@@ -4,7 +4,7 @@
     <tabset [justified]="true">
       <tab heading="Quero adotar">
         <h4 class="mb-3">Login</h4>
-        <button type="button" (click)="loginWithGoogle()" class="btn btn-danger">Login with Google</button>
+        <button type="button" (click)="loginWithGoogle()" class="btn btn-light"><i class="bi bi-google"></i> Login com  Google</button>
         <form [formGroup]="form" (ngSubmit)="login('adotar')">
           <div class="mb-3">
             <input type="email" class="form-control" id="email" placeholder="E-mail" maxlength="50" formControlName="email">

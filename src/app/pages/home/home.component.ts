@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
         });
       } else {
         this.usuariosSevice.loginSistema(usuario).subscribe((httpResponse) => {
-          localStorage.setItem('usuario', httpResponse._id);
+          localStorage.setItem('token', httpResponse.token);
           this.router.navigate(['adotar']);
         },
         error => {

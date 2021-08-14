@@ -59,10 +59,10 @@ export class MensagensComponent implements OnInit {
   }
 
   public onSubmit(contato: ContatosInterface) {
-    this.desabilitarBotao = true;
     if(this.form.valid) {
-      const usuario = localStorage.getItem('usuario');
-      if(usuario === null || usuario === '') {
+      this.desabilitarBotao = true;
+      const token = localStorage.getItem('token');
+      if(token === null || token === '') {
         this.router.navigate[''];
       }
       else {

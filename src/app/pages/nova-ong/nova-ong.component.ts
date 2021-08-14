@@ -44,10 +44,10 @@ export class NovaOngComponent implements OnInit {
 
     this.formUsuario = this.fb.group({
       nome: ['', [Validators.required, Validators.maxLength(50)]],
-      cpf: ['', [Validators.required, Validators.maxLength(15)]],
+      cpf: ['', [Validators.maxLength(15)]],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]],
-      telefone: ['', [Validators.required, Validators.maxLength(20)]]
+      telefone: ['', [Validators.maxLength(20)]]
     });
   }
 
@@ -93,10 +93,9 @@ export class NovaOngComponent implements OnInit {
         data_cadastro: new Date()
       };
 
-      this.usuariosSevice.cadastrar(usuario).subscribe((httpResponse) => {
-        localStorage.setItem('usuario', httpResponse._id);
-        this.router.navigate(['admin']);
-        this.toastr.success(`Bem vindo ${usuario.nome}`);
+      this.usuariosSevice.cadastrarUsuarioAdmin(usuario).subscribe((httpResponse) => {
+        this.router.navigate(['']);
+        this.toastr.success(`Cadastro efetuado com sucesso!`);
       },
       error => {
         this.toastr.error('Não foi possível realizar o cadastro');

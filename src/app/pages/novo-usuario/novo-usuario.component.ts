@@ -26,10 +26,10 @@ export class NovoUsuarioComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.maxLength(50)]],
-      cpf: ['', [Validators.required, Validators.maxLength(15)]],
+      cpf: ['', [Validators.maxLength(15)]],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]],
-      telefone: ['', [Validators.required, Validators.maxLength(20)]]
+      telefone: ['', [Validators.maxLength(20)]]
     });
   }
 
@@ -41,17 +41,12 @@ export class NovoUsuarioComponent implements OnInit {
         email: this.form.get('email').value,
         senha: this.form.get('senha').value,
         telefone: this.form.get('telefone').value,
-        tipo_usuario: {
-          _id: '6103211403c9373594f28687',
-          nome: 'Usuário do Sistema'
-        },
         data_cadastro: new Date()
       };
 
-      this.usuariosSevice.cadastrar(usuario).subscribe((httpResponse) => {
-        localStorage.setItem('usuario', httpResponse._id);
-        this.router.navigate(['adotar']);
-        this.toastr.success(`Bem vindo ${usuario.nome}`);
+      this.usuariosSevice.cadastrarUsuarioSistema(usuario).subscribe((httpResponse) => {
+        this.router.navigate(['']);
+        this.toastr.success(`Cadastro efetuado com sucesso!`);
       },
       error => {
         this.toastr.error('Não foi possível realizar o cadastro');
