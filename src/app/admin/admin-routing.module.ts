@@ -1,3 +1,4 @@
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { MinhaOngComponent } from './pages/minha-ong/minha-ong.component';
 import { AdminComponent } from './admin.component';
 import { MensagensAdminComponent } from './pages/mensagens/mensagens.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'admin/contatos', component: ContatosAdminComponent },
       { path: 'admin/contatos/:id', component: MensagensAdminComponent },
       { path: 'admin/minha-ong', component: MinhaOngComponent },
+      { path: 'admin/usuarios', component: UsuariosComponent },
     ]
   }
 ];

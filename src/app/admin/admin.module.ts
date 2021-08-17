@@ -1,3 +1,4 @@
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { MinhaOngComponent } from './pages/minha-ong/minha-ong.component';
 import { AdminComponent } from './admin.component';
 import { MensagensAdminComponent } from './pages/mensagens/mensagens.component';
@@ -20,7 +21,8 @@ import { CadastroAnimalComponent } from './pages/cadastro-animal/cadastro-animal
     ContatosAdminComponent,
     MensagensAdminComponent,
     AdminComponent,
-    MinhaOngComponent
+    MinhaOngComponent,
+    UsuariosComponent
   ],
   imports: [
     CommonModule,

@@ -29,4 +29,8 @@ export class UsuariosService {
   public cadastrarUsuarioAdmin(usuario: UsuarioInterface): Observable<UsuarioInterface> {
     return this.http.post<UsuarioInterface>(`${this.url}/usuarios-ong`, usuario);
   }
+
+  public getUsuariosOng(ongId: string): Observable<UsuarioInterface[]> {
+    return this.http.get<UsuarioInterface[]>(`${this.url}/usuarios-ong/ong/${ongId}`);
+  }
 }
