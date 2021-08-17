@@ -1,3 +1,4 @@
+import { MinhaOngComponent } from './pages/minha-ong/minha-ong.component';
 import { AdminComponent } from './admin.component';
 import { MensagensAdminComponent } from './pages/mensagens/mensagens.component';
 import { ContatosAdminComponent } from './pages/contatos/contatos.component';
@@ -12,7 +13,15 @@ import { CadastroAnimalComponent } from './pages/cadastro-animal/cadastro-animal
 
 
 @NgModule({
-  declarations: [ HomeComponent, HeaderComponentAdmin, CadastroAnimalComponent, ContatosAdminComponent, MensagensAdminComponent, AdminComponent ],
+  declarations: [
+    HomeComponent,
+    HeaderComponentAdmin,
+    CadastroAnimalComponent,
+    ContatosAdminComponent,
+    MensagensAdminComponent,
+    AdminComponent,
+    MinhaOngComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,

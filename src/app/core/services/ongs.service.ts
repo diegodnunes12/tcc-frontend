@@ -15,4 +15,12 @@ export class OngsService {
   public cadastrar(ong: OngInterface): Observable<OngInterface> {
     return this.http.post<OngInterface>(`${this.url}`, ong);
   }
+
+  public getOng(id: string): Observable<OngInterface> {
+    return this.http.get<OngInterface>(`${this.url}/${id}`);
+  }
+
+  public alterarOng(id: string, ong: OngInterface): Observable<OngInterface> {
+    return this.http.patch<OngInterface>(`${this.url}/${id}`, ong);
+  }
 }

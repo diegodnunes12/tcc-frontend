@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="my-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+          <a routerLink="/admin"><i class="bi bi-arrow-left"></i> Voltar</a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h1 class="border-bottom pb-2 mb-0">Minha Ong</h1>
+    <div class="text-muted pt-3">
+      <form [formGroup]="formulario" (ngSubmit)="salvar()">
+        <div class="row">
+          <div class="col-md-6 mt-2">
+            <label for="cnpj" class="form-label">CNPJ *</label>
+            <input type="text" class="form-control" disabled="true" id="cnpj" formControlName="cnpj" maxlength="20">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="nome" class="form-label">Nome *</label>
+            <input type="text" class="form-control" id="nome" formControlName="nome" maxlength="50">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="telefone" class="form-label">Telefone *</label>
+            <input type="text" class="form-control" id="telefone" formControlName="telefone" maxlength="20">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="email" class="form-label">E-mail *</label>
+            <input type="text" class="form-control" id="email" formControlName="email" maxlength="50">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="facebook" class="form-label">Facebook</label>
+            <input type="text" class="form-control" id="facebook" formControlName="facebook" maxlength="50">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="instagram" class="form-label">Instagram</label>
+            <input type="text" class="form-control" id="instagram" formControlName="instagram" maxlength="50">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="estado" class="form-label">Estado *</label>
+            <input type="text" class="form-control" id="estado" formControlName="estado" maxlength="20">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="cidade" class="form-label">Cidade *</label>
+            <input type="text" class="form-control" id="cidade" formControlName="cidade" maxlength="100">
+          </div>
+          <div class="col-12 mt-3 pb-3">
+            <button class="btn btn-primary">Salvar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

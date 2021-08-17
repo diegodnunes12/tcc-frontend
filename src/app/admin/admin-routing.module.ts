@@ -1,3 +1,4 @@
+import { MinhaOngComponent } from './pages/minha-ong/minha-ong.component';
 import { AdminComponent } from './admin.component';
 import { MensagensAdminComponent } from './pages/mensagens/mensagens.component';
 import { ContatosAdminComponent } from './pages/contatos/contatos.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'editar/:animalId', component: CadastroAnimalComponent },
       { path: 'admin/contatos', component: ContatosAdminComponent },
       { path: 'admin/contatos/:id', component: MensagensAdminComponent },
+      { path: 'admin/minha-ong', component: MinhaOngComponent },
     ]
   }
 ];
