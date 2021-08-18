@@ -33,4 +33,12 @@ export class UsuariosService {
   public getUsuariosOng(ongId: string): Observable<UsuarioInterface[]> {
     return this.http.get<UsuarioInterface[]>(`${this.url}/usuarios-ong/ong/${ongId}`);
   }
+
+  public getUsuariosOngPeloId(id: string): Observable<UsuarioInterface> {
+    return this.http.get<UsuarioInterface>(`${this.url}/usuarios-ong/${id}`);
+  }
+
+  public alterarUsuarioOng(id: string, usuarioOng: UsuarioInterface) {
+    return this.http.patch(`${this.url}/usuarios-ong/${id}`, usuarioOng);
+  }
 }

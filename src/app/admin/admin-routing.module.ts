@@ -1,3 +1,4 @@
+import { PerfilComponent } from './pages/perfil/perfil.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { MinhaOngComponent } from './pages/minha-ong/minha-ong.component';
 import { AdminComponent } from './admin.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'admin/contatos/:id', component: MensagensAdminComponent },
       { path: 'admin/minha-ong', component: MinhaOngComponent },
       { path: 'admin/usuarios', component: UsuariosComponent },
+      { path: 'admin/perfil', component: PerfilComponent },
     ]
   }
 ];

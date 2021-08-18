@@ -1,3 +1,4 @@
+import { PerfilComponent } from './pages/perfil/perfil.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { MinhaOngComponent } from './pages/minha-ong/minha-ong.component';
 import { AdminComponent } from './admin.component';
@@ -22,7 +23,8 @@ import { CadastroAnimalComponent } from './pages/cadastro-animal/cadastro-animal
     MensagensAdminComponent,
     AdminComponent,
     MinhaOngComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    PerfilComponent,
   ],
   imports: [
     CommonModule,
