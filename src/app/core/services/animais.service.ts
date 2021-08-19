@@ -28,8 +28,8 @@ export class AnimaisService {
     return this.http.get<AnimaisInterface[]>(this.url);
   }
 
-  public getAllAnimaisDaOng(): Observable<AnimaisInterface[]> {
-    return this.http.get<AnimaisInterface[]>(`${this.url}/ong`, { headers:  this.getHeaders() });
+  public getAllAnimaisDaOng(id: string): Observable<AnimaisInterface[]> {
+    return this.http.get<AnimaisInterface[]>(`${this.url}/ong/${id}`);
   }
 
   public getById(id: string): Observable<AnimaisInterface> {
@@ -37,6 +37,6 @@ export class AnimaisService {
   }
 
   public delete(id: string): Observable<AnimaisInterface> {
-    return this.http.delete<AnimaisInterface>(`${this.url}/${id}`, { headers:  this.getHeaders() });
+    return this.http.delete<AnimaisInterface>(`${this.url}/${id}`);
   }
 }

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EspecieInterface } from 'src/app/core/interfaces/especie.interface';
 import { ActivatedRoute } from '@angular/router';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-cadastro-animal',
@@ -31,6 +32,9 @@ export class CadastroAnimalComponent implements OnInit {
   ngOnInit(): void {
     this.especies$ = this.especiesService.getAll();
 
+    const token = localStorage.getItem('token');
+    var usuarioLogado: any = jwt_decode(token);
+
     this.formulario = this.fb.group({
       _id: [],
       imagem: [],
@@ -43,7 +47,7 @@ export class CadastroAnimalComponent implements OnInit {
       vacinado: [false],
       castrado: [false],
       vermifugado: [false],
-      ong: ['60e8d3a839eb36680582b783'],
+      ong: [usuarioLogado.ong],
       especie: ['', Validators.required],
       porte: ['', Validators.required],
       data_cadastro: [new Date()],
@@ -59,6 +63,7 @@ export class CadastroAnimalComponent implements OnInit {
           this.formulario.get('sexo').setValue(httpResponse.sexo);
           this.formulario.get('raca').setValue(httpResponse.raca);
           this.formulario.get('idade').setValue(httpResponse.idade);
+          this.formulario.get('ong').setValue(httpResponse.ong);
           this.formulario.get('historia').setValue(httpResponse.historia);
           this.formulario.get('vacinado').setValue(httpResponse.vacinado);
           this.formulario.get('castrado').setValue(httpResponse.castrado);
@@ -111,10 +116,12 @@ export class CadastroAnimalComponent implements OnInit {
           this.toastr.error('Não foi possível alterar o animal');
         });
       }else {
-        formData.append('ong', "60e8d3a839eb36680582b783");
+        const token = localStorage.getItem('token');
+        var usuarioLogado: any = jwt_decode(token);
+        formData.append('ong', usuarioLogado.ong);
         formData.append('data_cadastro', new Date().toString());
 
-        this.animaisService.cadastrar(this.formulario.value).subscribe(() => {
+        this.animaisService.cadastrar(formData).subscribe(() => {
           this.formulario.reset();
           this.toastr.success('Animal cadastrado com sucesso');
         },

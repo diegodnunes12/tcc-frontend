@@ -6,6 +6,7 @@ import { AnimaisService } from './../../../core/services/animais.service';
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.animais$ = this.animaisService.getAllAnimaisDaOng();
+    const token = localStorage.getItem('token');
+    var usuarioLogado: any = jwt_decode(token);
+    this.animais$ = this.animaisService.getAllAnimaisDaOng(usuarioLogado.ong);
   }
 
   public cadastrar() {
@@ -42,7 +45,9 @@ export class HomeComponent implements OnInit {
     modalRef.content.confirmed.subscribe((isConfirmed) => {
       if(isConfirmed) {
         this.animaisService.delete(id).subscribe(httpResponse => {
-          this.animais$ = this.animaisService.getAllAnimaisDaOng();
+          const token = localStorage.getItem('token');
+          var usuarioLogado: any = jwt_decode(token);
+          this.animais$ = this.animaisService.getAllAnimaisDaOng(usuarioLogado.ong);
           this.toastr.success('Animal excluído com sucesso');
         },
         () => {
