@@ -8,6 +8,7 @@ import { CadastroAnimalComponent } from './pages/cadastro-animal/cadastro-animal
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usuario.component';
 
 const routes: Routes = [
   {
@@ -17,11 +18,13 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'novo', component: CadastroAnimalComponent },
       { path: 'editar/:animalId', component: CadastroAnimalComponent },
-      { path: 'admin/contatos', component: ContatosAdminComponent },
-      { path: 'admin/contatos/:id', component: MensagensAdminComponent },
-      { path: 'admin/minha-ong', component: MinhaOngComponent },
-      { path: 'admin/usuarios', component: UsuariosComponent },
-      { path: 'admin/perfil', component: PerfilComponent },
+      { path: 'contatos', component: ContatosAdminComponent },
+      { path: 'contatos/:id', component: MensagensAdminComponent },
+      { path: 'minha-ong', component: MinhaOngComponent },
+      { path: 'usuarios', component: UsuariosComponent },
+      { path: 'usuarios/novo', component: CadastroUsuarioComponent },
+      { path: 'usuarios/editar/:usuarioId', component: CadastroUsuarioComponent },
+      { path: 'perfil', component: PerfilComponent },
     ]
   }
 ];

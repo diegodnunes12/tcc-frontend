@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
           this.animais$ = this.animaisService.getAllAnimaisDaOng();
           this.toastr.success('Animal excluído com sucesso');
         },
-        error => {
+        () => {
           this.toastr.error('Não foi possível excluir o animal');
         });
       }

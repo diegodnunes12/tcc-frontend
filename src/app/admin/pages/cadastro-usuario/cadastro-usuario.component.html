@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="my-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+          <a routerLink="/admin/usuarios"><i class="bi bi-arrow-left"></i> Voltar</a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h1 class="border-bottom pb-2 mb-0">Cadastrar usuário</h1>
+    <div class="text-muted pt-3">
+      <form [formGroup]="formulario" (ngSubmit)="salvar()">
+        <div class="row">
+          <div class="col-md-6 mt-2">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" class="form-control" id="cpf" formControlName="cpf" maxlength="15">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="nome" class="form-label">Nome *</label>
+            <input type="text" class="form-control" id="nome" formControlName="nome" maxlength="50">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="telefone" class="form-label">Telefone</label>
+            <input type="text" class="form-control" id="telefone" formControlName="telefone" maxlength="20">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="tipoUsuario" class="form-label">Tipo usuário *</label>
+            <select class="form-select" formControlName="tipoUsuario">
+              <option selected disabled></option>
+              <ng-container *ngIf="tipoUsuarios$ | async as tipoUsuarios">
+                <option *ngFor="let tipo of tipoUsuarios" [value]="tipo._id">{{ tipo.nome }}</option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="email" class="form-label">E-mail *</label>
+            <input type="text" class="form-control" id="email" formControlName="email" maxlength="50">
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="senha" class="form-label">Senha *</label>
+            <input type="text" class="form-control" id="senha" formControlName="senha" maxlength="50">
+          </div>
+          <div class="col-12 mt-3 pb-3">
+            <button class="btn btn-primary">Salvar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

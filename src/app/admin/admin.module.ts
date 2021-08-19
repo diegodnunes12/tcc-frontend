@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { CadastroAnimalComponent } from './pages/cadastro-animal/cadastro-animal.component';
+import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usuario.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { CadastroAnimalComponent } from './pages/cadastro-animal/cadastro-animal
     MinhaOngComponent,
     UsuariosComponent,
     PerfilComponent,
+    CadastroUsuarioComponent
   ],
   imports: [
     CommonModule,

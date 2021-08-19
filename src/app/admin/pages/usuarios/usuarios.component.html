@@ -25,6 +25,7 @@
                   <th scope="col">Nome</th>
                   <th scope="col">E-mail</th>
                   <th scope="col">Tipo usuário</th>
+                  <th scope="col">Gerenciar</th>
                 </tr>
               </thead>
               <tbody>
@@ -32,6 +33,10 @@
                   <td>{{ usuario.nome }}</td>
                   <td>{{ usuario.email }}</td>
                   <td>{{ usuario.tipo_usuario.nome }}</td>
+                  <td>
+                    <button class="btn btn-warning btn-sm me-2" (click)="editar(usuario._id)"><i class="bi bi-pencil-square"></i></button>
+                    <button class="btn btn-danger btn-sm" (click)="remover(usuario._id)"><i class="bi bi-trash"></i></button>
+                  </td>
                 </tr>
               </tbody>
             </table>
