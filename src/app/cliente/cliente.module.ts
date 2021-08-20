@@ -1,3 +1,4 @@
+import { PerfilUsuarioComponent } from './pages/perfil/perfil.component';
 import { MensagensComponent } from './pages/mensagens/mensagens.component';
 import { ContatosComponent } from './pages/contatos/contatos.component';
 import { ClienteComponent } from './cliente.component';
@@ -12,7 +13,15 @@ import { DetalhesComponent } from './pages/detalhes/detalhes.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, HeaderAdotarComponent, DetalhesComponent, ClienteComponent, ContatosComponent, MensagensComponent],
+  declarations: [
+    HomeComponent,
+    HeaderAdotarComponent,
+    DetalhesComponent,
+    ClienteComponent,
+    ContatosComponent,
+    MensagensComponent,
+    PerfilUsuarioComponent,
+  ],
   imports: [
     CommonModule,
     ClienteRoutingModule,

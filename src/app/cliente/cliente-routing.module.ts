@@ -1,3 +1,4 @@
+import { PerfilUsuarioComponent } from './pages/perfil/perfil.component';
 import { MensagensComponent } from './pages/mensagens/mensagens.component';
 import { ContatosComponent } from './pages/contatos/contatos.component';
 import { ClienteComponent } from './cliente.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: 'detalhes/:id', component: DetalhesComponent },
       { path: 'contatos', component: ContatosComponent },
       { path: 'contatos/:id', component: MensagensComponent },
+      { path: 'perfil', component: PerfilUsuarioComponent },
     ]
   }
 ];

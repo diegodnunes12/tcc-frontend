@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { AnimaisInterface } from '../../../core/interfaces/animais.interface';
 import { AnimaisService } from '../../../core/services/animais.service';
 import { Component, OnInit } from '@angular/core';
-import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-home',
@@ -17,11 +16,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.animais$ = this.animaisService.getAll();
-
-    var token = localStorage.getItem('token');
-    var decoded = jwt_decode(token);
-
-    console.log(decoded);
   }
 
   public detalhes(animalId: string) {

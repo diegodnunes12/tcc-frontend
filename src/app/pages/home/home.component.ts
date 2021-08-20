@@ -34,7 +34,9 @@ export class HomeComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = (user != null);
-      localStorage.setItem('token', this.socialUser.idToken);
+      if(this.socialUser !== null) {
+        localStorage.setItem('token', this.socialUser.idToken);
+      }
     });
   }
 

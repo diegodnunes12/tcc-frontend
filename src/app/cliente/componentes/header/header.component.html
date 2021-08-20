@@ -14,8 +14,16 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="contatos">CONTATOS</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="sair()">SAIR</a>
+        <li class="nav-item ms-2">
+          <div class="dropdown">
+            <button class="dropbtn">
+              {{ iniciaisUsuario }}
+            </button>
+            <div class="dropdown-content">
+              <a class="nav-link" routerLink="perfil">PERFIL</a>
+              <a class="nav-link" (click)="sair()">SAIR</a>
+            </div>
+          </div>
         </li>
       </ul>
     </div>

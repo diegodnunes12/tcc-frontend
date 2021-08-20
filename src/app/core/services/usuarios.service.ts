@@ -55,4 +55,12 @@ export class UsuariosService {
     return this.http.post<UsuarioInterface>(`${this.url}/usuarios-sistema`, usuario);
   }
 
+  public getUsuariosSistemaPeloId(id: string): Observable<UsuarioInterface> {
+    return this.http.get<UsuarioInterface>(`${this.url}/usuarios-sistema/${id}`);
+  }
+
+  public alterarUsuarioSistema(id: string, usuarioSistema: UsuarioInterface) {
+    return this.http.patch(`${this.url}/usuarios-sistema/${id}`, usuarioSistema);
+  }
+
 }
