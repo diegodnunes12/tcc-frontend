@@ -1,3 +1,4 @@
+import { Validacoes } from './../../core/functions/validacoes';
 import { UsuarioInterface } from './../../core/interfaces/usuarios.interface';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -25,10 +26,11 @@ export class NovoUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      nome: ['', [Validators.required, Validators.maxLength(50)]],
+      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       cpf: ['', [Validators.maxLength(15)]],
-      email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
+      senha: ['', [Validators.required, Validators.maxLength(50)]],
+      confirmaSenha: ['', [Validators.required, Validators.maxLength(50), Validacoes.isEqualTo('senha')]],
       telefone: ['', [Validators.maxLength(20)]]
     });
   }
@@ -51,6 +53,35 @@ export class NovoUsuarioComponent implements OnInit {
       error => {
         this.toastr.error('Não foi possível realizar o cadastro');
       });
+    }else {
+      console.log(this.form)
+      Object.keys(this.form.controls).forEach(item => {
+        this.form.get(item).markAsTouched();
+      })
+    }
+  }
+
+  public verficaErro(input: string) {
+    if(this.form.get(input).hasError && this.form.get(input).touched) {
+      if(this.form.get(input).errors?.required) {
+        return "required";
+      }
+
+      if(this.form.get(input).errors?.minlength) {
+        return "min";
+      }
+
+      if(this.form.get(input).errors?.maxlength) {
+        return "max";
+      }
+
+      if(this.form.get(input).errors?.email) {
+        return "email";
+      }
+
+      if(this.form.get(input).errors?.equalsTo) {
+        return "senha";
+      }
 
     }
   }

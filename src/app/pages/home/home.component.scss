@@ -25,10 +25,14 @@ section {
     }
   }
 
+  .tab-content {
+    margin-top: -1px;
+  }
+
   .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     color: #fff !important;
-    background-color: #49acc4;
-    border: 1px solid #49acc4 !important;
+    background-color: rgba(73, 172, 196, 0.9);
+    border: none !important;
     font-weight: 700;
   }
 
@@ -41,7 +45,7 @@ section {
 
   .tab-pane{
     padding: 30px 20px;
-    background: #49acc4 !important;
+    background: rgba(73, 172, 196, 0.9) !important;
   }
 
   a {

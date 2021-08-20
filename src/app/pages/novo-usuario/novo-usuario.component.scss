@@ -21,3 +21,7 @@ section {
     color: #fff;
   }
 }
+
+input.ng-invalid.ng-touched {
+  border: solid 3px #dc3545 !important;
+}

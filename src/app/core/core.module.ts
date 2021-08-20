@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { LoadingComponent } from './componentes/loading/loading.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { LoadingComponent } from './componentes/loading/loading.component';
     ReactiveFormsModule,
     ToastrModule.forRoot({ timeOut: 5000, closeButton: true }),
     TabsModule.forRoot(),
+    NgxMaskModule.forRoot(),
   ],
   providers: [BsModalService],
   exports: [
@@ -29,7 +31,8 @@ import { LoadingComponent } from './componentes/loading/loading.component';
     ReactiveFormsModule,
     FooterComponent,
     TabsModule,
-    LoadingComponent
+    LoadingComponent,
+    NgxMaskModule
   ]
 })
 export class CoreModule {
