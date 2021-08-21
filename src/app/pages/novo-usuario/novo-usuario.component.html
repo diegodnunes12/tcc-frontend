@@ -10,23 +10,20 @@
         <p class="text-light" *ngIf="verficaErro('nome') === 'min'">* O nome deve ter pelo menos três caracteres</p>
       </div>
       <div class="mb-3">
-        <label>CPF</label>
-        <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" mask="000.000.000-00" maxlength="20" formControlName="cpf">
-      </div>
-      <div class="mb-3">
         <label>Telefone</label>
-        <input type="text" class="form-control" id="telefone" placeholder="(35) 99999-9999" mask="(00) 00000-0000" maxlength="15" formControlName="telefone">
+        <input type="text" class="form-control" id="telefone" placeholder="(35) 99999-9999" mask="(00) 00000-0009" maxlength="15" formControlName="telefone">
       </div>
       <div class="mb-3">
         <label>E-mail *</label>
         <input type="email" class="form-control" id="email" placeholder="email@dominio.com.br" maxlength="50" formControlName="email">
         <p class="text-light" *ngIf="verficaErro('email') === 'required'">* Por favor, informe o e-mail</p>
         <p class="text-light" *ngIf="verficaErro('email') === 'email'">* Por favor, informe um e-mail válido</p>
+        <p class="text-light" *ngIf="verficaErro('email') === 'jaExistente'">* Esse e-mail já está cadastrado. Por favor, faça o login</p>
       </div>
       <div class="mb-3">
         <label>Senha *</label>
         <input type="password" class="form-control" id="senha" placeholder="Senha" maxlength="15" formControlName="senha">
-        <p class="text-light" *ngIf="verficaErro('email') === 'required'">* Por favor, informe a senha</p>
+        <p class="text-light" *ngIf="verficaErro('senha') === 'required'">* Por favor, informe a senha</p>
       </div>
       <div class="mb-3">
         <label>Confirme a senha *</label>
@@ -34,7 +31,10 @@
         <p class="text-light" *ngIf="verficaErro('confirmaSenha') === 'required'">* Por favor, confirme a senha</p>
         <p class="text-light" *ngIf="verficaErro('confirmaSenha') === 'senha'">* As senhas não combinam</p>
       </div>
-      <button type="submit" class="btn btn-warning">Cadastrar</button>
+      <button type="submit" [disabled]="send" class="btn btn-warning">
+        <span *ngIf="!send">Cadastrar</span>
+        <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      </button>
     </form>
   </div>
 </section>

@@ -63,4 +63,8 @@ export class UsuariosService {
     return this.http.patch(`${this.url}/usuarios-sistema/${id}`, usuarioSistema);
   }
 
+  public getUsuarioSistemaPorEmail(email: string) {
+    return this.http.get(`${this.url}/usuarios-sistema/email/${email}`);
+  }
+
 }
