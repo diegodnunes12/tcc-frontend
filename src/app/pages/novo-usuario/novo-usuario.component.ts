@@ -9,7 +9,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuariosService } from '../../core/services/usuarios.service';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-novo-usuario',
@@ -99,7 +98,7 @@ export class NovoUsuarioComponent implements OnInit {
     }
   }
 
-  validarEmail(formControl: FormControl) {
+  private validarEmail(formControl: FormControl) {
     return this.usuariosService.getUsuarioSistemaPorEmail(formControl.value).pipe(
       map( httpResponse =>  httpResponse ? {'jaExistente': true} : null )
     )
