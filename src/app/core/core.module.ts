@@ -5,11 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './componentes/footer/footer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { LoadingComponent } from './componentes/loading/loading.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -23,6 +23,7 @@ import { NgxMaskModule } from 'ngx-mask';
     ToastrModule.forRoot({ timeOut: 5000, closeButton: true }),
     TabsModule.forRoot(),
     NgxMaskModule.forRoot(),
+    NgSelectModule
   ],
   providers: [BsModalService],
   exports: [
@@ -32,7 +33,8 @@ import { NgxMaskModule } from 'ngx-mask';
     FooterComponent,
     TabsModule,
     LoadingComponent,
-    NgxMaskModule
+    NgxMaskModule,
+    NgSelectModule
   ]
 })
 export class CoreModule {

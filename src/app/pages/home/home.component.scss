@@ -58,4 +58,8 @@ section {
     width: 100%;
     margin-bottom: 20px;
   }
+
+  input.ng-invalid.ng-touched {
+    border: solid 3px #dc3545 !important;
+  }
 }

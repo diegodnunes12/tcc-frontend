@@ -20,4 +20,8 @@ section {
   h4, label {
     color: #fff;
   }
+
+  input.ng-invalid.ng-touched, .ng-select.ng-invalid.ng-touched {
+    border: solid 3px #dc3545 !important;
+  }
 }

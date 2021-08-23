@@ -1,3 +1,4 @@
+import { CriptografarSenhas } from './../../core/functions/criptografar-senhas';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -13,8 +14,9 @@ import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-soc
 })
 export class HomeComponent implements OnInit {
   public form: FormGroup;
-  socialUser: SocialUser;
-  isLoggedin: boolean;
+  public socialUser: SocialUser;
+  public isLoggedin: boolean;
+  public send: boolean = false;
 
   constructor
   (
@@ -42,29 +44,37 @@ export class HomeComponent implements OnInit {
 
   public login(sistema: string) {
     if(this.form.valid) {
+      this.send = true;
       let usuario: UsuarioLoginInterface = {
         email: this.form.get('email').value,
-        senha: this.form.get('senha').value
+        senha: CriptografarSenhas.criptografarSenhas(this.form.get('senha').value)
       };
 
       if(sistema === 'admin') {
         this.usuariosSevice.loginAdmin(usuario).subscribe((httpResponse) => {
           localStorage.setItem('token', httpResponse.token);
-          this.router.navigate(['admin'])
+          this.router.navigate(['admin']);
+          this.send = false;
         },
         error => {
           this.toastr.error('Usuário ou senha inválido');
+          this.send = false;
         });
       } else {
         this.usuariosSevice.loginSistema(usuario).subscribe((httpResponse) => {
           localStorage.setItem('token', httpResponse.token);
           this.router.navigate(['adotar']);
+          this.send = false;
         },
         error => {
           this.toastr.error('Usuário ou senha inválido');
+          this.send = false;
         });
       }
-
+    } else {
+      Object.keys(this.form.controls).forEach(item => {
+        this.form.get(item).markAsTouched();
+      });
     }
   }
 
@@ -72,6 +82,26 @@ export class HomeComponent implements OnInit {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(() => {
       this.router.navigate(['adotar'])
     });
+  }
+
+  public verficaErro(input: string) {
+    if(this.form.get(input).hasError && this.form.get(input).touched) {
+      if(this.form.get(input).errors?.required) {
+        return "required";
+      }
+
+      if(this.form.get(input).errors?.minlength) {
+        return "min";
+      }
+
+      if(this.form.get(input).errors?.maxlength) {
+        return "max";
+      }
+
+      if(this.form.get(input).errors?.email) {
+        return "email";
+      }
+    }
   }
 
 }

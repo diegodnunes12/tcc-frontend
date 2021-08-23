@@ -58,11 +58,10 @@ export class NovoUsuarioComponent implements OnInit {
         this.toastr.error('Não foi possível realizar o cadastro');
         this.send = false;
       });
-    }else {
-      console.log(this.form)
+    } else {
       Object.keys(this.form.controls).forEach(item => {
         this.form.get(item).markAsTouched();
-      })
+      });
     }
   }
 

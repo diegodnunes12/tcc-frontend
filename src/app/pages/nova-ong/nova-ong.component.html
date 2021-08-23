@@ -6,18 +6,26 @@
       <div class="mb-3">
         <label>Nome *</label>
         <input type="text" class="form-control" id="nome" placeholder="Patas de Anjo" maxlength="50" formControlName="nome">
+        <p class="text-light" *ngIf="verficaErro('nome') === 'required'">* Por favor, informe o nome</p>
+        <p class="text-light" *ngIf="verficaErro('nome') === 'min'">* O nome deve ter pelo menos três caracteres</p>
       </div>
       <div class="mb-3">
         <label>CNPJ *</label>
-        <input type="text" class="form-control" id="CNPJ" placeholder="000.000.000/0000-00" maxlength="20" formControlName="cnpj">
+        <input type="text" class="form-control" id="CNPJ" placeholder="000.000.000/0000-00" mask="000.000.000/0000-00" maxlength="20" formControlName="cnpj">
+        <p class="text-light" *ngIf="verficaErro('cnpj') === 'required'">* Por favor, informe o nome</p>
+        <p class="text-light" *ngIf="verficaErro('cnpj') === 'regex'">* Por favor, informe um CNPJ válido</p>
       </div>
       <div class="mb-3">
         <label>Telefone *</label>
-        <input type="text" class="form-control" id="telefone" placeholder="(35) 99999-9999" maxlength="15" formControlName="telefone">
+        <input type="text" class="form-control" id="telefone" placeholder="(35) 99999-9999" mask="(00) 00000-0009" maxlength="15" formControlName="telefone">
+        <p class="text-light" *ngIf="verficaErro('telefone') === 'required'">* Por favor, informe o telefone</p>
+        <p class="text-light" *ngIf="verficaErro('telefone') === 'regex'">* Por favor, informe um telefone válido</p>
       </div>
       <div class="mb-3">
         <label>E-mail *</label>
         <input type="email" class="form-control" id="email" placeholder="email@dominio.com.br" maxlength="50" formControlName="email">
+        <p class="text-light" *ngIf="verficaErro('email') === 'required'">* Por favor, informe o e-mail</p>
+        <p class="text-light" *ngIf="verficaErro('email') === 'email'">* Por favor, informe um e-mail válido</p>
       </div>
       <div class="mb-3">
         <label>Facebook</label>
@@ -28,12 +36,34 @@
         <input type="text" class="form-control" id="instagram" placeholder="patasdeanjp" maxlength="50" formControlName="instagram">
       </div>
       <div class="mb-3">
-        <label>Cidade</label>
-        <input type="text" class="form-control" id="cidade" placeholder="São Paulo" maxlength="100" formControlName="cidade">
+        <label>Estado *</label>
+        <ng-select
+          [items]="estados"
+          bindLabel="sigla"
+          bindValue="sigla"
+          [clearable]="false"
+          [multiple]="false"
+          placeholder="SP"
+          formControlName="estado"
+          (change)="selectEstado()"
+        >
+        </ng-select>
+        <p class="text-light" *ngIf="verficaErro('estado') === 'required'">* Por favor, selecione o estado</p>
       </div>
       <div class="mb-3">
-        <label>Estado</label>
-        <input type="text" class="form-control" id="estado" placeholder="SP" maxlength="20" formControlName="estado">
+        <label>Cidade *</label>
+        <ng-select
+          [items]="cidades"
+          bindLabel="nome"
+          bindValue="nome"
+          [clearable]="false"
+          [multiple]="false"
+          placeholder="São Paulo"
+          formControlName="cidade"
+          (change)="selectEstado()"
+        >
+        </ng-select>
+        <p class="text-light" *ngIf="verficaErro('cidade') === 'required'">* Por favor, selecione a cidade</p>
       </div>
       <button type="submit" class="btn btn-warning">Cadastrar</button>
     </form>
@@ -46,10 +76,6 @@
       <div class="mb-3">
         <label>Nome</label>
         <input type="text" class="form-control" id="nome" placeholder="Maria da Silva" maxlength="50" formControlName="nome">
-      </div>
-      <div class="mb-3">
-        <label>CPF</label>
-        <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" maxlength="20" formControlName="cpf">
       </div>
       <div class="mb-3">
         <label>Telefone</label>
