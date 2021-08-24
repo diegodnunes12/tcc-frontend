@@ -12,6 +12,7 @@
       <div class="mb-3">
         <label>Telefone</label>
         <input type="text" class="form-control" id="telefone" placeholder="(35) 99999-9999" mask="(00) 00000-0009" maxlength="15" formControlName="telefone">
+        <p class="text-light" *ngIf="verficaErro('telefone') === 'regex'">* Por favor, informe um telefone válido</p>
       </div>
       <div class="mb-3">
         <label>E-mail *</label>

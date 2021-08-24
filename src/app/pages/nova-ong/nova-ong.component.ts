@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs';
+import { CriptografarSenhas } from './../../core/functions/criptografar-senhas';
+import { Validacoes } from './../../core/functions/validacoes';
 import { CidadesEstadosService, EstadosInterface, CidadesInterface } from './../../core/services/cidades-estados.service';
 import { OngsService } from './../../core/services/ongs.service';
 import { OngInterface } from './../../core/interfaces/ong.interface';
@@ -6,10 +7,8 @@ import { UsuarioInterface } from '../../core/interfaces/usuarios.interface';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { UsuarioLoginInterface } from '../../core/interfaces/usuario-login.interface';
 import { UsuariosService } from '../../core/services/usuarios.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-nova-ong',
@@ -24,6 +23,7 @@ export class NovaOngComponent implements OnInit {
   public cadastrarOng: boolean = true;
   public cadastrarUsuario: boolean = false;
   private ong: string;
+  public send: boolean = false;
 
   constructor
   (
@@ -41,9 +41,9 @@ export class NovaOngComponent implements OnInit {
 
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.maxLength(50)]],
-      cnpj: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(/[0-9]{15}/)]],
+      cnpj: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(/[0-9]{14}/)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
-      telefone: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(/[0-9]{10-11}/)]],
+      telefone: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(/[0-9]{10,11}/)]],
       facebook: ['', [Validators.maxLength(50)]],
       instagram: ['', [Validators.maxLength(50)]],
       cidade: ['', [Validators.required, Validators.maxLength(100)]],
@@ -54,8 +54,9 @@ export class NovaOngComponent implements OnInit {
       nome: ['', [Validators.required, Validators.maxLength(50)]],
       cpf: ['', [Validators.maxLength(15)]],
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required]],
-      telefone: ['', [Validators.maxLength(20)]]
+      senha: ['', [Validators.required, Validators.maxLength(50)]],
+      confirmaSenha: ['', [Validators.required, Validators.maxLength(50), Validacoes.isEqualTo('senha')]],
+      telefone: ['', [Validators.maxLength(20), Validators.pattern(/[0-9]{10,11}/)]]
     });
   }
 
@@ -64,7 +65,9 @@ export class NovaOngComponent implements OnInit {
   }
 
   public cadastrar() {
+    console.log(this.form)
     if(this.form.valid) {
+      this.send = true;
       let ong: OngInterface = {
         nome: this.form.get('nome').value,
         cnpj: this.form.get('cnpj').value,
@@ -81,9 +84,11 @@ export class NovaOngComponent implements OnInit {
         this.cadastrarOng = false;
         this.cadastrarUsuario = true;
         this.ong = httpResponse._id;
+        this.send = false;
       },
       error => {
         this.toastr.error('Não foi possível realizar o cadastro');
+        this.send = false;
       });
     } else {
       Object.keys(this.form.controls).forEach(item => {
@@ -94,11 +99,12 @@ export class NovaOngComponent implements OnInit {
 
   public cadastrarUsuarioAdminsitrador() {
     if(this.formUsuario.valid) {
+      this.send = true;
       let usuario: UsuarioInterface = {
         nome: this.formUsuario.get('nome').value,
         cpf: this.formUsuario.get('cpf').value,
         email: this.formUsuario.get('email').value,
-        senha: this.formUsuario.get('senha').value,
+        senha: CriptografarSenhas.criptografarSenhas(this.formUsuario.get('senha').value),
         telefone: this.formUsuario.get('telefone').value,
         tipo_usuario: {
           _id: '610320bf03c9373594f28683',
@@ -111,40 +117,46 @@ export class NovaOngComponent implements OnInit {
       this.usuariosSevice.cadastrarUsuarioAdmin(usuario).subscribe((httpResponse) => {
         this.router.navigate(['']);
         this.toastr.success(`Cadastro efetuado com sucesso!`);
+        this.send = false;
       },
       error => {
         this.toastr.error('Não foi possível realizar o cadastro');
+        this.send = false;
+      });
+    } else {
+      Object.keys(this.formUsuario.controls).forEach(item => {
+        this.formUsuario.get(item).markAsTouched();
       });
     }
   }
 
-  public verficaErro(input: string) {
-    if(this.form.get(input).hasError && this.form.get(input).touched) {
-      if(this.form.get(input).errors?.required) {
+  public verficaErro(form: FormGroup, input: string) {
+    if(form.get(input).hasError && form.get(input).touched) {
+      if(form.get(input).errors?.required) {
         return "required";
       }
 
-      if(this.form.get(input).errors?.minlength) {
+      if(form.get(input).errors?.minlength) {
         return "min";
       }
 
-      if(this.form.get(input).errors?.maxlength) {
+      if(form.get(input).errors?.maxlength) {
         return "max";
       }
 
-      if(this.form.get(input).errors?.email) {
+      if(form.get(input).errors?.email) {
         return "email";
       }
 
-      if(this.form.get(input).errors?.pattern) {
+      if(form.get(input).errors?.pattern) {
         return "regex";
       }
 
-      if(this.form.get(input).errors?.equalsTo) {
+      if(form.get(input).errors?.equalsTo) {
         return "senha";
       }
 
-      if(this.form.get(input).errors?.jaExistente) {
+      if(form.get(input).errors?.jaExistente) {
         return "jaExistente";
       }
     }

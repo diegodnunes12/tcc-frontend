@@ -25,7 +25,6 @@ export class NovoUsuarioComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
-    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +33,7 @@ export class NovoUsuarioComponent implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.maxLength(50)], [this.validarEmail.bind(this)]],
       senha: ['', [Validators.required, Validators.maxLength(50)]],
       confirmaSenha: ['', [Validators.required, Validators.maxLength(50), Validacoes.isEqualTo('senha')]],
-      telefone: ['', [Validators.maxLength(20)]]
+      telefone: ['', [Validators.maxLength(20), Validators.pattern(/[0-9]{10,11}/)]]
     });
   }
 

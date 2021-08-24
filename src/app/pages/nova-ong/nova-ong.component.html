@@ -6,26 +6,26 @@
       <div class="mb-3">
         <label>Nome *</label>
         <input type="text" class="form-control" id="nome" placeholder="Patas de Anjo" maxlength="50" formControlName="nome">
-        <p class="text-light" *ngIf="verficaErro('nome') === 'required'">* Por favor, informe o nome</p>
-        <p class="text-light" *ngIf="verficaErro('nome') === 'min'">* O nome deve ter pelo menos três caracteres</p>
+        <p class="text-light" *ngIf="verficaErro(form, 'nome') === 'required'">* Por favor, informe o nome</p>
+        <p class="text-light" *ngIf="verficaErro(form, 'nome') === 'min'">* O nome deve ter pelo menos três caracteres</p>
       </div>
       <div class="mb-3">
         <label>CNPJ *</label>
-        <input type="text" class="form-control" id="CNPJ" placeholder="000.000.000/0000-00" mask="000.000.000/0000-00" maxlength="20" formControlName="cnpj">
-        <p class="text-light" *ngIf="verficaErro('cnpj') === 'required'">* Por favor, informe o nome</p>
-        <p class="text-light" *ngIf="verficaErro('cnpj') === 'regex'">* Por favor, informe um CNPJ válido</p>
+        <input type="text" class="form-control" id="CNPJ" placeholder="00.000.000/0000-00" mask="00.000.000/0000-00" maxlength="20" formControlName="cnpj">
+        <p class="text-light" *ngIf="verficaErro(form, 'cnpj') === 'required'">* Por favor, informe o nome</p>
+        <p class="text-light" *ngIf="verficaErro(form, 'cnpj') === 'regex'">* Por favor, informe um CNPJ válido</p>
       </div>
       <div class="mb-3">
         <label>Telefone *</label>
         <input type="text" class="form-control" id="telefone" placeholder="(35) 99999-9999" mask="(00) 00000-0009" maxlength="15" formControlName="telefone">
-        <p class="text-light" *ngIf="verficaErro('telefone') === 'required'">* Por favor, informe o telefone</p>
-        <p class="text-light" *ngIf="verficaErro('telefone') === 'regex'">* Por favor, informe um telefone válido</p>
+        <p class="text-light" *ngIf="verficaErro(form, 'telefone') === 'required'">* Por favor, informe o telefone</p>
+        <p class="text-light" *ngIf="verficaErro(form, 'telefone') === 'regex'">* Por favor, informe um telefone válido</p>
       </div>
       <div class="mb-3">
         <label>E-mail *</label>
         <input type="email" class="form-control" id="email" placeholder="email@dominio.com.br" maxlength="50" formControlName="email">
-        <p class="text-light" *ngIf="verficaErro('email') === 'required'">* Por favor, informe o e-mail</p>
-        <p class="text-light" *ngIf="verficaErro('email') === 'email'">* Por favor, informe um e-mail válido</p>
+        <p class="text-light" *ngIf="verficaErro(form, 'email') === 'required'">* Por favor, informe o e-mail</p>
+        <p class="text-light" *ngIf="verficaErro(form, 'email') === 'email'">* Por favor, informe um e-mail válido</p>
       </div>
       <div class="mb-3">
         <label>Facebook</label>
@@ -48,7 +48,7 @@
           (change)="selectEstado()"
         >
         </ng-select>
-        <p class="text-light" *ngIf="verficaErro('estado') === 'required'">* Por favor, selecione o estado</p>
+        <p class="text-light" *ngIf="verficaErro(form, 'estado') === 'required'">* Por favor, selecione o estado</p>
       </div>
       <div class="mb-3">
         <label>Cidade *</label>
@@ -63,9 +63,12 @@
           (change)="selectEstado()"
         >
         </ng-select>
-        <p class="text-light" *ngIf="verficaErro('cidade') === 'required'">* Por favor, selecione a cidade</p>
+        <p class="text-light" *ngIf="verficaErro(form, 'cidade') === 'required'">* Por favor, selecione a cidade</p>
       </div>
-      <button type="submit" class="btn btn-warning">Cadastrar</button>
+      <button type="submit" [disabled]="send" class="btn btn-warning">
+        <span *ngIf="!send">Cadastrar</span>
+        <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      </button>
     </form>
   </div>
 </section>
@@ -74,22 +77,37 @@
     <h4 class="mb-3">Cadastre o usuário administrador</h4>
     <form [formGroup]="formUsuario" (ngSubmit)="cadastrarUsuarioAdminsitrador()">
       <div class="mb-3">
-        <label>Nome</label>
+        <label>Nome *</label>
         <input type="text" class="form-control" id="nome" placeholder="Maria da Silva" maxlength="50" formControlName="nome">
+        <p class="text-light" *ngIf="verficaErro(formUsuario, 'nome') === 'required'">* Por favor, informe o nome</p>
+        <p class="text-light" *ngIf="verficaErro(formUsuario, 'nome') === 'min'">* O nome deve ter pelo menos três caracteres</p>
       </div>
       <div class="mb-3">
         <label>Telefone</label>
-        <input type="text" class="form-control" id="telefone" placeholder="(35) 99999-9999" maxlength="15" formControlName="telefone">
+        <input type="text" class="form-control" id="telefone" placeholder="(35) 99999-9999" mask="(00) 00000-0009" maxlength="15" formControlName="telefone">
+        <p class="text-light" *ngIf="verficaErro(formUsuario, 'telefone') === 'regex'">* Por favor, informe um telefone válido</p>
       </div>
       <div class="mb-3">
         <label>E-mail</label>
         <input type="email" class="form-control" id="email" placeholder="email@dominio.com.br" maxlength="50" formControlName="email">
+        <p class="text-light" *ngIf="verficaErro(formUsuario, 'email') === 'required'">* Por favor, informe o e-mail</p>
+        <p class="text-light" *ngIf="verficaErro(formUsuario, 'email') === 'email'">* Por favor, informe um e-mail válido</p>
       </div>
       <div class="mb-3">
-        <label>Senha</label>
+        <label>Senha *</label>
         <input type="password" class="form-control" id="senha" placeholder="Senha" maxlength="15" formControlName="senha">
+        <p class="text-light" *ngIf="verficaErro(formUsuario, 'senha') === 'required'">* Por favor, informe a senha</p>
       </div>
-      <button type="submit" class="btn btn-warning">Cadastrar</button>
+      <div class="mb-3">
+        <label>Confirme a senha *</label>
+        <input type="password" class="form-control" id="confirmaSenha" placeholder="Confirme a senha" maxlength="15" formControlName="confirmaSenha">
+        <p class="text-light" *ngIf="verficaErro(formUsuario, 'confirmaSenha') === 'required'">* Por favor, confirme a senha</p>
+        <p class="text-light" *ngIf="verficaErro(formUsuario, 'confirmaSenha') === 'senha'">* As senhas não combinam</p>
+      </div>
+      <button type="submit" [disabled]="send" class="btn btn-warning">
+        <span *ngIf="!send">Cadastrar</span>
+        <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      </button>
     </form>
   </div>
 </section>
