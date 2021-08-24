@@ -23,4 +23,8 @@ export class OngsService {
   public alterarOng(id: string, ong: OngInterface): Observable<OngInterface> {
     return this.http.patch<OngInterface>(`${this.url}/${id}`, ong);
   }
+
+  public getOngPorCnpj(cnpj: string) {
+    return this.http.get(`${this.url}/cnpj/${cnpj}`);
+  }
 }

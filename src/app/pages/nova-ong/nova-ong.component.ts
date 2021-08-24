@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UsuariosService } from '../../core/services/usuarios.service';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nova-ong',
@@ -41,7 +42,7 @@ export class NovaOngComponent implements OnInit {
 
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.maxLength(50)]],
-      cnpj: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(/[0-9]{14}/)]],
+      cnpj: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(/[0-9]{14}/)], [this.validarCnpj.bind(this)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
       telefone: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(/[0-9]{10,11}/)]],
       facebook: ['', [Validators.maxLength(50)]],
@@ -52,8 +53,7 @@ export class NovaOngComponent implements OnInit {
 
     this.formUsuario = this.fb.group({
       nome: ['', [Validators.required, Validators.maxLength(50)]],
-      cpf: ['', [Validators.maxLength(15)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email], [this.validarEmail.bind(this)]],
       senha: ['', [Validators.required, Validators.maxLength(50)]],
       confirmaSenha: ['', [Validators.required, Validators.maxLength(50), Validacoes.isEqualTo('senha')]],
       telefone: ['', [Validators.maxLength(20), Validators.pattern(/[0-9]{10,11}/)]]
@@ -102,7 +102,6 @@ export class NovaOngComponent implements OnInit {
       this.send = true;
       let usuario: UsuarioInterface = {
         nome: this.formUsuario.get('nome').value,
-        cpf: this.formUsuario.get('cpf').value,
         email: this.formUsuario.get('email').value,
         senha: CriptografarSenhas.criptografarSenhas(this.formUsuario.get('senha').value),
         telefone: this.formUsuario.get('telefone').value,
@@ -163,9 +162,14 @@ export class NovaOngComponent implements OnInit {
   }
 
   private validarEmail(formControl: FormControl) {
-    /* return this.usuariosService.getUsuarioSistemaPorEmail(formControl.value).pipe(
+    return this.usuariosSevice.getUsuarioOngPorEmail(formControl.value).pipe(
       map( httpResponse =>  httpResponse ? {'jaExistente': true} : null )
-    ) */
+    );
   }
 
+  private validarCnpj(formControl: FormControl) {
+    return this.ongsService.getOngPorCnpj(formControl.value).pipe(
+      map( httpResponse =>  httpResponse ? {'jaExistente': true} : null )
+    );
+  }
 }

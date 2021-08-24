@@ -45,6 +45,10 @@ export class UsuariosService {
     return this.http.delete(`${this.url}/usuarios-ong/${id}`);
   }
 
+  public getUsuarioOngPorEmail(email: string) {
+    return this.http.get(`${this.url}/usuarios-ong/email/${email}`);
+  }
+
   /** USUÁRIOS SISTEMA **/
 
   public loginSistema(usuario: UsuarioLoginInterface): Observable<TokenInterface> {

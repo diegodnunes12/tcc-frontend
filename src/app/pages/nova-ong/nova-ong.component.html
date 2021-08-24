@@ -14,6 +14,7 @@
         <input type="text" class="form-control" id="CNPJ" placeholder="00.000.000/0000-00" mask="00.000.000/0000-00" maxlength="20" formControlName="cnpj">
         <p class="text-light" *ngIf="verficaErro(form, 'cnpj') === 'required'">* Por favor, informe o nome</p>
         <p class="text-light" *ngIf="verficaErro(form, 'cnpj') === 'regex'">* Por favor, informe um CNPJ válido</p>
+        <p class="text-light" *ngIf="verficaErro(form, 'cnpj') === 'jaExistente'">* Esse CNPJ já está cadastrado. Por favor, faça o login</p>
       </div>
       <div class="mb-3">
         <label>Telefone *</label>
@@ -88,10 +89,11 @@
         <p class="text-light" *ngIf="verficaErro(formUsuario, 'telefone') === 'regex'">* Por favor, informe um telefone válido</p>
       </div>
       <div class="mb-3">
-        <label>E-mail</label>
+        <label>E-mail *</label>
         <input type="email" class="form-control" id="email" placeholder="email@dominio.com.br" maxlength="50" formControlName="email">
         <p class="text-light" *ngIf="verficaErro(formUsuario, 'email') === 'required'">* Por favor, informe o e-mail</p>
         <p class="text-light" *ngIf="verficaErro(formUsuario, 'email') === 'email'">* Por favor, informe um e-mail válido</p>
+        <p class="text-light" *ngIf="verficaErro(formUsuario, 'email') === 'jaExistente'">* Esse e-mail já está cadastrado. Por favor, faça o login</p>
       </div>
       <div class="mb-3">
         <label>Senha *</label>
