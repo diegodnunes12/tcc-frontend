@@ -19,12 +19,12 @@ import { OngInterface } from 'src/app/core/interfaces/ong.interface';
 })
 export class PerfilComponent implements OnInit {
   public formulario: FormGroup;
+  public send: boolean = false;
 
   constructor
   (
     private fb: FormBuilder,
     private usuarioService: UsuariosService,
-    private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router,
   ) { }
@@ -32,7 +32,6 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.fb.group({
       _id: [''],
-      cpf: ['', [Validators.maxLength(20)]],
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       telefone: ['', [Validators.maxLength(20)]],
       email: ['', [Validators.required, Validators.maxLength(50)]],
@@ -47,7 +46,6 @@ export class PerfilComponent implements OnInit {
       var usuarioLogado: any = jwt_decode(token);
       this.usuarioService.getUsuariosOngPeloId(usuarioLogado.sub).subscribe((httpResponse) => {
         this.formulario.get('_id').setValue(httpResponse._id);
-        this.formulario.get('cpf').setValue(httpResponse.cpf);
         this.formulario.get('nome').setValue(httpResponse.nome);
         this.formulario.get('telefone').setValue(httpResponse.telefone);
         this.formulario.get('email').setValue(httpResponse.email);
@@ -57,18 +55,56 @@ export class PerfilComponent implements OnInit {
 
   public salvar() {
     if(this.formulario.valid) {
+      this.send = true;
       const usuariOng: UsuarioInterface = {
         nome: this.formulario.get('nome').value,
         telefone: this.formulario.get('telefone').value,
-        cpf: this.formulario.get('cpf').value
       }
 
       this.usuarioService.alterarUsuarioOng(this.formulario.get('_id').value, usuariOng).subscribe(() => {
         this.toastr.success('Informações alteradas com sucesso');
+        this.send = false;
       },
       () => {
         this.toastr.error('Não foi possível alterar os dados');
+        this.send = false;
       });
+    } else {
+      Object.keys(this.formulario.controls).forEach(item => {
+        this.formulario.get(item).markAsTouched();
+      });
+    }
+  }
+
+  public verficaErro(input: string) {
+    if(this.formulario.get(input).hasError && this.formulario.get(input).touched) {
+      if(this.formulario.get(input).errors?.required) {
+        return "required";
+      }
+
+      if(this.formulario.get(input).errors?.minlength) {
+        return "min";
+      }
+
+      if(this.formulario.get(input).errors?.maxlength) {
+        return "max";
+      }
+
+      if(this.formulario.get(input).errors?.email) {
+        return "email";
+      }
+
+      if(this.formulario.get(input).errors?.pattern) {
+        return "regex";
+      }
+
+      if(this.formulario.get(input).errors?.equalsTo) {
+        return "senha";
+      }
+
+      if(this.formulario.get(input).errors?.jaExistente) {
+        return "jaExistente";
+      }
     }
   }
 }

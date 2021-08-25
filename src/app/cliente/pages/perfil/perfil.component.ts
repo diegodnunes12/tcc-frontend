@@ -1,16 +1,10 @@
 import { UsuarioInterface } from './../../../core/interfaces/usuarios.interface';
 import { UsuariosService } from './../../../core/services/usuarios.service';
-import { OngsService } from '../../../core/services/ongs.service';
 import { ToastrService } from 'ngx-toastr';
-import { AnimaisService } from '../../../core/services/animais.service';
-import { Observable } from 'rxjs';
-import { EspeciesService } from '../../../core/services/especies.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EspecieInterface } from 'src/app/core/interfaces/especie.interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
-import { OngInterface } from 'src/app/core/interfaces/ong.interface';
 
 @Component({
   selector: 'app-perfil',

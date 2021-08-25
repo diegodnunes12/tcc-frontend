@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+
 import { FormControl } from '@angular/forms';
 import { CriptografarSenhas } from './../../core/functions/criptografar-senhas';
 import { Validacoes } from './../../core/functions/validacoes';

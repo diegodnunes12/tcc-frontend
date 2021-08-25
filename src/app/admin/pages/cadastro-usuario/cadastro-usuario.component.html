@@ -14,16 +14,33 @@
       <form [formGroup]="formulario" (ngSubmit)="salvar()">
         <div class="row">
           <div class="col-md-6 mt-2">
-            <label for="cpf" class="form-label">CPF</label>
-            <input type="text" class="form-control" id="cpf" formControlName="cpf" maxlength="15">
-          </div>
-          <div class="col-md-6 mt-2">
             <label for="nome" class="form-label">Nome *</label>
             <input type="text" class="form-control" id="nome" formControlName="nome" maxlength="50">
+            <p class="text-danger" *ngIf="verficaErro('nome') === 'required'">* Por favor, informe o nome</p>
+            <p class="text-danger" *ngIf="verficaErro('nome') === 'min'">* O nome deve ter pelo menos três caracteres</p>
           </div>
           <div class="col-md-6 mt-2">
             <label for="telefone" class="form-label">Telefone</label>
-            <input type="text" class="form-control" id="telefone" formControlName="telefone" maxlength="20">
+            <input type="text" class="form-control" id="telefone" formControlName="telefone" maxlength="20" mask="(00) 00000-0009">
+            <p class="text-danger" *ngIf="verficaErro('telefone') === 'regex'">* Por favor, informe um telefone válido</p>
+          </div>
+          <div class="col-md-6 mt-2" *ngIf="!isEditing">
+            <label for="email" class="form-label">E-mail *</label>
+            <input type="text" class="form-control" id="email" formControlName="email" maxlength="50">
+            <p class="text-danger" *ngIf="verficaErro('email') === 'required'">* Por favor, informe o e-mail</p>
+            <p class="text-danger" *ngIf="verficaErro('email') === 'email'">* Por favor, informe um e-mail válido</p>
+            <p class="text-danger" *ngIf="verficaErro('email') === 'jaExistente'">* Esse e-mail já está cadastrado</p>
+          </div>
+          <div class="col-md-6 mt-2" *ngIf="isEditing">
+            <label for="email" class="form-label">E-mail *</label>
+            <input type="text" class="form-control" id="email" disabled="true" formControlName="email" maxlength="50">
+            <p class="text-danger" *ngIf="verficaErro('email') === 'required'">* Por favor, informe o e-mail</p>
+            <p class="text-danger" *ngIf="verficaErro('email') === 'email'">* Por favor, informe um e-mail válido</p>
+          </div>
+          <div class="col-md-6 mt-2" *ngIf="!isEditing">
+            <label for="senha" class="form-label">Senha *</label>
+            <input type="password" class="form-control" id="senha" formControlName="senha" maxlength="50">
+            <p class="text-danger" *ngIf="verficaErro('senha') === 'required'">* Por favor, informe a senha</p>
           </div>
           <div class="col-md-6 mt-2">
             <label for="tipoUsuario" class="form-label">Tipo usuário *</label>
@@ -33,17 +50,13 @@
                 <option *ngFor="let tipo of tipoUsuarios" [value]="tipo._id">{{ tipo.nome }}</option>
               </ng-container>
             </select>
-          </div>
-          <div class="col-md-6 mt-2">
-            <label for="email" class="form-label">E-mail *</label>
-            <input type="text" class="form-control" id="email" formControlName="email" maxlength="50">
-          </div>
-          <div class="col-md-6 mt-2">
-            <label for="senha" class="form-label">Senha *</label>
-            <input type="text" class="form-control" id="senha" formControlName="senha" maxlength="50">
+            <p class="text-danger" *ngIf="verficaErro('tipoUsuario') === 'required'">* Por favor, selecione o tipo de usuário</p>
           </div>
           <div class="col-12 mt-3 pb-3">
-            <button class="btn btn-primary">Salvar</button>
+            <button class="btn btn-primary">
+              <span *ngIf="!send">Salvar</span>
+              <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            </button>
           </div>
         </div>
       </form>
