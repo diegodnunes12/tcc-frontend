@@ -1,3 +1,4 @@
+import { CidadesEstadosService, EstadosInterface, CidadesInterface } from './../../../core/services/cidades-estados.service';
 import { OngsService } from './../../../core/services/ongs.service';
 import { ToastrService } from 'ngx-toastr';
 import { AnimaisService } from '../../../core/services/animais.service';
@@ -18,18 +19,23 @@ import { OngInterface } from 'src/app/core/interfaces/ong.interface';
 export class MinhaOngComponent implements OnInit {
   public formulario: FormGroup;
   public ong$: Observable<OngInterface>
+  public send: boolean = false;
+  public estados: EstadosInterface[];
+  public cidades: CidadesInterface[];
 
   constructor
   (
     private fb: FormBuilder,
     private ongsService: OngsService,
     private animaisService: AnimaisService,
-    private activatedRoute: ActivatedRoute,
+    private cidadesEstadosService: CidadesEstadosService,
     private toastr: ToastrService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
+    this.cidadesEstadosService.getEstados().subscribe(HttpResponse => this.estados = HttpResponse);
+
     this.formulario = this.fb.group({
       _id: [''],
       cnpj: ['', [Validators.required]],
@@ -50,6 +56,7 @@ export class MinhaOngComponent implements OnInit {
     else {
       var usuarioLogado: any = jwt_decode(token);
       this.ongsService.getOng(usuarioLogado.ong).subscribe((httpResponse) => {
+        this.cidadesEstadosService.getCidades(httpResponse.estado).subscribe(HttpResponse => this.cidades = HttpResponse);
         this.formulario.get('_id').setValue(httpResponse._id);
         this.formulario.get('cnpj').setValue(httpResponse.cnpj);
         this.formulario.get('nome').setValue(httpResponse.nome);
@@ -61,6 +68,10 @@ export class MinhaOngComponent implements OnInit {
         this.formulario.get('estado').setValue(httpResponse.estado);
       });
     }
+  }
+
+  public selectEstado() {
+    this.cidadesEstadosService.getCidades(this.formulario.get('estado').value).subscribe(httpResponse => this.cidades = httpResponse);
   }
 
   public salvar() {
@@ -81,6 +92,38 @@ export class MinhaOngComponent implements OnInit {
       error => {
         this.toastr.error('Não foi possível alterar os dados da ong');
       });
+    }
+  }
+
+  public verficaErro(input: string) {
+    if(this.formulario.get(input).hasError && this.formulario.get(input).touched) {
+      if(this.formulario.get(input).errors?.required) {
+        return "required";
+      }
+
+      if(this.formulario.get(input).errors?.minlength) {
+        return "min";
+      }
+
+      if(this.formulario.get(input).errors?.maxlength) {
+        return "max";
+      }
+
+      if(this.formulario.get(input).errors?.email) {
+        return "email";
+      }
+
+      if(this.formulario.get(input).errors?.pattern) {
+        return "regex";
+      }
+
+      if(this.formulario.get(input).errors?.equalsTo) {
+        return "senha";
+      }
+
+      if(this.formulario.get(input).errors?.jaExistente) {
+        return "jaExistente";
+      }
     }
   }
 }

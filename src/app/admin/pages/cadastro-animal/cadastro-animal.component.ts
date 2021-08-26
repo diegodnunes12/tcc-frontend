@@ -135,4 +135,36 @@ export class CadastroAnimalComponent implements OnInit {
       });
     }
   }
+
+  public verficaErro(input: string) {
+    if(this.formulario.get(input).hasError && this.formulario.get(input).touched) {
+      if(this.formulario.get(input).errors?.required) {
+        return "required";
+      }
+
+      if(this.formulario.get(input).errors?.minlength) {
+        return "min";
+      }
+
+      if(this.formulario.get(input).errors?.maxlength) {
+        return "max";
+      }
+
+      if(this.formulario.get(input).errors?.email) {
+        return "email";
+      }
+
+      if(this.formulario.get(input).errors?.pattern) {
+        return "regex";
+      }
+
+      if(this.formulario.get(input).errors?.equalsTo) {
+        return "senha";
+      }
+
+      if(this.formulario.get(input).errors?.jaExistente) {
+        return "jaExistente";
+      }
+    }
+  }
 }

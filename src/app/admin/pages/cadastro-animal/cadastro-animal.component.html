@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-md-12 mt-2" *ngIf="!temImagem">
             <label for="imagem" class="form-label">Imagem</label>
-            <input class="form-control" type="file" id="imagem" (change)="upload($event)" formControlName="imagem">
+            <input class="form-control" type="file" id="imagem" accept="image/jpeg, image/png" (change)="upload($event)" formControlName="imagem">
           </div>
           <div class="col-md-12 mt-2" *ngIf="temImagem">
             <label for="imagem" class="form-label">Imagem <span class="alterar-imagem" (click)="alterarImagem()">Alterar imagem</span></label>
@@ -26,6 +26,7 @@
           <div class="col-md-6 mt-2">
             <label for="nome" class="form-label">Nome *</label>
             <input type="text" class="form-control" id="nome" formControlName="nome" maxlength="50">
+            <p class="text-danger" *ngIf="verficaErro('nome') === 'required'">* Por favor, informe o nome</p>
           </div>
           <div class="col-md-6 mt-2">
             <label for="especie" class="form-label">Espécie *</label>
@@ -35,6 +36,7 @@
                 <option *ngFor="let especie of especies" [value]="especie._id">{{ especie.nome }}</option>
               </ng-container>
             </select>
+            <p class="text-danger" *ngIf="verficaErro('especie') === 'required'">* Por favor, selecione a espécie</p>
           </div>
           <div class="col-md-6 mt-2">
             <label for="porte" class="form-label">Porte *</label>
@@ -44,6 +46,7 @@
               <option value="60e8cbc9c71494fd715ba5ef">Médio</option>
               <option value="60e8cbd0c71494fd715ba5f1">Grande</option>
             </select>
+            <p class="text-danger" *ngIf="verficaErro('porte') === 'required'">* Por favor, selecione o porte</p>
           </div>
           <div class="col-md-6 mt-2">
             <label for="sexo" class="form-label">Sexo *</label>
@@ -52,6 +55,7 @@
               <option value="Macho">Macho</option>
               <option value="Fêmea">Fêmea</option>
             </select>
+            <p class="text-danger" *ngIf="verficaErro('sexo') === 'required'">* Por favor, selecione o sexo</p>
           </div>
           <div class="col-md-6 mt-2">
             <label for="pelagem" class="form-label">Pelagem</label>
