@@ -19,6 +19,7 @@ export class CadastroAnimalComponent implements OnInit {
   private file: File = null;
   public temImagem: boolean = false;
   public imagem: string;
+  public send: boolean = false;
 
   constructor
   (
@@ -90,6 +91,7 @@ export class CadastroAnimalComponent implements OnInit {
 
   public salvar() {
     if(this.formulario.valid) {
+      this.send = true;
       const formData: FormData = new FormData();
       formData.append('nome', this.formulario.get('nome').value);
       formData.append('pelagem', this.formulario.get('pelagem').value);
@@ -111,9 +113,11 @@ export class CadastroAnimalComponent implements OnInit {
       if(animalId !== null && animalId !== '' ) {
         this.animaisService.alterar(formData, animalId).subscribe(() => {
           this.toastr.success('Animal alterado com sucesso');
+          this.send = false;
         },
         error => {
           this.toastr.error('Não foi possível alterar o animal');
+          this.send = false;
         });
       }else {
         const token = localStorage.getItem('token');
@@ -124,9 +128,11 @@ export class CadastroAnimalComponent implements OnInit {
         this.animaisService.cadastrar(formData).subscribe(() => {
           this.formulario.reset();
           this.toastr.success('Animal cadastrado com sucesso');
+          this.send = false;
         },
         error => {
           this.toastr.error('Não foi possível cadastrar o animal');
+          this.send = false;
         });
       }
     } else {

@@ -37,7 +37,6 @@ export class NovaOngComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.cidadesEstadosService.getEstados().subscribe(HttpResponse => this.estados = HttpResponse);
 
     this.form = this.fb.group({

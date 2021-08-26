@@ -61,7 +61,6 @@
           [multiple]="false"
           placeholder="São Paulo"
           formControlName="cidade"
-          (change)="selectEstado()"
         >
         </ng-select>
         <p class="text-light" *ngIf="verficaErro(form, 'cidade') === 'required'">* Por favor, selecione a cidade</p>

@@ -1,7 +1,88 @@
+<img src="https://adoteja.s3.sa-east-1.amazonaws.com/imagens/banner.jpg" class="banner-home">
+<div class="bg-primary container container-busca">
+  <h1>Encontre um novo amigo</h1>
+  <div class="row">
+    <div class="col-md-6 mt-2">
+      <label for="especie" class="form-label">Espécie</label>
+      <select class="form-select">
+        <option selected disabled></option>
+        <ng-container *ngIf="especies$ | async as especies">
+          <option *ngFor="let especie of especies" [value]="especie._id">{{ especie.nome }}</option>
+        </ng-container>
+      </select>
+    </div>
+    <div class="col-md-6 mt-2">
+      <label for="sexo" class="form-label">Sexo</label>
+      <select class="form-select">
+        <option selected disabled></option>
+        <option value="Macho">Macho</option>
+        <option value="Fêmea">Fêmea</option>
+      </select>
+    </div>
+    <div class="col-md-6 mt-2">
+      <label for="porte" class="form-label">Porte</label>
+      <select class="form-select">
+        <option selected disabled></option>
+        <option value="60e8cbc2c71494fd715ba5ed">Pequeno</option>
+        <option value="60e8cbc9c71494fd715ba5ef">Médio</option>
+        <option value="60e8cbd0c71494fd715ba5f1">Grande</option>
+      </select>
+    </div>
+    <div class="col-md-6 mt-5">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="castrado">
+            <label class="form-check-label" for="castrado">Castrado</label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="vacinado">
+            <label class="form-check-label" for="vacinado">Vacinado</label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="vermifugado">
+            <label class="form-check-label" for="vermifugado">Vermifugado</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mt-2">
+      <label>Estado *</label>
+        <ng-select
+          [items]="estados"
+          bindLabel="sigla"
+          bindValue="sigla"
+          [clearable]="false"
+          [multiple]="false"
+          (change)="selectEstado()"
+        >
+        </ng-select>
+    </div>
+    <div class="col-md-6 mt-2">
+      <label>Cidade *</label>
+        <ng-select
+          [items]="cidades"
+          bindLabel="nome"
+          bindValue="nome"
+          [clearable]="false"
+          [multiple]="false"
+        >
+        </ng-select>
+    </div>
+    <div class="col-12 mt-2">
+      <button class="btn btn-warning">
+        Buscar
+      </button>
+    </div>
+  </div>
+</div>
 <ng-container *ngIf="animais$ | async as animais">
   <div class="container">
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-      <h1 class="border-bottom pb-2 mb-0">Animais disponíveis</h1>
       <div class="text-muted pt-3">
         <div class="row">
           <div class="col-lg-3 col-md-4 col-sm-6 mb-3" *ngFor="let animal of animais">

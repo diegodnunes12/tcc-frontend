@@ -31,5 +31,25 @@
       color: #d1499b;
     }
   }
+}
 
+.banner-home {
+  width: 100%;
+  z-index: 1;
+}
+
+.container-busca {
+  margin-top: -50px;
+  color: #fff;
+  z-index: 2;
+  position: relative;
+  padding: 20px;
+
+  h1 {
+    text-align: center;
+  }
+
+  .form-check-input {
+    border: solid 1px #fff;
+  }
 }

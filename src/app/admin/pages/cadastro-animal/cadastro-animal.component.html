@@ -96,7 +96,10 @@
             <textarea class="form-control" id="historia" formControlName="historia" maxlength="500" rows="3"></textarea>
           </div>
           <div class="col-12 mt-3 pb-3">
-            <button class="btn btn-primary">Salvar</button>
+            <button class="btn btn-primary">
+              <span *ngIf="!send">Salvar</span>
+              <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            </button>
           </div>
         </div>
       </form>
