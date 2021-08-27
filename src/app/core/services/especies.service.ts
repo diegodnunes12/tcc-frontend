@@ -1,3 +1,4 @@
+import { FiltroInterface } from './../interfaces/filtro.interface';
 import { Observable } from 'rxjs';
 import { EspecieInterface } from './../interfaces/especie.interface';
 import { HttpClient } from '@angular/common/http';
