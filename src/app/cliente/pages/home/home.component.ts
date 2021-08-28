@@ -55,7 +55,8 @@ export class HomeComponent implements OnInit {
     this.cidadesEstadosService.getCidades(this.formulario.get('estado').value).subscribe(httpResponse => this.cidades = httpResponse);
   }
 
-  public filtrar() {
+  public filtrar($event) {
+    $event.preventDefault();
     const filtro: FiltroInterface = {
       especie: this.formulario.get('especie').value,
       sexo: this.formulario.get('sexo').value,
@@ -63,9 +64,15 @@ export class HomeComponent implements OnInit {
       castrado: this.formulario.get('castrado').value,
       vacinado: this.formulario.get('vacinado').value,
       vermifugado: this.formulario.get('vermifugado').value,
+      estado: this.formulario.get('estado').value,
+      cidade: this.formulario.get('cidade').value,
     }
 
     this.animais$ = this.animaisService.getAllByFilter(filtro);
+  }
+
+  public limpar() {
+    this.formulario.reset();
   }
 
 }

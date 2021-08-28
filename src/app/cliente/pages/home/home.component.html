@@ -76,9 +76,14 @@
           >
           </ng-select>
       </div>
-      <div class="col-12 mt-2">
-        <button class="btn btn-warning" (click)="filtrar()">
+      <div class="col-6 mt-2">
+        <button class="btn btn-warning" (click)="filtrar($event)">
           Buscar
+        </button>
+      </div>
+      <div class="col-6 mt-2 text-end">
+        <button class="btn btn-link" (click)="limpar()">
+          Limpar
         </button>
       </div>
     </div>

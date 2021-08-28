@@ -51,6 +51,8 @@ export class AnimaisService {
     if(filter.castrado) { filtro += `castrado=${filter.castrado}&` }
     if(filter.vacinado) { filtro += `vacinado=${filter.vacinado}&` }
     if(filter.vermifugado) { filtro += `vermifugado=${filter.vermifugado}&` }
+    if(filter.estado) { filtro += `estado=${filter.estado}&` }
+    if(filter.cidade) { filtro += `cidade=${filter.cidade}&` }
 
     return this.http.get<AnimaisInterface[]>(`${this.url}/filtro?${filtro}`);
   }
