@@ -26,8 +26,8 @@ export class AnimaisService {
     return this.http.patch<AnimaisInterface>(`${this.url}/${animalId}`, formData, { headers:  this.getHeaders() });
   }
 
-  public getAll(): Observable<AnimaisInterface[]> {
-    return this.http.get<AnimaisInterface[]>(this.url);
+  public getAll(page: number): Observable<AnimaisInterface[]> {
+    return this.http.get<AnimaisInterface[]>(`${this.url}?page=${page}`);
   }
 
   public getAllAnimaisDaOng(id: string): Observable<AnimaisInterface[]> {
@@ -42,7 +42,7 @@ export class AnimaisService {
     return this.http.delete<AnimaisInterface>(`${this.url}/${id}`);
   }
 
-  public getAllByFilter(filter: FiltroInterface): Observable<AnimaisInterface[]> {
+  public getAllByFilter(filter: FiltroInterface, page: number): Observable<AnimaisInterface[]> {
     let filtro = '';
 
     if(filter.especie) { filtro += `especie=${filter.especie}&` }
@@ -54,6 +54,6 @@ export class AnimaisService {
     if(filter.estado) { filtro += `estado=${filter.estado}&` }
     if(filter.cidade) { filtro += `cidade=${filter.cidade}&` }
 
-    return this.http.get<AnimaisInterface[]>(`${this.url}/filtro?${filtro}`);
+    return this.http.get<AnimaisInterface[]>(`${this.url}/filtro?page=${page}&${filtro}`);
   }
 }

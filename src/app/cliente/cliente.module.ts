@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { ClienteRoutingModule } from './cliente-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { DetalhesComponent } from './pages/detalhes/detalhes.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { DetalhesComponent } from './pages/detalhes/detalhes.component';
     CommonModule,
     ClienteRoutingModule,
     CoreModule,
+    NgxPaginationModule,
   ]
 })
 export class ClienteModule { }

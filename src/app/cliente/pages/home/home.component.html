@@ -6,7 +6,7 @@
       <div class="col-md-6 mt-2">
         <label for="especie" class="form-label">Espécie</label>
         <select class="form-select" formControlName="especie">
-          <option selected disabled></option>
+          <option selected></option>
           <ng-container *ngIf="especies$ | async as especies">
             <option *ngFor="let especie of especies" [value]="especie._id">{{ especie.nome }}</option>
           </ng-container>
@@ -15,7 +15,7 @@
       <div class="col-md-6 mt-2">
         <label for="sexo" class="form-label">Sexo</label>
         <select class="form-select" formControlName="sexo">
-          <option selected disabled></option>
+          <option selected></option>
           <option value="Macho">Macho</option>
           <option value="Fêmea">Fêmea</option>
         </select>
@@ -23,7 +23,7 @@
       <div class="col-md-6 mt-2">
         <label for="porte" class="form-label">Porte</label>
         <select class="form-select" formControlName="porte">
-          <option selected disabled></option>
+          <option selected></option>
           <option value="60e8cbc2c71494fd715ba5ed">Pequeno</option>
           <option value="60e8cbc9c71494fd715ba5ef">Médio</option>
           <option value="60e8cbd0c71494fd715ba5f1">Grande</option>
@@ -94,7 +94,7 @@
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <div class="text-muted pt-3">
         <div class="row">
-          <div class="col-lg-3 col-md-4 col-sm-6 mb-3" *ngFor="let animal of animais">
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-3" *ngFor="let animal of animais.data  | paginate: { itemsPerPage: 12, currentPage: p, totalItems: animais.total }">
             <div class="card" (click)="detalhes(animal._id)">
               <img src="https://adoteja.s3.sa-east-1.amazonaws.com/imagens/{{ animal.imagem }}" class="card-img-top" [alt]="animal.nome">
               <div class="card-body">
@@ -114,6 +114,14 @@
               </div>
             </div>
           </div>
+          <pagination-controls (pageChange)="p = $event" (pageChange)="pageChanged($event)"
+            maxSize="9"
+            directionLinks="true"
+            autoHide="true"
+            responsive="true"
+            previousLabel="Anterior"
+            nextLabel="Próximo"
+          ></pagination-controls>
         </div>
       </div>
     </div>

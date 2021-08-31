@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.animais$ = this.animaisService.getAll();
+    this.animais$ = this.animaisService.getAll(1);
     this.especies$ = this.especiesService.getAll();
     this.cidadesEstadosService.getEstados().subscribe(HttpResponse => this.estados = HttpResponse);
 
@@ -68,11 +68,15 @@ export class HomeComponent implements OnInit {
       cidade: this.formulario.get('cidade').value,
     }
 
-    this.animais$ = this.animaisService.getAllByFilter(filtro);
+    this.animais$ = this.animaisService.getAllByFilter(filtro, 1);
   }
 
   public limpar() {
     this.formulario.reset();
+  }
+
+  pageChanged(page) {
+    this.animais$ = this.animaisService.getAll(page);
   }
 
 }
