@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.animais$ = this.animaisService.getAll(1);
     this.especies$ = this.especiesService.getAll();
     this.cidadesEstadosService.getEstados().subscribe(HttpResponse => this.estados = HttpResponse);
 
@@ -45,6 +44,8 @@ export class HomeComponent implements OnInit {
       estado: [''],
       cidade: [''],
     });
+
+    this.getAnimais();
   }
 
   public detalhes(animalId: string) {
@@ -57,6 +58,10 @@ export class HomeComponent implements OnInit {
 
   public filtrar($event) {
     $event.preventDefault();
+    this.getAnimais();
+  }
+
+  private getAnimais(page: number = 1) {
     const filtro: FiltroInterface = {
       especie: this.formulario.get('especie').value,
       sexo: this.formulario.get('sexo').value,
@@ -68,15 +73,16 @@ export class HomeComponent implements OnInit {
       cidade: this.formulario.get('cidade').value,
     }
 
-    this.animais$ = this.animaisService.getAllByFilter(filtro, 1);
+    this.animais$ = this.animaisService.getAllByFilter(filtro, page);
   }
 
   public limpar() {
     this.formulario.reset();
+    this.getAnimais();
   }
 
   pageChanged(page) {
-    this.animais$ = this.animaisService.getAll(page);
+    this.getAnimais(page);
   }
 
 }
