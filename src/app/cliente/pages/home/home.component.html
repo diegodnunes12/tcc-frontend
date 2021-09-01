@@ -114,7 +114,9 @@
               </div>
             </div>
           </div>
-          <pagination-controls (pageChange)="p = $event" (pageChange)="pageChanged($event)"
+          <pagination-controls 
+            (pageChange)="p = $event" 
+            (pageChange)="pageChanged($event)"
             maxSize="9"
             directionLinks="true"
             autoHide="true"
