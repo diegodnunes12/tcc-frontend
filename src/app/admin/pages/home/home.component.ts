@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
+import * as fileSaver from 'file-saver';
+import * as xlsx from 'xlsx';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +16,21 @@ import jwt_decode from "jwt-decode";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  data: any = [{
+    eid: 'e101',
+    ename: 'ravi',
+    esal: 1000
+  },
+  {
+    eid: 'e102',
+    ename: 'ram',
+    esal: 2000
+  },
+  {
+    eid: 'e103',
+    ename: 'rajesh',
+    esal: 3000
+  }];
   public animais$: Observable<AnimaisInterface[]>;
 
   constructor
@@ -55,6 +71,18 @@ export class HomeComponent implements OnInit {
         });
       }
     });
+  }
+
+  public exportar(animais) {
+    const worksheet: xlsx.WorkSheet = xlsx.utils.json_to_sheet(animais);
+    console.log('worksheet', worksheet);
+    const workbook: xlsx.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    const data: Blob = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8"
+    });
+    fileSaver.saveAs(data, 'animais' + '_export_' + new Date().getTime() + ".xlsx");
   }
 
 }
