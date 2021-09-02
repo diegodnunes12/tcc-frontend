@@ -14,6 +14,9 @@ import jwt_decode from "jwt-decode";
 export class PerfilUsuarioComponent implements OnInit {
   public formulario: FormGroup;
   public send: boolean = false;
+  public isUsuarioPlataforma: boolean = true;
+  public nome: string;
+  public email: string;
 
   constructor
   (
@@ -38,12 +41,19 @@ export class PerfilUsuarioComponent implements OnInit {
     }
     else {
       var usuarioLogado: any = jwt_decode(token);
-      this.usuarioService.getUsuariosSistemaPeloId(usuarioLogado.sub).subscribe((httpResponse) => {
-        this.formulario.get('_id').setValue(httpResponse._id);
-        this.formulario.get('nome').setValue(httpResponse.nome);
-        this.formulario.get('telefone').setValue(httpResponse.telefone);
-        this.formulario.get('email').setValue(httpResponse.email);
-      });
+      if(usuarioLogado.iss && usuarioLogado.iss === "accounts.google.com") {
+        this.nome = usuarioLogado.name;
+        this.email = usuarioLogado.email;
+        this.isUsuarioPlataforma = false;
+      }
+      else {
+        this.usuarioService.getUsuariosSistemaPeloId(usuarioLogado.sub).subscribe((httpResponse) => {
+          this.formulario.get('_id').setValue(httpResponse._id);
+          this.formulario.get('nome').setValue(httpResponse.nome);
+          this.formulario.get('telefone').setValue(httpResponse.telefone);
+          this.formulario.get('email').setValue(httpResponse.email);
+        });
+      }
     }
   }
 

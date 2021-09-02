@@ -9,6 +9,8 @@ import jwt_decode from "jwt-decode";
 })
 export class HeaderAdotarComponent implements OnInit {
   public iniciaisUsuario: string;
+  public avatar: string;
+  public hasPicture: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -22,10 +24,14 @@ export class HeaderAdotarComponent implements OnInit {
       iniciais = nomeSplit.shift().charAt(0) + nomeSplit.pop().charAt(0);
     }
     this.iniciaisUsuario = iniciais.toUpperCase();
+    if(usuarioLogado.iss && usuarioLogado.iss === "accounts.google.com" && usuarioLogado.picture) {
+      this.avatar = usuarioLogado.picture;
+      this.hasPicture = true;
+    }
   }
 
   public sair() {
-    localStorage.removeItem('usuario');
+    localStorage.removeItem('token');
     this.router.navigate(['']);
   }
 

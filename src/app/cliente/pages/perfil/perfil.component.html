@@ -11,7 +11,7 @@
   <div class="my-3 p-3 bg-body rounded shadow-sm">
     <h1 class="border-bottom pb-2 mb-0">Perfil</h1>
     <div class="text-muted pt-3">
-      <form [formGroup]="formulario" (ngSubmit)="salvar()">
+      <form [formGroup]="formulario" (ngSubmit)="salvar()" *ngIf="isUsuarioPlataforma">
         <div class="row">
           <div class="col-md-6 mt-2">
             <label for="nome" class="form-label">Nome *</label>
@@ -36,6 +36,10 @@
           </div>
         </div>
       </form>
+      <div>
+        <h3>{{ nome }}</h3>
+        <p>{{ email }}</p>
+      </div>
     </div>
   </div>
 </div>

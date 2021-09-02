@@ -21,6 +21,15 @@ img {
   border-radius: 50%;
 }
 
+.picture {
+  padding: 0;
+  border: none;
+  img {
+    border-radius: 50%;
+    width: 39px;
+  }
+}
+
 .dropdown {
   position: relative;
   display: inline-block;

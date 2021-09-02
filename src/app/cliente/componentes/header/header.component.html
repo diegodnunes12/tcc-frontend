@@ -4,7 +4,7 @@
       <img src="assets/images/logo.png" alt="logomarca da adote ja">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <i class="bi bi-list"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -16,9 +16,13 @@
         </li>
         <li class="nav-item ms-2">
           <div class="dropdown">
-            <button class="dropbtn">
+            <button class="dropbtn" *ngIf="!hasPicture">
               {{ iniciaisUsuario }}
             </button>
+            <button *ngIf="hasPicture" class="picture">
+              <img [src]="avatar">
+            </button>
+
             <div class="dropdown-content">
               <a class="nav-link" routerLink="perfil">PERFIL</a>
               <a class="nav-link" (click)="sair()">SAIR</a>

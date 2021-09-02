@@ -33,13 +33,13 @@ export class HomeComponent implements OnInit {
       senha: ['', [Validators.required]]
     });
 
-    this.socialAuthService.authState.subscribe((user) => {
+    /* this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = (user != null);
       if(this.socialUser !== null) {
         localStorage.setItem('token', this.socialUser.idToken);
       }
-    });
+    }); */
   }
 
   public login(sistema: string) {
@@ -81,6 +81,14 @@ export class HomeComponent implements OnInit {
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(() => {
       this.router.navigate(['adotar'])
+    });
+
+    this.socialAuthService.authState.subscribe((user) => {
+      this.socialUser = user;
+      this.isLoggedin = (user != null);
+      if(this.socialUser !== null) {
+        localStorage.setItem('token', this.socialUser.idToken);
+      }
     });
   }
 
