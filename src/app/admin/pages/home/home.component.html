@@ -1,8 +1,13 @@
 <ng-container *ngIf="animais$ | async as animais">
   <div class="container">
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-      <h1 class="border-bottom pb-2 mb-0">Animais cadastrados</h1>
-      <button (click)="exportar(animais)">exportar</button>
+      <div class="border-bottom pb-2 mb-0 d-flex justify-content-between">
+        <h1>Animais cadastrados</h1>
+        <div>
+          <i (click)="print()" class="bi bi-printer me-3 export"></i>
+          <i (click)="exportar(animais)" class="bi bi-file-earmark-excel export"></i>
+        </div>
+      </div>
       <div class="text-muted pt-3">
         <div class="text-end">
           <button class="btn btn-primary btn-sm" (click)="cadastrar()"><i class="bi bi-plus"></i> Novo</button>
@@ -15,7 +20,7 @@
                 <th scope="col">Espécie</th>
                 <th scope="col">Porte</th>
                 <th scope="col">Sexo</th>
-                <th scope="col">Gerenciar</th>
+                <th class="print-none" scope="col">Gerenciar</th>
               </tr>
             </thead>
             <tbody>
@@ -24,7 +29,7 @@
                 <td>{{ animal?.especie?.nome }}</td>
                 <td>{{ animal?.porte?.nome }}</td>
                 <td>{{ animal?.sexo }}</td>
-                <td>
+                <td class="print-none">
                   <button class="btn btn-warning btn-sm me-2" (click)="editar(animal._id)"><i class="bi bi-pencil-square"></i></button>
                   <button class="btn btn-danger btn-sm" (click)="remover(animal._id)"><i class="bi bi-trash"></i></button>
                 </td>

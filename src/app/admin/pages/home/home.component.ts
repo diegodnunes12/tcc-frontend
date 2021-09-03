@@ -1,3 +1,4 @@
+import { AnimaisExcelInterface } from './../../../core/interfaces/animais-excel.interface';
 import { ToastrService } from 'ngx-toastr';
 import { ModalConfirmaExclusaoComponent } from './../../../core/componentes/modal-confirma-exclusao/modal-confirma-exclusao.component';
 import { AnimaisInterface } from './../../../core/interfaces/animais.interface';
@@ -16,21 +17,6 @@ import * as xlsx from 'xlsx';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  data: any = [{
-    eid: 'e101',
-    ename: 'ravi',
-    esal: 1000
-  },
-  {
-    eid: 'e102',
-    ename: 'ram',
-    esal: 2000
-  },
-  {
-    eid: 'e103',
-    ename: 'rajesh',
-    esal: 3000
-  }];
   public animais$: Observable<AnimaisInterface[]>;
 
   constructor
@@ -74,7 +60,8 @@ export class HomeComponent implements OnInit {
   }
 
   public exportar(animais) {
-    const worksheet: xlsx.WorkSheet = xlsx.utils.json_to_sheet(animais);
+    const dadosAnimais = this.getDados(animais);
+    const worksheet: xlsx.WorkSheet = xlsx.utils.json_to_sheet(dadosAnimais);
     console.log('worksheet', worksheet);
     const workbook: xlsx.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
     const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
@@ -82,7 +69,33 @@ export class HomeComponent implements OnInit {
     const data: Blob = new Blob([excelBuffer], {
       type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8"
     });
-    fileSaver.saveAs(data, 'animais' + '_export_' + new Date().getTime() + ".xlsx");
+    fileSaver.saveAs(data, "animais_cadastrados.xlsx");
+  }
+
+  private getDados(animais: AnimaisInterface[]): AnimaisExcelInterface[] {
+    let dadosAnimais: AnimaisExcelInterface[] = [];
+    animais.forEach(item =>  {
+      let animal: AnimaisExcelInterface = {
+        nome: item.nome,
+        pelagem: item.pelagem,
+        sexo:  item.sexo,
+        raca:  item.raca,
+        idade:  item.idade,
+        castrado: item.castrado,
+        vacinado: item.vacinado,
+        vermifugado: item.vermifugado,
+        especie:  item.especie.nome,
+        porte:  item.porte.nome,
+        historia:  item.historia,
+      }
+      dadosAnimais.push(animal);
+    });
+
+    return dadosAnimais;
+  }
+
+  public print() {
+    window.print();
   }
 
 }
