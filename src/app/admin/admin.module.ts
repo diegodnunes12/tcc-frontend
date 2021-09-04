@@ -1,3 +1,4 @@
+import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { MinhaOngComponent } from './pages/minha-ong/minha-ong.component';
@@ -26,7 +27,8 @@ import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usua
     MinhaOngComponent,
     UsuariosComponent,
     PerfilComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    RelatoriosComponent,
   ],
   imports: [
     CommonModule,

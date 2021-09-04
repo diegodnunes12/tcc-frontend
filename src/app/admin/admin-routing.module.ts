@@ -1,3 +1,4 @@
+import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { MinhaOngComponent } from './pages/minha-ong/minha-ong.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'usuarios/novo', component: CadastroUsuarioComponent },
       { path: 'usuarios/editar/:usuarioId', component: CadastroUsuarioComponent },
       { path: 'perfil', component: PerfilComponent },
+      { path: 'relatorios', component: RelatoriosComponent },
     ]
   }
 ];
