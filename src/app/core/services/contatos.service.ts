@@ -1,3 +1,4 @@
+import { ContatosRelatoriosInterface } from './../interfaces/contatos-relatorios.interface';
 import { ContatosInterface } from './../interfaces/contatos.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -22,6 +23,10 @@ export class ContatosService {
 
   public getContatosOng(ongId: string): Observable<ContatosInterface[]> {
     return this.http.get<ContatosInterface[]>(`${this.url}/ong/${ongId}`);
+  }
+
+  public getContatosRelatorios(ongId: string): Observable<ContatosRelatoriosInterface[]> {
+    return this.http.get<ContatosRelatoriosInterface[]>(`${this.url}/ong/${ongId}`);
   }
 
   public getContato(contatoId: string): Observable<ContatosInterface> {
