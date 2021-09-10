@@ -12,17 +12,46 @@
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <div class="row">
         <div class="col-12 mb-3">
-          <h1 class="border-bottom pb-2 mb-0">Relatórios</h1>
+          <h1 class="border-bottom pb-2 mb-0">Relatórios de contatos</h1>
         </div>
-        <div style="display: block">
-          <canvas baseChart
-            [data]="chartSexoData"
-            [labels]="chartSexoLabel"
-            [chartType]="pieChartType"
-            [colors]="chartColors"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
-          </canvas>
+        <div class="row">
+          <div class="col-md-6">
+            <div style="display: block">
+              <canvas baseChart
+                [data]="chartSexoData"
+                [labels]="chartSexoLabel"
+                [chartType]="pieChartType"
+                [colors]="chartColors"
+                [legend]="true"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+              </canvas>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div style="display: block">
+              <canvas baseChart
+                [data]="chartEspecieData"
+                [labels]="chartEspecieLabel"
+                [chartType]="pieChartType"
+                [colors]="chartColors"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+              </canvas>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div style="display: block">
+              <canvas baseChart
+                [data]="chartPorteData"
+                [labels]="chartPorteLabel"
+                [chartType]="pieChartType"
+                [colors]="chartColors"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+              </canvas>
+            </div>
+          </div>
         </div>
       </div>
     </div>

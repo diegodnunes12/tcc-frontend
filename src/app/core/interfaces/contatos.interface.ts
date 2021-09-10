@@ -1,11 +1,19 @@
-import { OngInterface } from './ong.interface';
-import { UsuarioInterface } from './usuarios.interface';
-import { AnimaisInterface } from './animais.interface';
-
 export interface ContatosInterface {
   _id?: string;
   data_contato: Date;
-  animal: string;
+  animal: {
+    _id: string;
+    nome: string;
+    sexo: string;
+    especie: {
+      _id: string;
+      nome: string;
+    };
+    porte: {
+      _id: string;
+      nome: string;
+    };
+  };
   usuario: {
     _id: string;
     nome: string;

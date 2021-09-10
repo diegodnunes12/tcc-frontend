@@ -54,7 +54,19 @@ export class DetalhesComponent implements OnInit {
         var usuario: any = jwt_decode(token);
         const contato: ContatosInterface = {
           data_contato: new Date(),
-          animal: animal._id,
+          animal: {
+            _id: animal._id,
+            nome: animal.nome,
+            sexo: animal.sexo,
+            especie: {
+              _id: animal.especie._id,
+              nome: animal.especie.nome
+            },
+            porte: {
+              _id: animal.porte._id,
+              nome: animal.porte.nome
+            }
+          },
           usuario: {
             _id: usuario.sub,
             nome: usuario.name
