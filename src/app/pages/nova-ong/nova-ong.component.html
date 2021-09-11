@@ -65,10 +65,13 @@
         </ng-select>
         <p class="text-light" *ngIf="verficaErro(form, 'cidade') === 'required'">* Por favor, selecione a cidade</p>
       </div>
-      <button type="submit" [disabled]="send" class="btn btn-warning">
-        <span *ngIf="!send">Cadastrar</span>
-        <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      </button>
+      <div class="d-flex justify-content-between">
+        <button type="submit" [disabled]="send" class="btn btn-warning">
+          <span *ngIf="!send">Cadastrar</span>
+          <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+        <a routerLink="">Faça o login</a>
+      </div>
     </form>
   </div>
 </section>

@@ -8,6 +8,8 @@ import { AnimaisService } from '../../../core/services/animais.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit} from '@angular/core';
 import jwt_decode from "jwt-decode";
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-relatorios',
@@ -29,21 +31,41 @@ export class RelatoriosComponent implements OnInit {
   ) { }
 
   public chartColors: any[] = [{backgroundColor:["#6FC8CE", "#FF7360", "#21855b", "#6c2185", "#b01e82", "#de3c3f"]}];
+  public barChartColors: Color[] = [{ backgroundColor: "#6FC8CE" }];
   public pieChartType: string = 'pie';
+  public barChartType: string = 'bar';
   public chartSexoLabel: string[] = [];
   public chartEspecieLabel: string[] = [];
   public chartPorteLabel: string[] = [];
+  public chartAnimalLabel: string[] = [];
+
   public chartSexoData: number[] = [];
   public chartEspecieData: number[] = [];
   public chartPorteData: number[] = [];
+  public chartAnimalData: number[] = [];
+
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    scales: { xAxes: [{}], yAxes: [{
+      ticks: {
+      stepSize : 1,
+      min: 0
+    }}] },
+  };
+  public barChartLabels: Label[] = [];
+  public barChartLegend = true;
+
+  public barChartData: ChartDataSets[] = [
+    { data: [], label: 'Número total de contatos por dia' }
+  ];
 
   // events
   public chartClicked(e:any):void {
-    console.log(e);
+    //console.log(e);
   }
 
   public chartHovered(e:any):void {
-    console.log(e);
+    //console.log(e);
   }
 
   ngOnInit(): void {
@@ -56,7 +78,15 @@ export class RelatoriosComponent implements OnInit {
       var usuarioLogado: any = jwt_decode(token);
       this.contatosService.getContatosRelatorios(usuarioLogado.ong).subscribe(httpResponse => {
         let total = httpResponse.length;
-        console.log(httpResponse)
+
+        let dataDistinct = [...new Set(httpResponse.map(item => this.formatData(item.data_contato.toString())))];
+        console.log(dataDistinct)
+        dataDistinct.forEach(data => {
+          this.barChartLabels.push(`${data}`);
+          console.log(this.barChartData)
+          this.barChartData[0].data.push(httpResponse.filter(item => this.formatData(item.data_contato.toString()) === data).length);
+          console.log(this.barChartData)
+        })
 
         this.chartSexoLabel.push(`Macho - ${httpResponse.filter(item => item.animal.sexo === "Macho").length}`);
         this.chartSexoData.push((100 * httpResponse.filter(item => item.animal.sexo === "Macho").length) / total)
@@ -74,10 +104,23 @@ export class RelatoriosComponent implements OnInit {
         porteDistinct.forEach(porte => {
           this.chartPorteLabel.push(`${porte} - ${httpResponse.filter(item => item.animal.porte.nome === porte).length}`);
           this.chartPorteData.push((100 * httpResponse.filter(item => item.animal.porte.nome === porte).length) / total)
-        })
+        });
 
-
+        let animalDistinct = [...new Set(httpResponse.map(item => item.animal.nome))];
+        animalDistinct.forEach(animal => {
+          this.chartAnimalLabel.push(`${animal} - ${httpResponse.filter(item => item.animal.nome === animal).length}`);
+          this.chartAnimalData.push((100 * httpResponse.filter(item => item.animal.nome === animal).length) / total)
+        });
       });
     }
+  }
+
+  private formatData(dataContato: string) {
+    const data: Date = new Date(dataContato)
+    return `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`;
+  }
+
+  public print() {
+    window.print();
   }
 }

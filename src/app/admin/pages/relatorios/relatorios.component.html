@@ -11,12 +11,24 @@
     </div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <div class="row">
-        <div class="col-12 mb-3">
-          <h1 class="border-bottom pb-2 mb-0">Relatórios de contatos</h1>
+        <div class="border-bottom pb-2 mb-0 d-flex justify-content-between">
+          <h1>Relatórios de contatos</h1>
+          <div>
+            <i (click)="print()" class="bi bi-printer export"></i>
+          </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <div style="display: block">
+          <div class="col-12 mt-2 mb-5">
+            <div>
+              <h6>Total de contatos por dia</h6>
+              <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors"
+                [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </div>
+          <div class="col-md-6 mt-2 mb-5">
+            <div class="text-center">
+              <h6>Total de contatos por sexo do animal</h6>
               <canvas baseChart
                 [data]="chartSexoData"
                 [labels]="chartSexoLabel"
@@ -28,8 +40,9 @@
               </canvas>
             </div>
           </div>
-          <div class="col-md-6">
-            <div style="display: block">
+          <div class="col-md-6 mt-2 mb-5">
+            <div class="text-center">
+              <h6>Total de contatos por espécie do animal</h6>
               <canvas baseChart
                 [data]="chartEspecieData"
                 [labels]="chartEspecieLabel"
@@ -40,11 +53,25 @@
               </canvas>
             </div>
           </div>
-          <div class="col-md-6">
-            <div style="display: block">
+          <div class="col-md-6 mt-2 mb-5">
+            <div class="text-center">
+              <h6>Total de contatos por porte do animal</h6>
               <canvas baseChart
                 [data]="chartPorteData"
                 [labels]="chartPorteLabel"
+                [chartType]="pieChartType"
+                [colors]="chartColors"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+              </canvas>
+            </div>
+          </div>
+          <div class="col-md-6 mt-2 mb-5">
+            <div class="text-center">
+              <h6>Total de contatos por animal</h6>
+              <canvas baseChart
+                [data]="chartAnimalData"
+                [labels]="chartAnimalLabel"
                 [chartType]="pieChartType"
                 [colors]="chartColors"
                 (chartHover)="chartHovered($event)"
