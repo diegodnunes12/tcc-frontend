@@ -17,6 +17,19 @@
             <i (click)="print()" class="bi bi-printer export"></i>
           </div>
         </div>
+        <div class="row mt-5 mb-5">
+          <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
+            <h6>Período</h6>
+            <input
+              type="text"
+              placeholder="Selecione a data"
+              class="form-control"
+              bsDaterangepicker
+              [bsValue]="bsInlineRangeValue"
+              [bsConfig]="{ isAnimated: true, adaptivePosition: true, showWeekNumbers: false, containerClass: 'theme-blue' }">
+              <button (click)="buscar()" class="btn btn-primary ml-2 btn-buscar">Buscar</button>
+          </div>
+        </div>
         <div class="row">
           <div class="col-12 mt-2 mb-5">
             <div>

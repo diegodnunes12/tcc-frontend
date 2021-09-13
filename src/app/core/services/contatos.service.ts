@@ -25,8 +25,8 @@ export class ContatosService {
     return this.http.get<ContatosInterface[]>(`${this.url}/ong/${ongId}`);
   }
 
-  public getContatosRelatorios(ongId: string): Observable<ContatosRelatoriosInterface[]> {
-    return this.http.get<ContatosRelatoriosInterface[]>(`${this.url}/ong/${ongId}`);
+  public getContatosRelatorios(ongId: string, dataInicial: Date, dataFinal: Date): Observable<ContatosRelatoriosInterface[]> {
+    return this.http.get<ContatosRelatoriosInterface[]>(`${this.url}/ong/${ongId}?dataIncial=${dataInicial}&dataFinal=${dataFinal}`);
   }
 
   public getContato(contatoId: string): Observable<ContatosInterface> {

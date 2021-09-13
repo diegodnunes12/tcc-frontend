@@ -8,14 +8,17 @@ import { ContatosAdminComponent } from './pages/contatos/contatos.component';
 import { CoreModule } from './../core/core.module';
 import { HeaderComponentAdmin } from './componentes/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import localePt from '@angular/common/locales/pt';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { CadastroAnimalComponent } from './pages/cadastro-animal/cadastro-animal.component';
 import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usuario.component';
 import { ChartsModule } from 'ng2-charts';
 
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -36,6 +39,10 @@ import { ChartsModule } from 'ng2-charts';
     AdminRoutingModule,
     CoreModule,
     ChartsModule,
+    BsDatepickerModule.forRoot(),
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })
 export class AdminModule { }
