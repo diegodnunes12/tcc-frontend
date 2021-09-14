@@ -62,7 +62,6 @@ export class HomeComponent implements OnInit {
   public exportar(animais) {
     const dadosAnimais = this.getDados(animais);
     const worksheet: xlsx.WorkSheet = xlsx.utils.json_to_sheet(dadosAnimais);
-    console.log('worksheet', worksheet);
     const workbook: xlsx.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
     const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
 

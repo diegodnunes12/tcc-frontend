@@ -25,7 +25,7 @@
               placeholder="Selecione a data"
               class="form-control"
               bsDaterangepicker
-              [bsValue]="bsInlineRangeValue"
+              [(bsValue)]="bsInlineRangeValue"
               [bsConfig]="{ isAnimated: true, adaptivePosition: true, showWeekNumbers: false, containerClass: 'theme-blue' }">
               <button (click)="buscar()" class="btn btn-primary ml-2 btn-buscar">Buscar</button>
           </div>

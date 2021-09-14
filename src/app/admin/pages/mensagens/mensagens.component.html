@@ -25,6 +25,10 @@
           </div>
           <div class="col-md-6">
             <div class="container-mensagem" *ngIf="!isMensagemDoUsuario(contato.usuario._id, mensagem.usuario._id)">
+              <div class="gerenciamento">
+                <button class="btn btn-warning btn-sm me-2" (click)="editarMensagem(template)"><i class="bi bi-pencil-square"></i></button>
+                <button class="btn btn-danger btn-sm" (click)="remover(mensagem._id)"><i class="bi bi-trash"></i></button>
+              </div>
               <span class="info-mensagem">Você - {{ mensagem.data_mensagem | date: "dd/MM/yyyy HH:mm" }}</span>
               {{ mensagem.texto }}
             </div>
@@ -42,3 +46,17 @@
     </div>
   </ng-container>
 </ng-container>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Editar mensagem</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- <form [formGroup]="form" (ngSubmit)="salvarMensagemEditada(contato)">
+      <textarea class="form-control" id="mensagem" rows="4" formControlName="mensagem" placeholder="Envie sua mensagem"></textarea>
+      <button type="submit" [disabled]="desabilitarBotao" class="btn btn-primary mt-3">Enviar</button>
+    </form> -->
+  </div>
+</ng-template>

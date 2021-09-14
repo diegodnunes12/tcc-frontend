@@ -1,3 +1,4 @@
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
@@ -40,6 +41,7 @@ registerLocaleData(localePt);
     CoreModule,
     ChartsModule,
     BsDatepickerModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' }

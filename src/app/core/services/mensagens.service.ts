@@ -20,4 +20,8 @@ export class MensagensService {
     return this.http.get<MensagemInterface[]>(`${this.url}/contato/${contatoId}`);
   }
 
+  public delete(mensagemId: string): Observable<MensagemInterface> {
+    return this.http.delete<MensagemInterface>(`${this.url}/${mensagemId}`);
+  }
+
 }

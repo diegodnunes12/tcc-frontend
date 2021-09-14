@@ -151,7 +151,6 @@ export class RelatoriosComponent implements OnInit {
 
   public buscar() {
     this.gerarRelatorio(this.bsInlineRangeValue[0], this.bsInlineRangeValue[1]);
-    console.log(this.bsInlineRangeValue)
   }
 
   public print() {
