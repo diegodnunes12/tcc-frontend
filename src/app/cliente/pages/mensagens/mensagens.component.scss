@@ -27,4 +27,17 @@ h1 {
     font-size: 12px;
     display: block;
   }
+
+  .gerenciamento {
+    text-align: right;
+    display: none;
+    margin-top: -20px;
+  }
+
+  &:hover {
+    .gerenciamento {
+      display: block;
+      position: absolute;
+    }
+  }
 }
