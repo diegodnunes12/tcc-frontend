@@ -1,8 +1,9 @@
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { AnimaisService } from './../../../core/services/animais.service';
 import { Observable } from 'rxjs';
 import { EspeciesService } from './../../../core/services/especies.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EspecieInterface } from 'src/app/core/interfaces/especie.interface';
 import { ActivatedRoute } from '@angular/router';
@@ -15,11 +16,13 @@ import jwt_decode from "jwt-decode";
 })
 export class CadastroAnimalComponent implements OnInit {
   public formulario: FormGroup;
+  public formEspecie: FormGroup;
   public especies$: Observable<EspecieInterface[]>
   private file: File = null;
   public temImagem: boolean = false;
   public imagem: string;
   public send: boolean = false;
+  private modalRef: BsModalRef;
 
   constructor
   (
@@ -27,7 +30,8 @@ export class CadastroAnimalComponent implements OnInit {
     private especiesService: EspeciesService,
     private animaisService: AnimaisService,
     private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private bsModalService: BsModalService,
   ) { }
 
   ngOnInit(): void {
@@ -79,6 +83,10 @@ export class CadastroAnimalComponent implements OnInit {
         });
       }
     });
+
+    this.formEspecie = this.fb.group({
+      nome: ['', [Validators.required, Validators.maxLength(20)]]
+    })
   }
 
   public upload($event) {
@@ -171,6 +179,27 @@ export class CadastroAnimalComponent implements OnInit {
       if(this.formulario.get(input).errors?.jaExistente) {
         return "jaExistente";
       }
+    }
+  }
+
+  public novaEspecie(template: TemplateRef<any>) {
+    this.modalRef = this.bsModalService.show(template);
+  }
+
+  public salvarEspecie() {
+    if(this.formEspecie.valid) {
+      const especie: EspecieInterface = {
+        nome: this.formEspecie.get('nome').value
+      }
+      this.especiesService.cadastrar(especie).subscribe(httpResponse => {
+        this.toastr.success('Espécie cadastrada com sucesso!');
+        this.formEspecie.reset();
+        this.modalRef.hide();
+        this.especies$ = this.especiesService.getAll();
+        this.formulario.get('especie').setValue(httpResponse._id);
+      }, httpResponseError => {
+        this.toastr.error('Não foi possível cadastrar a espécie');
+      })
     }
   }
 }

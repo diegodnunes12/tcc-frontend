@@ -13,6 +13,10 @@ export class EspeciesService {
 
   constructor(private http: HttpClient) { }
 
+  public cadastrar(especie: EspecieInterface): Observable<EspecieInterface> {
+    return this.http.post<EspecieInterface>(this.url, especie)
+  }
+
   public getAll(): Observable<EspecieInterface[]> {
     return this.http.get<EspecieInterface[]>(this.url);
   }

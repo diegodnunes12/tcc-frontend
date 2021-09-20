@@ -13,3 +13,14 @@ a {
   text-decoration: none;
   font-weight: 700;
 }
+
+.label-especie {
+  width: 100%;
+  a {
+    color: #49acc4;
+    text-decoration: none;
+    font-weight: 400;
+    cursor: pointer;
+    float: right;
+  }
+}
