@@ -1,3 +1,5 @@
+import { AuthGuardAdminService } from './auth-guard-admin.service';
+import { AuthGuardClienteService } from './auth-guard-cliente.service';
 import { NovaOngComponent } from './pages/nova-ong/nova-ong.component';
 import { NovoUsuarioComponent } from './pages/novo-usuario/novo-usuario.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -25,10 +27,12 @@ const routes: Routes = [
       {
         path: "admin",
         loadChildren: () => import("./admin/admin.module").then((module) => module.AdminModule),
+        canLoad: [AuthGuardAdminService],
       },
       {
         path: "adotar",
         loadChildren: () => import("./cliente/cliente.module").then((module) => module.ClienteModule),
+        canLoad: [AuthGuardClienteService],
       },
   ],
   }
