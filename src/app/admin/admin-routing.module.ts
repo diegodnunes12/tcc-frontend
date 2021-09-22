@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usuario.component';
+import { AuthGuardAdminService } from './auth-guard-admin.service';
 
 const routes: Routes = [
   {
@@ -22,11 +23,11 @@ const routes: Routes = [
       { path: 'contatos', component: ContatosAdminComponent },
       { path: 'contatos/:id', component: MensagensAdminComponent },
       { path: 'minha-ong', component: MinhaOngComponent },
-      { path: 'usuarios', component: UsuariosComponent },
-      { path: 'usuarios/novo', component: CadastroUsuarioComponent },
-      { path: 'usuarios/editar/:usuarioId', component: CadastroUsuarioComponent },
+      { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuardAdminService] },
+      { path: 'usuarios/novo', component: CadastroUsuarioComponent, canActivate: [AuthGuardAdminService] },
+      { path: 'usuarios/editar/:usuarioId', component: CadastroUsuarioComponent, canActivate: [AuthGuardAdminService] },
       { path: 'perfil', component: PerfilComponent },
-      { path: 'relatorios', component: RelatoriosComponent },
+      { path: 'relatorios', component: RelatoriosComponent, canActivate: [AuthGuardAdminService] },
     ]
   }
 ];

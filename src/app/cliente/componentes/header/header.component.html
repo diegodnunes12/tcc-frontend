@@ -16,17 +16,16 @@
         </li>
         <li class="nav-item ms-2">
           <div class="dropdown">
-            <button class="dropbtn" *ngIf="!hasPicture">
+            <button class="dropbtn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" *ngIf="!hasPicture">
               {{ iniciaisUsuario }}
             </button>
-            <button *ngIf="hasPicture" class="picture">
+            <button *ngIf="hasPicture" class="dropbtn picture" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <img [src]="avatar">
             </button>
-
-            <div class="dropdown-content">
-              <a class="nav-link" routerLink="perfil">PERFIL</a>
-              <a class="nav-link" (click)="sair()">SAIR</a>
-            </div>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" routerLink="perfil">PERFIL</a></li>
+              <li><a class="dropdown-item" (click)="sair()">SAIR</a></li>
+            </ul>
           </div>
         </li>
       </ul>

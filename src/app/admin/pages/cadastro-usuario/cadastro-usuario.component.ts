@@ -1,3 +1,4 @@
+import { CriptografarSenhas } from './../../../core/functions/criptografar-senhas';
 import { UsuarioInterface } from './../../../core/interfaces/usuarios.interface';
 import { TipoUsuarioInterface } from './../../../core/interfaces/tipo-usuario.interface';
 import { UsuariosService } from './../../../core/services/usuarios.service';
@@ -86,7 +87,7 @@ export class CadastroUsuarioComponent implements OnInit {
         let usuario: UsuarioInterface = {
           nome: this.formulario.get('nome').value,
           email: this.formulario.get('email').value,
-          senha: this.formulario.get('senha').value,
+          senha: CriptografarSenhas.criptografarSenhas(this.formulario.get('senha').value),
           telefone: this.formulario.get('telefone').value,
           tipo_usuario: this.formulario.get('tipoUsuario').value,
           ong: this.formulario.get('ong').value,

@@ -35,13 +35,22 @@ img {
   display: inline-block;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
+.dropdown-item {
+  cursor: pointer;
+}
+
+.navbar-nav .dropdown-menu {
   background-color: #49acc4;
-  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+
+  .dropdown-item {
+    color: #fff;
+    font-weight: 700;
+
+    &:hover {
+      background-color: #246373;
+    }
+  }
 }
 
 .dropdown-content a:hover {background-color: darken(#49acc4, 5%);}

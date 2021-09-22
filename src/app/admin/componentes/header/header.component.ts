@@ -24,6 +24,17 @@ export class HeaderComponentAdmin implements OnInit {
     this.iniciaisUsuario = iniciais.toUpperCase();
   }
 
+  get isAdministrador() {
+    const token = localStorage.getItem('token');
+    var usuarioLogado: any = jwt_decode(token);
+
+    if(usuarioLogado.tipo === "Administrador") {
+      return true;
+    }
+
+    return false;
+  }
+
   public sair() {
     localStorage.removeItem('token');
     localStorage.clear();

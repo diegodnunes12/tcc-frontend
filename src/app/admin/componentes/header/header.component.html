@@ -15,23 +15,23 @@
           <a class="nav-link" routerLink="/admin/minha-ong">ONG</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/admin/usuarios">USUÁRIOS</a>
+          <a class="nav-link" routerLink="/admin/usuarios" *ngIf="isAdministrador">USUÁRIOS</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/admin/contatos">CONTATOS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/admin/relatorios">RELATÓRIOS</a>
+          <a class="nav-link" routerLink="/admin/relatorios" *ngIf="isAdministrador">RELATÓRIOS</a>
         </li>
         <li class="nav-item ms-2">
           <div class="dropdown">
-            <button class="dropbtn">
+            <button class="dropbtn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               {{ iniciaisUsuario }}
             </button>
-            <div class="dropdown-content">
-              <a class="nav-link" routerLink="/admin/perfil">PERFIL</a>
-              <a class="nav-link" (click)="sair()">SAIR</a>
-            </div>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" routerLink="/admin/perfil">PERFIL</a></li>
+              <li><a class="dropdown-item" (click)="sair()">SAIR</a></li>
+            </ul>
           </div>
         </li>
       </ul>
