@@ -18,6 +18,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { CadastroAnimalComponent } from './pages/cadastro-animal/cadastro-animal.component';
 import { CadastroUsuarioComponent } from './pages/cadastro-usuario/cadastro-usuario.component';
 import { ChartsModule } from 'ng2-charts';
+import { AnimaisComponent } from './pages/animais/animais.component';
 
 registerLocaleData(localePt);
 
@@ -34,6 +35,7 @@ registerLocaleData(localePt);
     PerfilComponent,
     CadastroUsuarioComponent,
     RelatoriosComponent,
+    AnimaisComponent,
   ],
   imports: [
     CommonModule,

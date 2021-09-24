@@ -1,0 +1,44 @@
+<ng-container *ngIf="animais$ | async as animais">
+  <div class="container">
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <div class="border-bottom pb-2 mb-0 d-flex justify-content-between">
+        <h1>Animais cadastrados</h1>
+        <div>
+          <i (click)="print()" class="bi bi-printer me-3 export"></i>
+          <i (click)="exportar(animais)" class="bi bi-file-earmark-excel export"></i>
+        </div>
+      </div>
+      <div class="text-muted pt-3">
+        <div class="text-end">
+          <button class="btn btn-primary btn-sm" (click)="cadastrar()"><i class="bi bi-plus"></i> Novo</button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Espécie</th>
+                <th scope="col">Porte</th>
+                <th scope="col">Sexo</th>
+                <th class="print-none" scope="col">Gerenciar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let animal of animais">
+                <td>{{ animal.nome }}</td>
+                <td>{{ animal?.especie?.nome }}</td>
+                <td>{{ animal?.porte?.nome }}</td>
+                <td>{{ animal?.sexo }}</td>
+                <td class="print-none">
+                  <button class="btn btn-warning btn-sm me-2" (click)="editar(animal._id)"><i class="bi bi-pencil-square"></i></button>
+                  <button class="btn btn-danger btn-sm" (click)="remover(animal._id)"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+

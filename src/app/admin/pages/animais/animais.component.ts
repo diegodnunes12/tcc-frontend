@@ -1,5 +1,3 @@
-import { ContatosService } from './../../../core/services/contatos.service';
-import { ContatosInterface } from './../../../core/interfaces/contatos.interface';
 import { AnimaisExcelInterface } from './../../../core/interfaces/animais-excel.interface';
 import { ToastrService } from 'ngx-toastr';
 import { ModalConfirmaExclusaoComponent } from './../../../core/componentes/modal-confirma-exclusao/modal-confirma-exclusao.component';
@@ -13,39 +11,35 @@ import jwt_decode from "jwt-decode";
 import * as fileSaver from 'file-saver';
 import * as xlsx from 'xlsx';
 
+
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-animais',
+  templateUrl: './animais.component.html',
+  styleUrls: ['./animais.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class AnimaisComponent implements OnInit {
   public animais$: Observable<AnimaisInterface[]>;
-  public contatos$: Observable<ContatosInterface[]>;
-  public nomeUsuario: string;
 
   constructor
   (
     private animaisService: AnimaisService,
     private bsModalService: BsModalService,
     private toastr: ToastrService,
-    private router: Router,
-    private contatosService: ContatosService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     const token = localStorage.getItem('token');
     var usuarioLogado: any = jwt_decode(token);
-    this.nomeUsuario = usuarioLogado.name;
     this.animais$ = this.animaisService.getAllAnimaisDaOng(usuarioLogado.ong);
-    this.contatos$ = this.contatosService.getContatosOng(usuarioLogado.ong);
   }
 
   public cadastrar() {
-    this.router.navigate(['admin', 'novo']);
+    this.router.navigate(['admin', 'animais', 'novo']);
   }
 
   public editar(id: string) {
-    this.router.navigate(['admin', 'editar', id]);
+    this.router.navigate(['admin', 'animais', 'editar', id]);
   }
 
   public remover(id: string) {

@@ -1,3 +1,4 @@
+import { AnimaisComponent } from './pages/animais/animais.component';
 import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
@@ -18,8 +19,9 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'novo', component: CadastroAnimalComponent },
-      { path: 'editar/:animalId', component: CadastroAnimalComponent },
+      { path: 'animais', component: AnimaisComponent },
+      { path: 'animais/novo', component: CadastroAnimalComponent },
+      { path: 'animais/editar/:animalId', component: CadastroAnimalComponent },
       { path: 'contatos', component: ContatosAdminComponent },
       { path: 'contatos/:id', component: MensagensAdminComponent },
       { path: 'minha-ong', component: MinhaOngComponent },

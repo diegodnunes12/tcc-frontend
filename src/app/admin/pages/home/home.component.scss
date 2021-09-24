@@ -1,20 +1,24 @@
-tr {
-  td {
-    line-height: 30px;
+.container-card {
+  padding: 10px 20px;
+  color: #fff;
+  h2.item-total {
+    margin: 0;
+    font-size: 50px;
   }
 }
 
-.export {
-  font-size: 24px;
+.container-atalhos {
+  border: 2px solid #49acc4;
+  text-align: center;
+  padding: 20px;
   cursor: pointer;
-}
-
-@media print {
-  i, button, .print-none, nav, footer {
-    display: none;
+  img {
+    width: 120px;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
-
-  ::ng-deep app-header-admin {
-    display: none;
+  i{
+    font-size: 120px;
   }
 }
+
