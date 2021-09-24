@@ -1,3 +1,4 @@
+import { CampanhasComponent } from './pages/campanhas/campanhas.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
@@ -36,6 +37,7 @@ registerLocaleData(localePt);
     CadastroUsuarioComponent,
     RelatoriosComponent,
     AnimaisComponent,
+    CampanhasComponent
   ],
   imports: [
     CommonModule,

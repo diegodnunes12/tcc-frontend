@@ -104,4 +104,15 @@ export class HomeComponent implements OnInit {
     window.print();
   }
 
+  get isAdministrador() {
+    const token = localStorage.getItem('token');
+    var usuarioLogado: any = jwt_decode(token);
+
+    if(usuarioLogado.tipo === "Administrador") {
+      return true;
+    }
+
+    return false;
+  }
+
 }

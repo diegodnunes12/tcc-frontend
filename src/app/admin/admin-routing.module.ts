@@ -1,3 +1,4 @@
+import { CampanhasComponent } from './pages/campanhas/campanhas.component';
 import { AnimaisComponent } from './pages/animais/animais.component';
 import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'animais', component: AnimaisComponent },
       { path: 'animais/novo', component: CadastroAnimalComponent },
       { path: 'animais/editar/:animalId', component: CadastroAnimalComponent },
+      { path: 'campanhas', component: CampanhasComponent },
       { path: 'contatos', component: ContatosAdminComponent },
       { path: 'contatos/:id', component: MensagensAdminComponent },
       { path: 'minha-ong', component: MinhaOngComponent },

@@ -31,7 +31,7 @@
                 <img src="../../../../assets/images/paw.png">
               </div>
             </div>
-            <div class="col-md-3 mb-2">
+            <div class="col-md-3 mb-2" *ngIf="isAdministrador">
               <div class="container-atalhos" routerLink="usuarios">
                 <h5>Usuários</h5>
                 <i class="bi bi-people-fill"></i>
@@ -43,10 +43,16 @@
                 <i class="bi bi-chat-dots"></i>
               </div>
             </div>
-            <div class="col-md-3 mb-2">
+            <div class="col-md-3 mb-2" *ngIf="isAdministrador">
               <div class="container-atalhos" routerLink="relatorios">
                 <h5>Relatórios</h5>
                 <i class="bi bi-graph-up"></i>
+              </div>
+            </div>
+            <div class="col-md-3 mb-2">
+              <div class="container-atalhos" routerLink="campanhas">
+                <h5>Campanhas</h5>
+                <i class="bi bi-currency-dollar"></i>
               </div>
             </div>
             <div class="col-md-3 mb-2">
@@ -59,12 +65,6 @@
               <div class="container-atalhos" routerLink="perfil">
                 <h5>Perfil</h5>
                 <i class="bi bi-file-earmark-person"></i>
-              </div>
-            </div>
-            <div class="col-md-3 mb-2">
-              <div class="container-atalhos">
-                <h5>Espécie</h5>
-                <i class="bi bi-award"></i>
               </div>
             </div>
           </div>

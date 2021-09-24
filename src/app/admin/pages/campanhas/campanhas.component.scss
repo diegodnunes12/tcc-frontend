@@ -1,0 +1,20 @@
+tr {
+  td {
+    line-height: 30px;
+  }
+}
+
+.export {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media print {
+  i, button, .print-none, nav, footer {
+    display: none;
+  }
+
+  ::ng-deep app-header-admin {
+    display: none;
+  }
+}
