@@ -1,0 +1,62 @@
+.jambotron {
+  background: #d5dcde;
+  padding: 20px 30px;
+  min-height: 300px;
+}
+
+a {
+  color: #49acc4;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+h1 small {
+  color: #555;
+  font-size: 0.6em;
+}
+
+.logo-ong {
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+}
+
+.card {
+  cursor: pointer;
+  height: 335px;
+  .card-title {
+    margin-bottom: .1rem;
+  }
+  img {
+    height: 210px;
+  }
+  .card-text {
+    span {
+      border: solid 1px #d5dcde;
+      padding: 1px 8px 3px;
+      margin-right: 5px;
+      border-radius: 4px;
+
+      &.active {
+        background-color: #49acc4;
+        border: solid 1px #49acc4;
+        color: #fff;
+      }
+    }
+
+    .genero-macho {
+      font-size: 20px;
+      color: #4bb4de;
+      font-weight: 700;
+    }
+    .genero-femea {
+      font-size: 20px;
+      color: #d1499b;
+    }
+  }
+}
+
+::ng-deep .ngx-pagination .current {
+  background: #49acc4 !important;
+}
+

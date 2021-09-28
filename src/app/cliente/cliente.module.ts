@@ -1,3 +1,5 @@
+import { CampanhasComponent } from './pages/campanhas/campanhas.component';
+import { OngsComponent } from './pages/ongs/ongscomponent';
 import { PerfilUsuarioComponent } from './pages/perfil/perfil.component';
 import { MensagensComponent } from './pages/mensagens/mensagens.component';
 import { ContatosComponent } from './pages/contatos/contatos.component';
@@ -22,6 +24,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ContatosComponent,
     MensagensComponent,
     PerfilUsuarioComponent,
+    OngsComponent,
+    CampanhasComponent
   ],
   imports: [
     CommonModule,

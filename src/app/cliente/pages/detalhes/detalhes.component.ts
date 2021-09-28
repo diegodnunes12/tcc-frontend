@@ -101,4 +101,8 @@ export class DetalhesComponent implements OnInit {
       }
     }
   }
+
+  public paginaOng(_id: string) {
+    this.router.navigate(['adotar', 'ongs', _id])
+  }
 }

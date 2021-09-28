@@ -16,6 +16,10 @@ export class OngsService {
     return this.http.post<OngInterface>(`${this.url}`, ong);
   }
 
+  public getAll(): Observable<OngInterface[]> {
+    return this.http.get<OngInterface[]>(`${this.url}`);
+  }
+
   public getOng(id: string): Observable<OngInterface> {
     return this.http.get<OngInterface>(`${this.url}/${id}`);
   }

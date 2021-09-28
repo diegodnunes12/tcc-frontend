@@ -1,3 +1,4 @@
+import { CampanhasComponent } from './pages/campanhas/campanhas.component';
 import { PerfilUsuarioComponent } from './pages/perfil/perfil.component';
 import { MensagensComponent } from './pages/mensagens/mensagens.component';
 import { ContatosComponent } from './pages/contatos/contatos.component';
@@ -6,6 +7,7 @@ import { DetalhesComponent } from './pages/detalhes/detalhes.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { OngsComponent } from './pages/ongs/ongscomponent';
 
 const routes: Routes = [
   {
@@ -13,6 +15,8 @@ const routes: Routes = [
     component: ClienteComponent,
     children: [
       { path: '', component: HomeComponent },
+      { path: 'ongs', component: OngsComponent },
+      { path: 'ongs/:id', component: CampanhasComponent },
       { path: 'detalhes/:id', component: DetalhesComponent },
       { path: 'contatos', component: ContatosComponent },
       { path: 'contatos/:id', component: MensagensComponent },

@@ -51,9 +51,9 @@
             </li>
           </ul>
         </div>
-        <div class="col-6 mt-4">
+        <div class="col-md-6 mt-4">
           <div class="jambotron">
-            <h5 class="mb-3">{{ animal.ong.nome }}</h5>
+            <h5 class="mb-3 link" (click)="paginaOng(animal.ong._id)">{{ animal.ong.nome }}</h5>
             <p>A ong {{ animal.ong.nome }}, inscrita no CNPJ {{ animal.ong.cnpj }}, está presente em {{ animal.ong.cidade }} - {{ animal.ong.estado }}.</p>
             <p>Para conhecer mais sobre o nosso trabalho, entre em contato através:</p>
             <p>
@@ -68,7 +68,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6 mt-4">
+        <div class="col-md-6 mt-4">
           <div class="jambotron">
             <h5 class="mb-3">
               Quero adotar

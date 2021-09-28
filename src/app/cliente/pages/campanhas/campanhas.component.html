@@ -1,0 +1,99 @@
+<ng-container *ngIf="ong$ | async as ong">
+  <div class="container">
+    <div class="my-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">
+            <a routerLink="/ongs"><i class="bi bi-arrow-left"></i> Voltar</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <img src="https://adoteja.s3.sa-east-1.amazonaws.com/imagens/00b3bb75-3246-416f-a18c-ea2936cb112a.jpg" class="logo-ong">
+        </div>
+        <div class="col-md-8 mb-3">
+          <h1 class="text-primary">{{ ong.nome }} <small>{{ ong.cnpj }}</small></h1>
+          <p><i class="bi bi-geo-alt"></i> {{ ong.cidade }} - {{ ong.estado }}</p>
+          <p>
+            <i class="bi bi-envelope"></i> {{ ong.email }}
+          </p>
+          <p>
+            <i class="bi bi-telephone"></i> {{ ong.telefone }}
+          </p>
+          <div class="btn-group me-2" role="group">
+            <a *ngIf="ong.facebook" href="https://www.facebook.com/{{ ong.facebook }}" target="_blank" class="btn btn-outline-primary"><i class="bi bi-facebook"></i></a>
+            <a *ngIf="ong.instagram" href="https://www.instagram.com/{{ ong.instagram }}" target="_blank" class="btn btn-outline-primary"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="campanhas$ | async as campanhas">
+  <div class="container">
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <h1 class="text-primary">Campanhas ativas</h1>
+          <div *ngFor="let campanha of campanhas" class="mt-3">
+            <h6 class="mt-3 mb-3">{{ campanha.nome }}</h6>
+            <div class="row">
+              <div class="col-md-3">
+                <p><strong>Valor</strong>: {{ campanha.valor | currency:'BRL':true }}</p>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Chave Pix</strong>: {{ campanha.chave_pix }}</p>
+              </div>
+              <div class="col-md-12">
+                <p>{{ campanha.descricao }}</p>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="animais$ | async as animais">
+  <div class="container">
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <div class="row">
+        <h1 class="text-primary mb-4">Animais disponíveis</h1>
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-3" *ngFor="let animal of animais  | paginate: { itemsPerPage: 12, currentPage: p, totalItems: animais.total }">
+          <div class="card" (click)="detalhes(animal._id)">
+            <img src="https://adoteja.s3.sa-east-1.amazonaws.com/imagens/{{ animal.imagem }}" class="card-img-top" [alt]="animal.nome">
+            <div class="card-body">
+              <h5 class="card-title ">{{ animal.nome }}</h5>
+              <span>{{ animal.ong.cidade }} - {{ animal.ong.estado }}</span>
+              <div class="card-text d-flex justify-content-between mt-3">
+                <div>
+                  <span [ngClass]="{'active': animal.porte.nome === 'Pequeno'}">P</span>
+                  <span [ngClass]="{'active': animal.porte.nome === 'Médio'}">M</span>
+                  <span [ngClass]="{'active': animal.porte.nome === 'Grande'}">G</span>
+                </div>
+                <div>
+                  <i *ngIf="animal.sexo === 'Macho'" class="bi bi-gender-male genero-macho"></i>
+                  <i *ngIf="animal.sexo === 'Fêmea'" class="bi bi-gender-female genero-femea"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <pagination-controls
+          (pageChange)="p = $event"
+          (pageChange)="pageChanged($event)"
+          maxSize="9"
+          directionLinks="true"
+          autoHide="true"
+          responsive="true"
+          previousLabel="Anterior"
+          nextLabel="Próximo"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</ng-container>

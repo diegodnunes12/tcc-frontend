@@ -10,9 +10,9 @@ a {
   font-weight: 700;
 }
 
-.link {
-  cursor: pointer;
-  &:hover {
-    color: #49acc4;
+tr {
+  td {
+    line-height: 30px;
   }
 }
+
