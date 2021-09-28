@@ -9,4 +9,5 @@ export interface OngInterface {
   cidade: string;
   estado: string;
   data_cadastro?: Date;
+  imagem?: string;
 }

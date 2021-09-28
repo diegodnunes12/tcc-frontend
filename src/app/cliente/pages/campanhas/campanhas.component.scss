@@ -56,6 +56,17 @@ h1 small {
   }
 }
 
+.container-iniciais-ong {
+  background-color: #512E19;
+  color: #fff;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 80px;
+  padding-top: 20%;
+}
+
 ::ng-deep .ngx-pagination .current {
   background: #49acc4 !important;
 }

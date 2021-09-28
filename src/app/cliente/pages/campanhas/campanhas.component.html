@@ -11,9 +11,16 @@
     </div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <div class="row">
-        <div class="col-md-4 mb-3">
-          <img src="https://adoteja.s3.sa-east-1.amazonaws.com/imagens/00b3bb75-3246-416f-a18c-ea2936cb112a.jpg" class="logo-ong">
+        <div class="col-md-4 mb-3" *ngIf="ong.imagem && ong.imagem !== ''; else iniciais">
+          <img src="https://adoteja.s3.sa-east-1.amazonaws.com/imagens/{{ ong.imagem }}" class="logo-ong">
         </div>
+        <ng-template #iniciais>
+          <div class="col-md-4 mb-3">
+            <div class="container-iniciais-ong">
+              {{ getIniciais(ong.nome) }}
+            </div>
+          </div>
+        </ng-template>
         <div class="col-md-8 mb-3">
           <h1 class="text-primary">{{ ong.nome }} <small>{{ ong.cnpj }}</small></h1>
           <p><i class="bi bi-geo-alt"></i> {{ ong.cidade }} - {{ ong.estado }}</p>
@@ -33,7 +40,7 @@
   </div>
 </ng-container>
 <ng-container *ngIf="campanhas$ | async as campanhas">
-  <div class="container">
+  <div class="container" *ngIf="campanhas.length > 0">
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <div class="row">
         <div class="col-md-12 mb-3">
@@ -59,7 +66,7 @@
   </div>
 </ng-container>
 <ng-container *ngIf="animais$ | async as animais">
-  <div class="container">
+  <div class="container" *ngIf="animais.length > 0">
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <div class="row">
         <h1 class="text-primary mb-4">Animais disponíveis</h1>

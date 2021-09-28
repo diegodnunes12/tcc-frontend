@@ -22,6 +22,9 @@ export class MinhaOngComponent implements OnInit {
   public send: boolean = false;
   public estados: EstadosInterface[];
   public cidades: CidadesInterface[];
+  private file: File = null;
+  public temImagem: boolean = false;
+  public imagem: string;
 
   constructor
   (
@@ -46,6 +49,7 @@ export class MinhaOngComponent implements OnInit {
       instagram: ['', Validators.maxLength(50)],
       cidade: ['', Validators.maxLength(100)],
       estado: ['', Validators.maxLength(20)],
+      imagem: [],
     });
 
     const token = localStorage.getItem('token');
@@ -66,6 +70,11 @@ export class MinhaOngComponent implements OnInit {
         this.formulario.get('instagram').setValue(httpResponse.instagram);
         this.formulario.get('cidade').setValue(httpResponse.cidade);
         this.formulario.get('estado').setValue(httpResponse.estado);
+
+        if(httpResponse.imagem !== null && httpResponse.imagem !== undefined) {
+          this.temImagem = true;
+          this.imagem = httpResponse.imagem;
+        }
       });
     }
   }
@@ -76,6 +85,18 @@ export class MinhaOngComponent implements OnInit {
 
   public salvar() {
     if(this.formulario.valid) {
+      const formData: FormData = new FormData();
+      formData.append('nome', this.formulario.get('nome').value);
+      formData.append('telefone', this.formulario.get('telefone').value);
+      formData.append('email', this.formulario.get('email').value);
+      formData.append('facebook', this.formulario.get('facebook').value);
+      formData.append('instagram', this.formulario.get('instagram').value);
+      formData.append('cidade', this.formulario.get('cidade').value);
+      formData.append('estado', this.formulario.get('estado').value);
+
+      if(this.file) {
+        formData.append('imagem', this.file, this.file.name);
+      }
       const ong: OngInterface = {
         nome: this.formulario.get('nome').value,
         telefone: this.formulario.get('telefone').value,
@@ -86,7 +107,7 @@ export class MinhaOngComponent implements OnInit {
         estado: this.formulario.get('estado').value,
       }
 
-      this.ongsService.alterarOng(this.formulario.get('_id').value, ong).subscribe(httpResponse => {
+      this.ongsService.alterarOng(this.formulario.get('_id').value, formData).subscribe(httpResponse => {
         this.toastr.success('Informações alteradas com sucesso');
       },
       error => {
@@ -125,5 +146,13 @@ export class MinhaOngComponent implements OnInit {
         return "jaExistente";
       }
     }
+  }
+
+  public upload($event) {
+    this.file = $event.target.files[0];
+  }
+
+  public alterarImagem() {
+    this.temImagem = false;
   }
 }

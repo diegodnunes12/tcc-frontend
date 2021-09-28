@@ -49,4 +49,14 @@ export class CampanhasComponent implements OnInit {
   public detalhes(animalId: string) {
     this.router.navigate(['adotar', 'detalhes', animalId]);
   }
+
+  public getIniciais(nome: string) {
+    const nomeSplit = nome.split(" ");
+    let iniciais = nomeSplit[0].slice(0, 2);
+
+    if (nomeSplit.length >= 2) {
+      iniciais = nomeSplit.shift().charAt(0) + nomeSplit.pop().charAt(0);
+    }
+    return iniciais.toUpperCase();
+  }
 }
