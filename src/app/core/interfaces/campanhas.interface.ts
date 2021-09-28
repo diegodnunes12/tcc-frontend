@@ -3,5 +3,7 @@ export interface CampanhasInterface {
   nome: string;
   descricao: string;
   valor: number;
+  ativo: boolean;
   chave_pix: string;
+  ong?: string;
 }

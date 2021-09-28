@@ -13,7 +13,6 @@
             <thead>
               <tr>
                 <th scope="col">Nome</th>
-                <th scope="col">Descrição</th>
                 <th scope="col">Valor</th>
                 <th scope="col">Chave Pix</th>
                 <th scope="col">Ativo</th>
@@ -23,10 +22,11 @@
             <tbody>
               <tr *ngFor="let campanha of campanhas">
                 <td>{{ campanha.nome }}</td>
-                <td>{{ campanha.descricao }}</td>
-                <td>{{ campanha.valor }}</td>
+                <td>{{ campanha.valor | currency:'BRL':true }}</td>
                 <td>{{ campanha.chave_pix }}</td>
-                <td>{{ campanha.ativo }}</td>
+                <td>
+                  <span *ngIf="campanha.ativo"><i class="bi bi-check-lg"></i></span>
+                </td>
                 <td class="print-none">
                   <button class="btn btn-warning btn-sm me-2" (click)="editar(campanha._id)"><i class="bi bi-pencil-square"></i></button>
                   <button class="btn btn-danger btn-sm" (click)="remover(campanha._id)"><i class="bi bi-trash"></i></button>

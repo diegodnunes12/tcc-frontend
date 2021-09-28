@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="my-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+          <a routerLink="/admin/campanhas"><i class="bi bi-arrow-left"></i> Voltar</a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h1 class="border-bottom pb-2 mb-0">Cadastrar campanha</h1>
+    <div class="text-muted pt-3">
+      <form [formGroup]="formulario" (ngSubmit)="salvar()">
+        <div class="row">
+          <div class="col-md-6 mt-2">
+            <label for="nome" class="form-label">Nome *</label>
+            <input type="text" class="form-control" id="nome" formControlName="nome" maxlength="50">
+            <p class="text-danger" *ngIf="verficaErro('nome') === 'required'">* Por favor, informe o nome</p>
+            <p class="text-danger" *ngIf="verficaErro('nome') === 'min'">* O nome deve ter pelo menos três caracteres</p>
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="telefone" class="form-label">Valor *</label>
+            <input type="text" class="form-control" id="valor" formControlName="valor" maxlength="20" mask="separator.2" thousandSeparator=".">
+            <p class="text-danger" *ngIf="verficaErro('valor') === 'required'">* Por favor, informe o valor</p>
+          </div>
+          <div class="col-md-6 mt-2">
+            <label for="chave_pix" class="form-label">Chave Pix *</label>
+            <input type="text" class="form-control" id="chave_pix" formControlName="chave_pix" maxlength="50">
+            <p class="text-danger" *ngIf="verficaErro('chave_pix') === 'required'">* Por favor, informe a chave pix</p>
+          </div>
+          <div class="col-md-6 mt-5">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="ativo" formControlName="ativo">
+              <label class="form-check-label" for="ativo">Ativo</label>
+            </div>
+          </div>
+          <div class="col-12 mt-2">
+            <label for="descricao" class="form-label">Descrição</label>
+            <textarea class="form-control" id="descricao" formControlName="descricao" maxlength="500" rows="3"></textarea>
+            <p class="text-danger" *ngIf="verficaErro('descricao') === 'max'">* A descrição deve ter no máximo 500 caracteres</p>
+          </div>
+          <div class="col-12 mt-3 pb-3">
+            <button class="btn btn-primary">
+              <span *ngIf="!send">Salvar</span>
+              <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

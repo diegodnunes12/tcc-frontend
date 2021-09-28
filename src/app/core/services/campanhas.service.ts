@@ -17,8 +17,8 @@ export class CampanhasService {
     return this.http.post<CampanhasInterface>(this.url, campanha)
   }
 
-  public alterar(campanha: CampanhasInterface): Observable<CampanhasInterface> {
-    return this.http.patch<CampanhasInterface>(`${this.url}/${campanha._id}`, campanha);
+  public alterar(id: string, campanha: CampanhasInterface): Observable<CampanhasInterface> {
+    return this.http.patch<CampanhasInterface>(`${this.url}/${id}`, campanha);
   }
 
   public getAll(ongId: string): Observable<CampanhasInterface[]> {

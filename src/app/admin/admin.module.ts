@@ -1,3 +1,5 @@
+import { ReactiveFormsModule } from '@angular/forms';
+import { CadastroCampanhaComponent } from './pages/cadastro-campanha/cadastro-campanha.component';
 import { CampanhasComponent } from './pages/campanhas/campanhas.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
@@ -37,11 +39,13 @@ registerLocaleData(localePt);
     CadastroUsuarioComponent,
     RelatoriosComponent,
     AnimaisComponent,
-    CampanhasComponent
+    CampanhasComponent,
+    CadastroCampanhaComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    ReactiveFormsModule,
     CoreModule,
     ChartsModule,
     BsDatepickerModule.forRoot(),

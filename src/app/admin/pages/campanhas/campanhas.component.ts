@@ -37,11 +37,11 @@ export class CampanhasComponent implements OnInit {
   }
 
   public cadastrar() {
-    this.router.navigate(['admin', 'animais', 'novo']);
+    this.router.navigate(['admin', 'campanhas', 'novo']);
   }
 
   public editar(id: string) {
-    this.router.navigate(['admin', 'animais', 'editar', id]);
+    this.router.navigate(['admin', 'campanhas', 'editar', id]);
   }
 
   public remover(id: string) {
