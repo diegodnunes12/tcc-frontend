@@ -1,3 +1,5 @@
+import { NovaSenhaComponent } from './pages/nova-senha/nova-senha.component';
+import { EsqueciMinhaSenhaComponent } from './pages/esqueci-minha-senha/esqueci-minha-senha.component';
 import { NovaOngComponent } from './pages/nova-ong/nova-ong.component';
 import { NovoUsuarioComponent } from './pages/novo-usuario/novo-usuario.component';
 import { CoreModule } from './core/core.module';
@@ -21,7 +23,9 @@ import { GoogleLoginProvider } from 'angularx-social-login';
     HomeComponent,
     NovoUsuarioComponent,
     NovaOngComponent,
-    HeaderComponent
+    HeaderComponent,
+    EsqueciMinhaSenhaComponent,
+    NovaSenhaComponent
   ],
   imports: [
     BrowserModule,

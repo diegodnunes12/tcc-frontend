@@ -1,0 +1,27 @@
+section {
+  background: url(../../../assets/images/pets.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 85vh;
+  position: relative;
+}
+
+.container-login {
+  width: 500px;
+  margin: auto;
+  border:none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(73, 172, 196, 0.9);
+  padding: 30px 20px;
+
+  h4, label {
+    color: #fff;
+  }
+}
+
+input.ng-invalid.ng-touched {
+  border: solid 3px #dc3545 !important;
+}

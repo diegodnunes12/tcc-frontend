@@ -1,0 +1,23 @@
+<app-header-site></app-header-site>
+<section>
+  <div class="container-login">
+    <h4 class="mb-3">Recuperar senha</h4>
+    <form [formGroup]="form" (ngSubmit)="cadastrar()">
+      <div class="mb-3">
+        <label>E-mail *</label>
+        <input type="email" class="form-control" id="email" placeholder="email@dominio.com.br" maxlength="50" formControlName="email">
+        <p class="text-light" *ngIf="verficaErro('email') === 'required'">* Por favor, informe o e-mail</p>
+        <p class="text-light" *ngIf="verficaErro('email') === 'email'">* Por favor, informe um e-mail válido</p>
+        <p class="text-light" *ngIf="verficaErro('email') !== 'jaExistente'">* Esse e-mail não está cadastrado. Por favor, faça o cadastro</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button type="submit" [disabled]="send" class="btn btn-warning">
+          <span *ngIf="!send">Enviar e-mail</span>
+          <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+        <a routerLink="">Voltar</a>
+      </div>
+    </form>
+  </div>
+</section>
+<app-footer></app-footer>

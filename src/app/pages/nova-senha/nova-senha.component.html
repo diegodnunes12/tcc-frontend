@@ -1,0 +1,27 @@
+<app-header-site></app-header-site>
+<section>
+  <div class="container-login">
+    <h4 class="mb-3">Recuperar senha</h4>
+    <form [formGroup]="form" (ngSubmit)="cadastrar()">
+      <div class="mb-3">
+        <label>Senha *</label>
+        <input type="password" class="form-control" id="senha" placeholder="Senha" maxlength="15" formControlName="senha">
+        <p class="text-light" *ngIf="verficaErro('senha') === 'required'">* Por favor, informe a senha</p>
+      </div>
+      <div class="mb-3">
+        <label>Confirme a senha *</label>
+        <input type="password" class="form-control" id="confirmaSenha" placeholder="Confirme a senha" maxlength="15" formControlName="confirmaSenha">
+        <p class="text-light" *ngIf="verficaErro('confirmaSenha') === 'required'">* Por favor, confirme a senha</p>
+        <p class="text-light" *ngIf="verficaErro('confirmaSenha') === 'senha'">* As senhas não combinam</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button type="submit" [disabled]="send" class="btn btn-warning">
+          <span *ngIf="!send">Enviar e-mail</span>
+          <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+        <a routerLink="">Voltar</a>
+      </div>
+    </form>
+  </div>
+</section>
+<app-footer></app-footer>

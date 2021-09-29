@@ -20,7 +20,10 @@
               <span *ngIf="!send">Acessar</span>
               <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             </button>
-            <a routerLink="novo-usuario">Cadastre-se</a>
+            <div>
+              <a routerLink="sistema/recuperar-senha" class="me-4">Esqueci minha senha</a>
+              <a routerLink="novo-usuario">Cadastre-se</a>
+            </div>
           </div>
         </form>
       </tab>
@@ -41,7 +44,10 @@
               <span *ngIf="!send">Acessar</span>
               <span *ngIf="send" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             </button>
-            <a routerLink="nova-ong">Cadastre sua ong</a>
+            <div>
+              <a routerLink="admin/recuperar-senha" class="me-4">Esqueci minha senha</a>
+              <a routerLink="nova-ong">Cadastre sua ong</a>
+            </div>
           </div>
         </form>
       </tab>

@@ -1,3 +1,4 @@
+import { EsqueciMinhaSenhaComponent } from './pages/esqueci-minha-senha/esqueci-minha-senha.component';
 import { AuthGuardAdminService } from './auth-guard-admin.service';
 import { AuthGuardClienteService } from './auth-guard-cliente.service';
 import { NovaOngComponent } from './pages/nova-ong/nova-ong.component';
@@ -23,6 +24,14 @@ const routes: Routes = [
       {
         path: "nova-ong",
         component: NovaOngComponent
+      },
+      {
+        path: ":conta/recuperar-senha",
+        component: EsqueciMinhaSenhaComponent
+      },
+      {
+        path: ":conta/nova-senha/:id",
+        component: EsqueciMinhaSenhaComponent
       },
       {
         path: "admin",
