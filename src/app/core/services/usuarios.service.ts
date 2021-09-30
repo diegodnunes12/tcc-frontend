@@ -49,6 +49,10 @@ export class UsuariosService {
     return this.http.get(`${this.url}/usuarios-ong/email/${email}`);
   }
 
+  public enviarEmailUsuarioAdmin(email: string) {
+    return this.http.post(`${this.url}/usuarios-ong/recuperar-senha/${email}`, {});
+  }
+
   /** USUÁRIOS SISTEMA **/
 
   public loginSistema(usuario: UsuarioLoginInterface): Observable<TokenInterface> {
@@ -69,6 +73,10 @@ export class UsuariosService {
 
   public getUsuarioSistemaPorEmail(email: string) {
     return this.http.get(`${this.url}/usuarios-sistema/email/${email}`);
+  }
+
+  public enviarEmailUsuario(email: string) {
+    return this.http.post(`${this.url}/usuarios-sistema/recuperar-senha/${email}`, {});
   }
 
 }

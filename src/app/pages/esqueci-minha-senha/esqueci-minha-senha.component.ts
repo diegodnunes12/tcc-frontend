@@ -4,7 +4,7 @@ import { CriptografarSenhas } from '../../core/functions/criptografar-senhas';
 import { Validacoes } from '../../core/functions/validacoes';
 import { UsuarioInterface } from '../../core/interfaces/usuarios.interface';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuariosService } from '../../core/services/usuarios.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,6 +18,7 @@ import { map } from 'rxjs/operators';
 export class EsqueciMinhaSenhaComponent implements OnInit {
   public form: FormGroup;
   public send: boolean = false;
+  public isAdmin: boolean = false;
 
   constructor
   (
@@ -25,38 +26,47 @@ export class EsqueciMinhaSenhaComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params
+      .subscribe(params => {
+        if(params.conta === "admin") {
+          this.isAdmin = true;
+        }
+      }
+    );
     this.form = this.fb.group({
-      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      email: ['', [Validators.required, Validators.email, Validators.maxLength(50)], [this.validarEmail.bind(this)]],
-      senha: ['', [Validators.required, Validators.maxLength(50)]],
-      confirmaSenha: ['', [Validators.required, Validators.maxLength(50), Validacoes.isEqualTo('senha')]],
-      telefone: ['', [Validators.maxLength(20), Validators.pattern(/[0-9]{10,11}/)]]
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]]
     });
   }
 
-  public cadastrar() {
+  public enviarEmail() {
     if(this.form.valid) {
       this.send = true;
-      let usuario: UsuarioInterface = {
-        nome: this.form.get('nome').value,
-        email: this.form.get('email').value,
-        senha: CriptografarSenhas.criptografarSenhas(this.form.get('senha').value),
-        telefone: this.form.get('telefone').value,
-        data_cadastro: new Date()
-      };
 
-      this.usuariosService.cadastrarUsuarioSistema(usuario).subscribe(() => {
-        this.router.navigate(['']);
-        this.toastr.success(`Cadastro efetuado com sucesso!`);
-        this.send = false;
-      },
-      () => {
-        this.toastr.error('Não foi possível realizar o cadastro');
-        this.send = false;
-      });
+      if(this.isAdmin) {
+        this.usuariosService.enviarEmailUsuarioAdmin(this.form.get('email').value).subscribe(() => {
+          this.toastr.success(`Recuperação de senha. Verifique seu e-mail`);
+          this.send = false;
+        },
+        () => {
+          this.toastr.error('Não foi possível enviar o e-mail');
+          this.send = false;
+        });
+      } else {
+        this.usuariosService.enviarEmailUsuario(this.form.get('email').value).subscribe(() => {
+          this.toastr.success(`Recuperação de senha. Verifique seu e-mail`);
+          this.send = false;
+        },
+        () => {
+          this.toastr.error('Não foi possível enviar o e-mail');
+          this.send = false;
+        });
+      }
+
+
     } else {
       Object.keys(this.form.controls).forEach(item => {
         this.form.get(item).markAsTouched();

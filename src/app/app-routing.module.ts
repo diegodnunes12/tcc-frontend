@@ -1,3 +1,4 @@
+import { NovaSenhaComponent } from './pages/nova-senha/nova-senha.component';
 import { EsqueciMinhaSenhaComponent } from './pages/esqueci-minha-senha/esqueci-minha-senha.component';
 import { AuthGuardAdminService } from './auth-guard-admin.service';
 import { AuthGuardClienteService } from './auth-guard-cliente.service';
@@ -31,7 +32,7 @@ const routes: Routes = [
       },
       {
         path: ":conta/nova-senha/:id",
-        component: EsqueciMinhaSenhaComponent
+        component: NovaSenhaComponent
       },
       {
         path: "admin",
