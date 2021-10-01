@@ -1,3 +1,4 @@
+import { AlterarSenhaSistemaComponent } from './pages/alterar-senha/alterar-senha.component';
 import { CampanhasComponent } from './pages/campanhas/campanhas.component';
 import { PerfilUsuarioComponent } from './pages/perfil/perfil.component';
 import { MensagensComponent } from './pages/mensagens/mensagens.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'contatos', component: ContatosComponent },
       { path: 'contatos/:id', component: MensagensComponent },
       { path: 'perfil', component: PerfilUsuarioComponent },
+      { path: 'alterar-senha', component: AlterarSenhaSistemaComponent },
     ]
   }
 ];

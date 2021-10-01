@@ -53,6 +53,10 @@ export class UsuariosService {
     return this.http.post(`${this.url}/usuarios-ong/recuperar-senha/${email}`, {});
   }
 
+  public verificarSenhaAdmin(email: string, senha: string) {
+    return this.http.post(`${this.url}/usuarios-ong/verifica-senha`, { email, senha });
+  }
+
   /** USUÁRIOS SISTEMA **/
 
   public loginSistema(usuario: UsuarioLoginInterface): Observable<TokenInterface> {
@@ -77,6 +81,10 @@ export class UsuariosService {
 
   public enviarEmailUsuario(email: string) {
     return this.http.post(`${this.url}/usuarios-sistema/recuperar-senha/${email}`, {});
+  }
+
+  public verificarSenha(email: string, senha: string) {
+    return this.http.post(`${this.url}/usuarios-sistema/verifica-senha`, { email, senha });
   }
 
 }

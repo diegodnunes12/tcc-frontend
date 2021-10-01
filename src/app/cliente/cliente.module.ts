@@ -1,3 +1,4 @@
+import { AlterarSenhaSistemaComponent } from './pages/alterar-senha/alterar-senha.component';
 import { CampanhasComponent } from './pages/campanhas/campanhas.component';
 import { OngsComponent } from './pages/ongs/ongscomponent';
 import { PerfilUsuarioComponent } from './pages/perfil/perfil.component';
@@ -25,7 +26,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MensagensComponent,
     PerfilUsuarioComponent,
     OngsComponent,
-    CampanhasComponent
+    CampanhasComponent,
+    AlterarSenhaSistemaComponent
   ],
   imports: [
     CommonModule,

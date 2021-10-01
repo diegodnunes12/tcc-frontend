@@ -1,3 +1,4 @@
+import { AlterarSenhaComponent } from './pages/alterar-senha/alterar-senha.component';
 import { CadastroCampanhaComponent } from './pages/cadastro-campanha/cadastro-campanha.component';
 import { CampanhasComponent } from './pages/campanhas/campanhas.component';
 import { AnimaisComponent } from './pages/animais/animais.component';
@@ -34,6 +35,7 @@ const routes: Routes = [
       { path: 'usuarios/novo', component: CadastroUsuarioComponent, canActivate: [AuthGuardAdminService] },
       { path: 'usuarios/editar/:usuarioId', component: CadastroUsuarioComponent, canActivate: [AuthGuardAdminService] },
       { path: 'perfil', component: PerfilComponent },
+      { path: 'alterar-senha', component: AlterarSenhaComponent },
       { path: 'relatorios', component: RelatoriosComponent, canActivate: [AuthGuardAdminService] },
     ]
   }

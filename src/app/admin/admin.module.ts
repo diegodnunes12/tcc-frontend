@@ -1,3 +1,4 @@
+import { AlterarSenhaComponent } from './pages/alterar-senha/alterar-senha.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CadastroCampanhaComponent } from './pages/cadastro-campanha/cadastro-campanha.component';
 import { CampanhasComponent } from './pages/campanhas/campanhas.component';
@@ -41,6 +42,7 @@ registerLocaleData(localePt);
     AnimaisComponent,
     CampanhasComponent,
     CadastroCampanhaComponent,
+    AlterarSenhaComponent
   ],
   imports: [
     CommonModule,

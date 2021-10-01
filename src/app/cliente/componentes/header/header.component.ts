@@ -11,6 +11,7 @@ export class HeaderAdotarComponent implements OnInit {
   public iniciaisUsuario: string;
   public avatar: string;
   public hasPicture: boolean = false;
+  public isUsuarioPlataforma: boolean = true;
 
   constructor(private router: Router) { }
 
@@ -27,6 +28,7 @@ export class HeaderAdotarComponent implements OnInit {
     if(usuarioLogado.iss && usuarioLogado.iss === "accounts.google.com" && usuarioLogado.picture) {
       this.avatar = usuarioLogado.picture;
       this.hasPicture = true;
+      this.isUsuarioPlataforma = false;
     }
   }
 

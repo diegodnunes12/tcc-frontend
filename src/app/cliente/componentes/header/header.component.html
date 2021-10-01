@@ -27,6 +27,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" routerLink="perfil">PERFIL</a></li>
+              <li *ngIf="isUsuarioPlataforma"><a class="dropdown-item" routerLink="alterar-senha">ALTERAR SENHA</a></li>
               <li><a class="dropdown-item" (click)="sair()">SAIR</a></li>
             </ul>
           </div>
