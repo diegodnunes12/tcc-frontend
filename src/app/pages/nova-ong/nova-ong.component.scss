@@ -1,8 +1,17 @@
-section {
-  background: url(../../../assets/images/pets.jpg);
+.container-imagem {
+  background: url(../../../assets/images/banner-principal.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 85vh;
+  width: 50%;
+  height: 100vh;
+  float: left;
+}
+
+.container-formulario {
+  background-color: #d5dcde;
+  width: 50%;
+  height: 100vh;
+  float: left;
   position: relative;
 }
 
@@ -14,7 +23,7 @@ section {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(73, 172, 196, 0.9);
+  background-color: rgba(73, 172, 196, 1);
   padding: 30px 20px;
 
   h4, label {
@@ -23,5 +32,21 @@ section {
 
   input.ng-invalid.ng-touched, .ng-select.ng-invalid.ng-touched {
     border: solid 3px #dc3545 !important;
+  }
+}
+
+@media (max-width: 1050px)
+{
+  .container-imagem
+  {
+    display: none;
+  }
+
+  .container-formulario {
+    width: 100%;
+  }
+
+  .container-login {
+    width: 100%;
   }
 }

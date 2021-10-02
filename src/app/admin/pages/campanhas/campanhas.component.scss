@@ -13,6 +13,12 @@ tr {
   color: #49acc4;
 }
 
+a {
+  color: #49acc4;
+  text-decoration: none;
+  font-weight: 700;
+}
+
 @media print {
   i, button, .print-none, nav, footer {
     display: none;

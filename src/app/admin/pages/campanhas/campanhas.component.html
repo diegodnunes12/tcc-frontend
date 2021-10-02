@@ -1,5 +1,14 @@
 <ng-container *ngIf="campanhas$ | async as campanhas">
   <div class="container">
+    <div class="my-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">
+            <a routerLink="/admin"><i class="bi bi-arrow-left"></i> Voltar</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <div class="border-bottom pb-2 mb-0 d-flex justify-content-between">
         <h1>Campanhas cadastradas</h1>

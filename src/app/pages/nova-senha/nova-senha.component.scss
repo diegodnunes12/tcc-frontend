@@ -25,3 +25,19 @@ section {
 input.ng-invalid.ng-touched {
   border: solid 3px #dc3545 !important;
 }
+
+@media (max-width: 1050px)
+{
+  .container-imagem
+  {
+    display: none;
+  }
+
+  .container-formulario {
+    width: 100%;
+  }
+
+  .container-login {
+    width: 100%;
+  }
+}
