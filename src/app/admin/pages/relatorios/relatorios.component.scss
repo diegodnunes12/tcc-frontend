@@ -29,6 +29,15 @@ a {
   margin-left: 10px;
 }
 
+@media (max-width: 768px)
+{
+  .btn-buscar {
+    position: relative;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
 @media print {
   i, button, .print-none, nav, footer {
     display: none;
