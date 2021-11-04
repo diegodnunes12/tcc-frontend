@@ -53,10 +53,10 @@ export class CampanhasComponent implements OnInit {
           const token = localStorage.getItem('token');
           var usuarioLogado: any = jwt_decode(token);
           this.campanhas$ = this.campanhasService.getAll(usuarioLogado.ong);
-          this.toastr.success('Animal excluído com sucesso');
+          this.toastr.success('Campanha excluída com sucesso');
         },
         () => {
-          this.toastr.error('Não foi possível excluir o animal');
+          this.toastr.error('Não foi possível excluir a campanha');
         });
       }
     });
