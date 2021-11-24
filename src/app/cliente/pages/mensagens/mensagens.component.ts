@@ -91,7 +91,7 @@ export class MensagensComponent implements OnInit {
 
         this.mensagensService.cadastrar(mensagem).subscribe(() => {
           this.form.reset();
-          this.toastr.success(`Mensagem envia com sucesso`);
+          this.toastr.success(`Mensagem enviada com sucesso`);
           this.mensagens$ = this.mensagensService.getByContato(contato._id);
           this.desabilitarBotao = false;
         },
