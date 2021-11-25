@@ -32,14 +32,6 @@ export class HomeComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]]
     });
-
-    /* this.socialAuthService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.isLoggedin = (user != null);
-      if(this.socialUser !== null) {
-        localStorage.setItem('token', this.socialUser.idToken);
-      }
-    }); */
   }
 
   public login(sistema: string) {
