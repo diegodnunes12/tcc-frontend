@@ -92,3 +92,10 @@
     width: 100%;
   }
 }
+
+@media (max-height: 650px)
+{
+  .logo {
+    display: none;
+  }
+}
